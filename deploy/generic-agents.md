@@ -15,8 +15,8 @@ git clone https://github.com/hhx465453939/agent-taste-seed-system.git ~/agent-ta
 ```markdown
 ## 🎨 美学大脑（Taste Seed System）
 
-- **触发**：任何带视觉属性的任务（长图/海报/PPT/图表/插画/UI/皮肤/封面/配图/配色/前端页面视觉/视频分镜）——动手前先走美学决策流程。
-- **流程**：情绪定位（读者该感受什么，一个词）→ 打开 `~/agent-taste-seed-system/references/art-seeds.md` 按情绪索引选 1 主 + 1 辅基因 → 五基因翻译成具体参数 → 一句话自检 → 交付后记风味日志。
+- **触发**：任何涉及审美与视觉呈现的任务（长图/海报/PPT/图表/插画/UI/皮肤/封面/配图/配色/前端页面视觉/视频分镜/Word 与文档排版/生活与社会关系审美咨询）——动手前先走美学决策流程。
+- **流程**：情绪定位（读者该感受什么，一个词）→ 打开 `~/agent-taste-seed-system/references/art-seeds.md` 按情绪索引选 1 主 + 1 辅基因 → 按媒介翻译成具体参数（HTML→CSS 变量 / PPT→版式 / Word→字体行距样式 / 生图→Prompt Keywords / 生活→材质色彩）→ 一句话自检 → 交付后记风味日志。
 - **红线**：禁止"AI 味默认审美"（通用卡片/蓝紫渐变）；一组作品一个主基因，敢混搭只混一层；种子库按需查询、禁止全文注入上下文。
 - 决策流程全文见 `~/agent-taste-seed-system/TASTE.md`；注入提示词全文见 `~/agent-taste-seed-system/AGENT-INJECTION.md`。
 ```
