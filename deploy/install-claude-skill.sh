@@ -19,7 +19,7 @@ if [[ -f "$DST/references/art-seeds.md" ]]; then
 fi
 
 cp "$SRC/templates/SKILL.md" "$DST/SKILL.md"
-# references/ 整目录同步（art-seeds 总库 + chapters/ + moods/ + code-genes/ 四层全量）
+# references/ 整目录覆盖拷贝（art-seeds 总库 + chapters/ + moods/ + code-genes/ 四层全量）
 mkdir -p "$DST/references"
 rm -rf "$DST/references/chapters" "$DST/references/moods" "$DST/references/code-genes"
 cp -R "$SRC/references/." "$DST/references/"

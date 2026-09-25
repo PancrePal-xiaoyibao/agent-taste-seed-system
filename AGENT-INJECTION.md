@@ -1,7 +1,7 @@
 # 🧬 审美种子系统 · 智能体注入提示词
 
 > 将下面整段话加入智能体的系统提示词（或作为 workspace 规则文件），即可让它获得审美决策能力。
-> 依赖文件：`TASTE.md`（审美OS）与 `art-seeds.md`（种子库）需放在智能体可读取的工作区。
+> 依赖文件：`TASTE.md`（审美OS）与 `art-seeds.md`（种子库，本仓库内位于 `references/` 下）需放在智能体可读取的工作区（四层全库可选：moods//code-genes//chapters/，与种子库同目录）。
 
 ---
 
@@ -44,6 +44,8 @@
 
 | 智能体类型 | 接入方式 |
 |-----------|---------|
-| OpenClaw / Claude Code / Codex 类 | 把 `TASTE.md` 放 workspace 根目录，`art-seeds.md` 放 `taste/` 子目录；上述提示词并入 AGENTS.md 或 SOUL.md |
+| OpenClaw 等 workspace 型（有 AGENTS.md/SOUL.md 机制） | 把 `TASTE.md` 放 workspace 根目录，`references/` 目录内容**平铺**放进 `taste/` 子目录（`cp -R references/. taste/`，装完 `taste/` 下直接是 `art-seeds.md`，不是 `taste/references/`）；上述提示词并入 AGENTS.md 或 SOUL.md。详见 [`deploy/openclaw.md`](deploy/openclaw.md) |
+| Claude Code | 走 skill 方案：[`deploy/claude-code.md`](deploy/claude-code.md) 一键脚本装 `~/.claude/skills/taste/` + CLAUDE.md 薄注入（**不用**上面的 workspace 式布局） |
+| Codex / 有全局规则文件的 | clone 本仓库**原样布局**（种子库在 `references/` 下，无需 taste/ 目录），薄注入片段贴进全局规则文件。详见 [`deploy/generic-agents.md`](deploy/generic-agents.md) 情形 A |
 | 通用 ChatBot / 自定义 Agent | 两个 md 全文作为系统提示词附件或知识库文档；提示词部分放人格层 |
 | 有 skill 机制的 | 可把提示词做成 skill 触发器：视觉类任务自动先读 TASTE.md |

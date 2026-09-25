@@ -1,7 +1,7 @@
 # 🎨 agent-taste-seed-system — 给任何 AI Agent 装上美学大脑
 
 > 一套可移植的「审美操作系统 + 风格种子库」，让 Claude Code / Codex / OpenClaw / pi / workbuddy / codebuddy / Trae / Qoder / hermas 等任何智能体，在视觉创作上摆脱"AI 味默认审美"。
-> 来源：编制者自藏《艺术风格百科大全》（24 章 250+ 艺术家/风格）→ 提炼为可执行的审美决策体系。v1.0 · 2026-09-24
+> 来源：编制者自藏《艺术风格百科大全》（24 章 250+ 艺术家/风格）→ 提炼为可执行的审美决策体系。v1.0.1 · 2026-09-25
 > 本仓库：**https://github.com/hhx465453939/agent-taste-seed-system**
 
 ---
@@ -37,7 +37,7 @@
 步骤：
 1. git clone https://github.com/hhx465453939/agent-taste-seed-system.git ~/agent-taste-seed-system（已存在则 git pull）
 2. 先读 ~/agent-taste-seed-system/deploy/openclaw.md，然后按文档执行：
-   - 把仓库的 TASTE.md 放到 workspace 根目录，references/art-seeds.md 放到 workspace 的 taste/ 子目录（多龙虾舰队时每个 workspace 各放一份，禁止跨项目串人格文件）
+   - 把仓库的 TASTE.md 放到 workspace 根目录，references/ 目录内容**平铺**同步进 workspace 的 taste/ 子目录（即 `cp -R references/. <workspace根>/taste/`，装完 taste/ 下直接是 art-seeds.md 总库与 moods//code-genes//chapters/，**不是** taste/references/；龙虾已写过风味日志时先备份 taste/art-seeds.md 再覆盖；多龙虾舰队时每个 workspace 各放一份，禁止跨项目串人格文件）
    - 把仓库 AGENT-INJECTION.md 里的「注入提示词」整段并入该 workspace 的 AGENTS.md 或 SOUL.md（已有同名节则跳过）
 3. 完成后向我汇报：文件放置路径、注入位置，以及对龙虾的验证方式（如让它画一张海报看是否先报情绪关键词）
 ```
@@ -66,7 +66,7 @@
 1. git clone https://github.com/hhx465453939/agent-taste-seed-system.git ~/agent-taste-seed-system（已存在则 git pull）
 2. 读仓库的 README.md 和 deploy/generic-agents.md，判断你自己的规则加载机制并按对应情形部署：
    - 有全局规则文件 → 在其末尾追加文档中的薄注入片段（已有同名节则跳过）
-   - 只有系统提示词/知识库 → 把 AGENT-INJECTION.md 的注入提示词整段并入，TASTE.md 与 references/art-seeds.md 作为可读取的知识文件
+   - 只有系统提示词/知识库 → 把 AGENT-INJECTION.md 的注入提示词整段并入，TASTE.md 与 references/art-seeds.md 作为可读取的知识文件（能放目录就把整个 references/ 放进去，四层全库可用）
 3. 部署后自检：用一句话复述你的视觉任务工作流（情绪定位 → 查种子库选 1 主 + 1 辅基因 → 五基因翻译成参数 → 一句话自检 → 交付后记风味日志）
 4. 向我汇报：部署方式、文件位置、自检复述
 ```
@@ -89,6 +89,8 @@
 1. 让它「做一张 XX 海报」：它**先报情绪关键词**再动手
 2. 交付时它能**一句话说出风格基因**（主 + 辅）
 3. 它的种子库副本末尾出现新的风味日志条目
+
+> 无文件写入能力的形态（网页 ChatBot 的附件/知识库）以第 1、2 条为准：风味日志由用户代记进自己的副本，或让它在回复末尾口述记录本次搭配。
 
 ---
 
@@ -114,7 +116,7 @@
 | [`references/art-seeds.md`](references/art-seeds.md) | L1 总库速查：全量种子单行表（250+ 艺术家，按需查询勿全文注入） |
 | [`references/moods/`](references/moods/) | L2a 情绪档 ×10：每情绪主推种子的五基因详解 + 媒介适配 + 翻车清单 |
 | [`references/code-genes/`](references/code-genes/) | L2b 代码基因卡 ×12：写代码出图直接抄的部署提示词 + CSS 变量块 + 反模式 |
-| [`references/chapters/`](references/chapters/) | L2c 风格章档 ×24：《艺术风格百科大全》原文全量，每艺术家 2-3 句细述 |
+| [`references/chapters/`](references/chapters/) | L2c 风格章档 ×24+后记：《艺术风格百科大全》原文全量，每艺术家 2-3 句细述 |
 | [`sources/`](sources/) | 源文档归档（docx 原始百科） |
 | [`templates/SKILL.md`](templates/SKILL.md) | Claude Code skill 文件（四层路由版，安装脚本直接拷贝用） |
 | [`deploy/`](deploy/) | 各类智能体的详细部署文档 + 一键脚本（上面指令的权威细节都在这里） |
@@ -130,7 +132,7 @@ L0  TASTE.md                      决策层：情绪定位 → 该查哪层
 ├─ L2b code-genes/（12 张）       写代码出图（网页/长图/dashboard）
 │    部署提示词 + CSS 变量块 + 激活词 + 反模式，直接抄参数
 │
-├─ L2c chapters/（24 章）         深挖某艺术家/流派
+├─ L2c chapters/（24 章+后记）     深挖某艺术家/流派
 │    原文零删减 · 每艺术家 2-3 句细述 + AI Prompt Keywords
 │
 └─ L1 art-seeds.md                全量单行速查总表（关键词全局搜）

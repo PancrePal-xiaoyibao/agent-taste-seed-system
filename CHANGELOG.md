@@ -1,5 +1,23 @@
 # Changelog
 
+## v1.0.1 · 2026-09-25
+
+部署路径一致性修复（OpenClaw 实际部署反馈发现，经多路对抗核查补全）。
+
+**路径自适配**
+- `TASTE.md` 路径适配各部署形态：种子库引用不再写死仓库布局路径，文首标注「仓库 = `references/`、OpenClaw workspace = `taste/`」，并给出按文件名 `art-seeds.md` 定位的兜底方式；速查说明补入 `moods/`/`code-genes/`/`chapters/` 深挖层（标注"部署了全库时"）。
+- 种子库侧导航同步自适配：`references/art-seeds.md` 头部「四层知识库导航」不再写死 `../TASTE.md`（该路径在 Claude Code skill 形态必失效），改为按部署形态定位 + 按文件名兜底；`references/chapters/` 全部 25 个文件头部注释同步修正。
+- 修复 `TASTE.md` 决策流程 Step 5 的日志位置残留 `taste/log.md`（该文件在任何部署形态都不存在）→ 统一为「种子库 `art-seeds.md` 末尾风味日志」，与全部部署文档及实际约定一致。
+
+**部署文档修正**
+- `deploy/openclaw.md` 升级为四层全库部署：`references/` 目录内容平铺进 workspace `taste/`（旧两文件部署重跑命令即可补齐），新增覆盖前自动备份风味日志的步骤、装后结构说明与「在仓库根目录执行」前提。
+- `deploy/claude-code.md`：手动方式（方式 B）由只拷两个文件改为 `references/` 整目录覆盖拷贝（原方式装完 `moods/`/`code-genes/`/`chapters/` 三层缺失，四层路由会落空）；一键脚本描述修正为与脚本实际行为一致（脚本内注释同步对齐）；补方式 B 的目录前提；种子库体积口径 400KB → 约 300KB。
+- `AGENT-INJECTION.md` 部署说明表按形态拆行：原表把 OpenClaw / Claude Code / Codex 压成一行 OpenClaw 式指令，与三份权威部署文档冲突（Claude Code 走 skill 方案、Codex 走 clone 原样布局），现各自指向对应部署文档。
+- `README.md` 一键指令、文件清单、「部署成功的标准」同步以上约定；新增无文件写入形态（ChatBot 附件/知识库）的验收豁免口径。
+
+**口径杂项**
+- `chapters/` 实为 24 章 + 后记（25 个文件）——原 `ch00-前言.md` 正文即全书后记，错名已纠正为 `ch25-后记.md`，各处计数标注统一；TASTE.md 艺术家数量口径 200+ → 250+（与全仓一致）；百科章系枚举补漏「样式主义」；TASTE.md「原文由编制者自留」旧说法改为指向仓库内 `references/chapters/` 与 `sources/`；版本戳更新。
+
 ## v1.0.0 · 2026-09-24
 
 首个公开发布版本。

@@ -44,10 +44,10 @@ description: "美学大脑 / 审美操作系统。任何涉及审美与视觉呈
 | L0 | 本文件 | 每次视觉任务 | 决策流程 + 情绪索引表 |
 | L2a 情绪档 | `references/moods/`（10 份） | 知道目标情绪时（大多数情况） | 每情绪 2-3 粒主推种子五基因详解 + 媒介适配 + 翻车清单 |
 | L2b 代码基因卡 | `references/code-genes/`（12 张） | **写代码出图**（网页/长图/ dashboard） | 直接可抄的部署提示词 + CSS 变量块 + 反模式 |
-| L2c 风格章档 | `references/chapters/`（24 章） | 要深挖某艺术家/流派细节时 | 《艺术风格百科大全》原文，每艺术家 2-3 句细述 + Prompt Keywords |
+| L2c 风格章档 | `references/chapters/`（24 章 + 后记） | 要深挖某艺术家/流派细节时 | 《艺术风格百科大全》原文，每艺术家 2-3 句细述 + Prompt Keywords |
 | L1 总库速查 | `references/art-seeds.md` | 按关键词全局搜种子时 | 全量种子的单行速查表 |
 
-**典型路径**：情绪定位 → 查 `moods/` 对应档案 → 若写代码再查 `code-genes/` 对应基因卡抄参数 → 需要更多艺术家细节时进 `chapters/`。
+**典型路径**：情绪定位 → 查 `moods/` 对应档案 → 若写代码再查 `code-genes/` 对应基因卡抄参数 → 需要更多艺术家细节时进 `chapters/`。（下文速记 `moods/xx`、`code-genes/xx` 均相对 `references/` 目录。）
 
 ## 快速选种索引（情绪 → 去查哪份档案）
 

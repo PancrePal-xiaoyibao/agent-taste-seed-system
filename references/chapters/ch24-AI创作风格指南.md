@@ -1,5 +1,5 @@
 <!-- 风格档 · 摘自《艺术风格百科大全》原文，零删减。
-     总库速查：../art-seeds.md · 情绪档：../moods/ · 决策流程：../../TASTE.md -->
+     总库速查：../art-seeds.md · 情绪档：../moods/ · 决策流程：TASTE.md（按部署形态定位；Skill 形态见技能根 SKILL.md） -->
 
 # 第二十四章  实用附录：AI创作风格指南
 下面是一些实用的风格Prompt模板，帮助你在AI绘画工具（如Midjourney、Stable Diffusion、DALL·E等）中精准调用不同的艺术风格。

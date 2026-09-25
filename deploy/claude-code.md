@@ -1,7 +1,7 @@
 # Claude Code 部署 — 美学大脑
 
 > 方案：**薄全局注入（CLAUDE.md）+ 美学 skill 调用 + 厚实种子库 reference（四层：总库/情绪档/代码基因卡/风格章档）**。
-> 日常会话只背 ~10 行薄注入；约 400KB 种子库躺在 skill 目录里按需查，不占上下文。
+> 日常会话只背 ~10 行薄注入；约 300KB 种子库躺在 skill 目录里按需查，不占上下文。
 
 ## 方式 A：一键脚本（推荐）
 
@@ -10,14 +10,14 @@ git clone https://github.com/hhx465453939/agent-taste-seed-system.git
 bash agent-taste-seed-system/deploy/install-claude-skill.sh
 ```
 
-脚本做三件事：建 `~/.claude/skills/taste/` → 拷入 `SKILL.md`（来自 `templates/SKILL.md`）→ 拷入 `references/art-seeds.md`。已装过会先备份旧种子库再覆盖。
+脚本做的事：建 `~/.claude/skills/taste/` → 拷入 `SKILL.md`（来自 `templates/SKILL.md`）→ `references/` 整目录覆盖拷贝（art-seeds 总库 + moods/ + code-genes/ + chapters/ 四层全量，重装前预清理三个子目录）。已装过会先备份旧种子库（含风味日志）再覆盖。
 
-## 方式 B：手动
+## 方式 B：手动（在本仓库根目录执行）
 
 ```bash
 mkdir -p ~/.claude/skills/taste/references
 cp templates/SKILL.md ~/.claude/skills/taste/SKILL.md
-cp references/art-seeds.md ~/.claude/skills/taste/references/art-seeds.md
+cp -R references/. ~/.claude/skills/taste/references/   # 整目录覆盖拷贝，四层全量
 ```
 
 ## 第二步：薄注入片段（必做，复制整段贴进 `~/.claude/CLAUDE.md` 末尾）
