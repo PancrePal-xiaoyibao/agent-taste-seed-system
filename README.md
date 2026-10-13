@@ -1,8 +1,28 @@
 # 🎨 agent-taste-seed-system — 给任何 AI Agent 装上美学大脑
 
 > 一套可移植的「审美操作系统 + 风格种子库」，让 Claude Code / Codex / OpenClaw / pi / workbuddy / codebuddy / Trae / Qoder / hermas 等任何智能体，在视觉创作上摆脱"AI 味默认审美"。
-> 来源：编制者自藏《艺术风格百科大全》（24 章 250+ 艺术家/风格）→ 提炼为可执行的审美决策体系。v1.0.1 · 2026-09-25
+> 来源：编制者自藏《艺术风格百科大全》（24 章 250+ 艺术家/风格）→ 提炼为可执行的审美决策体系。v1.0.2 · 2026-10-13
 > 本仓库：**https://github.com/hhx465453939/agent-taste-seed-system**
+
+---
+
+## 📍 部署落点铁律（先读这条，再选你的 Agent）
+
+> **种子库只装进 agent 自身 skill 的内部目录（`<skill 根>/taste/references/`），绝不装进 workspace 根或 workspace 下的普通子目录。**
+
+原因：许多 agent 宿主在宿主机配置了 **workspace 自动清理**——定期把 workspace 内的文件转移到 archive 类路径或直接删除。种子库一旦落在 workspace 普通目录里，被清理后注入提示词里写死的路径会**永久失效且没有任何报错**：agent 每次都"查库"，每次都查不到，静默退化成 AI 味默认审美。
+
+放进 `skills/` 内部的理由：`skills/` 的语义是「这个 agent 的能力集合」，清理策略针对的是人格/工作区，不会动能力目录。**按语义分层，而不是按目录是否写保护分层。**
+
+| Agent | skill 根 | 种子库落点 |
+|---|---|---|
+| Claude Code | `~/.claude/skills/` | `~/.claude/skills/taste/references/art-seeds.md` |
+| Codex | `~/.codex/skills/` | `~/.codex/skills/taste/references/art-seeds.md` |
+| OpenClaw | `<workspace>/skills/` | `<workspace>/skills/taste/references/art-seeds.md` |
+| pi / Kimi | `~/.agents/skills/`（本机为 `~/.claude/skills` 符号链接） | `<agents skill 根>/taste/references/art-seeds.md` |
+| 无 skill 机制的 agent | 仓库 clone 目录（**不得位于任何 workspace 内**） | `<clone 根>/references/art-seeds.md` |
+
+**引用形式**：skill 内文档一律用**相对 skill 根**的路径（`references/art-seeds.md`、`references/moods/01-…`）；只有 skill 之外的全局规则文件才用绝对路径。
 
 ---
 
@@ -24,7 +44,9 @@
 3. 在 ~/.claude/CLAUDE.md 末尾追加「🎨 美学大脑（Taste Seed System）」薄注入节——全文逐字取自 ~/agent-taste-seed-system/deploy/claude-code.md 的「薄注入片段」小节；若 CLAUDE.md 已存在同名节则跳过，不要重复追加
 4. 完成后向我汇报：skill 安装路径与文件清单、CLAUDE.md 追加结果、让我如何验证生效
 
-注意：不要修改仓库内 references/ 的任何内容（那是种子库本体）。
+注意：
+- 不要修改仓库内 references/ 的任何内容（那是种子库本体）。
+- 种子库必须装在 skill 内部（~/.claude/skills/taste/references/）。禁止把种子库平铺进任何 workspace 目录——本机多个 agent 配了 workspace 自动清理，会把文件搬进 archive 导致引用永久失效。
 ```
 
 ### 🦞 OpenClaw
@@ -37,7 +59,8 @@
 步骤：
 1. git clone https://github.com/hhx465453939/agent-taste-seed-system.git ~/agent-taste-seed-system（已存在则 git pull）
 2. 先读 ~/agent-taste-seed-system/deploy/openclaw.md，然后按文档执行：
-   - 把仓库的 TASTE.md 放到 workspace 根目录，references/ 目录内容**平铺**同步进 workspace 的 taste/ 子目录（即 `cp -R references/. <workspace根>/taste/`，装完 taste/ 下直接是 art-seeds.md 总库与 moods//code-genes//chapters/，**不是** taste/references/；龙虾已写过风味日志时先备份 taste/art-seeds.md 再覆盖；多龙虾舰队时每个 workspace 各放一份，禁止跨项目串人格文件）
+   - 种子库装进 skill 内部：`<workspace>/skills/taste/references/`（四层全库整目录覆盖：`cp -R references/. <workspace>/skills/taste/references/`），决策层随 skill 走（`TASTE.md` 与 `templates/SKILL.md` 放 `<workspace>/skills/taste/`）；**不再平铺到 workspace 根或 workspace/taste/**——workspace 有自动清理，会被搬走导致引用永久失效
+   - 已按旧布局（workspace 根 taste/）装过的：按文档「从旧布局迁移」小节操作，先备份风味日志再覆盖、最后清旧落点
    - 把仓库 AGENT-INJECTION.md 里的「注入提示词」整段并入该 workspace 的 AGENTS.md 或 SOUL.md（已有同名节则跳过）
 3. 完成后向我汇报：文件放置路径、注入位置，以及对龙虾的验证方式（如让它画一张海报看是否先报情绪关键词）
 ```
@@ -51,8 +74,8 @@
 
 步骤：
 1. git clone https://github.com/hhx465453939/agent-taste-seed-system.git ~/agent-taste-seed-system（已存在则 git pull）
-2. 读 ~/agent-taste-seed-system/deploy/generic-agents.md，按「情形 A：有全局规则文件」执行：在你的全局规则文件（如 ~/.codex/AGENTS.md）末尾追加文档中的薄注入片段（片段里的路径保持 ~/agent-taste-seed-system 不变；已有同名节则跳过）
-3. 完成后向我汇报：clone 位置、修改的文件、追加的行数，以及下次视觉任务你会如何走「情绪定位→选基因→翻译参数→自检→记档」流程
+2. 读 ~/agent-taste-seed-system/deploy/generic-agents.md，按「情形 A：有 skill 机制」执行：把四层种子库装进 Codex 的 skill 目录 `~/.codex/skills/taste/references/`（`mkdir -p` + `cp -R references/.`），再把文档中的薄注入片段追加到全局规则文件（如 ~/.codex/AGENTS.md）末尾；已有同名节则跳过
+3. 完成后向我汇报：种子库落点、修改的规则文件、追加的行数，以及下次视觉任务你会如何走「情绪定位→选基因→翻译参数→自检→记档」流程
 ```
 
 ### 🧩 Trae / Qoder / pi / workbuddy / codebuddy / hermas 等其他 Agent（通用版）
@@ -65,10 +88,13 @@
 步骤：
 1. git clone https://github.com/hhx465453939/agent-taste-seed-system.git ~/agent-taste-seed-system（已存在则 git pull）
 2. 读仓库的 README.md 和 deploy/generic-agents.md，判断你自己的规则加载机制并按对应情形部署：
-   - 有全局规则文件 → 在其末尾追加文档中的薄注入片段（已有同名节则跳过）
+   - 有 skill 机制 → 种子库装进你**自己的 skill 目录**内部（`<你的 skill 根>/taste/references/`），注入片段用相对 skill 根路径
+   - 只有全局规则文件、无 skill 机制 → 种子库留在仓库 clone 目录（**该目录不得位于任何 workspace 内**），注入片段用该 clone 的绝对路径
    - 只有系统提示词/知识库 → 把 AGENT-INJECTION.md 的注入提示词整段并入，TASTE.md 与 references/art-seeds.md 作为可读取的知识文件（能放目录就把整个 references/ 放进去，四层全库可用）
 3. 部署后自检：用一句话复述你的视觉任务工作流（情绪定位 → 查种子库选 1 主 + 1 辅基因 → 五基因翻译成参数 → 一句话自检 → 交付后记风味日志）
-4. 向我汇报：部署方式、文件位置、自检复述
+4. 向我汇报：部署方式、种子库落点、自检复述
+
+禁止：把种子库平铺进 agent workspace 根或 workspace 下的普通目录（会被 workspace 自动清理搬走导致引用永久失效）。
 ```
 
 ### 🌐 万能版（任意 Agent，含网页 ChatBot）
@@ -91,6 +117,22 @@
 3. 它的种子库副本末尾出现新的风味日志条目
 
 > 无文件写入能力的形态（网页 ChatBot 的附件/知识库）以第 1、2 条为准：风味日志由用户代记进自己的副本，或让它在回复末尾口述记录本次搭配。
+
+### 🔍 验证种子库真的在（且不怕 workspace 清理）
+
+```bash
+# 以 Claude Code 为例；换 SKILL_ROOT 即可验任意 agent
+SKILL_ROOT="$HOME/.claude/skills/taste"
+test -r "$SKILL_ROOT/references/art-seeds.md" && echo "L1 OK"
+test -d "$SKILL_ROOT/references/moods"        && echo "L2a OK"
+test -d "$SKILL_ROOT/references/code-genes"   && echo "L2b OK"
+test -d "$SKILL_ROOT/references/chapters"     && echo "L2c OK"
+
+# OpenClaw 免疫性证明：把 workspace 整体挪走后仍可读
+WS=/path/to/workspace
+mv "$WS" "$WS.moved" && test -r "$WS.moved/skills/taste/references/art-seeds.md" \
+  && echo "IMMUNE OK" && mv "$WS.moved" "$WS"
+```
 
 ---
 
@@ -124,7 +166,7 @@
 ## 知识库分层架构（重 agent 按需加载，禁止全文注入）
 
 ```
-L0  TASTE.md                      决策层：情绪定位 → 该查哪层
+L0  TASTE.md                      决策层：情绪定位 → 该查哪层（随 skill 安装）
 │
 ├─ L2a moods/（10 份）            知道情绪时第一落点
 │    每情绪 2-3 粒主推种子 · 五基因详解 · 媒介适配 · 翻车清单
@@ -138,13 +180,16 @@ L0  TASTE.md                      决策层：情绪定位 → 该查哪层
 └─ L1 art-seeds.md                全量单行速查总表（关键词全局搜）
 ```
 
+> 上述四层的引用基准是 **skill 内部**：装完即 `<skill 根>/taste/references/`，各子路径（`moods/`、`code-genes/`、`chapters/`、`art-seeds.md`）均相对 `references/`。
+
 ## 手动部署（不想发指令、自己动手时）
 
 | 你的 Agent | 方式 | 文档 |
 |-----------|------|------|
 | **Claude Code** | skill + CLAUDE.md 薄注入（一键脚本） | [`deploy/claude-code.md`](deploy/claude-code.md) |
-| **OpenClaw** | workspace 放置 + SOUL/AGENTS 注入 | [`deploy/openclaw.md`](deploy/openclaw.md) |
-| **Codex / pi / workbuddy / codebuddy / Trae / Qoder / hermas** 等 | 全局规则文件薄注入 | [`deploy/generic-agents.md`](deploy/generic-agents.md) |
+| **OpenClaw** | skill 内部放置（`<workspace>/skills/taste/`）+ SOUL/AGENTS 注入 | [`deploy/openclaw.md`](deploy/openclaw.md) |
+| **Codex / 有 skill 机制的 agent** | 装 `~/.codex/skills/taste/` 等 skill 目录 + 全局规则文件薄注入 | [`deploy/generic-agents.md`](deploy/generic-agents.md) |
+| **pi / workbuddy / codebuddy / Trae / Qoder / hermas**（无 skill 机制） | 全局规则文件薄注入 + 种子库留仓库 clone 目录 | [`deploy/generic-agents.md`](deploy/generic-agents.md) |
 | 通用 ChatBot（无文件机制） | 系统提示词整段注入 | [`deploy/generic-agents.md`](deploy/generic-agents.md) |
 
 ```bash

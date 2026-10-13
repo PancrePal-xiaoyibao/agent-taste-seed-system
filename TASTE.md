@@ -1,8 +1,10 @@
-# TASTE.md — 小虾的审美操作系统 🦞🎨
+# TASTE.md — 审美操作系统 🎨
 
 > 主人赠我《艺术风格百科大全》（250+ 艺术家/风格全览）后建立的审美底层文档。
 > 定位：**任何涉及审美的任务开工前，先来这里做风格决策**——视觉产物（长图/海报/PPT/图表/插画/皮肤/UI/HTML/Word 文档排版）与生活、社会关系中的审美决策（穿搭/家居/礼物/仪式感）同源同法。
-> 风格种子速查表 → 种子库 `art-seeds.md`（全量种子库，按需查询勿全文注入）。**路径按部署形态**：本仓库为 `references/art-seeds.md`，OpenClaw workspace 部署在 `taste/art-seeds.md`；找不到时按文件名 art-seeds.md 全局定位。《艺术风格百科大全》原文全量在本仓库 `references/chapters/`（逐章）与 `sources/`（docx 归档）
+> 风格种子速查表 → 种子库 `art-seeds.md`（全量种子库，按需查询勿全文注入）。**种子库随 skill 安装，引用一律以 skill 根为基准的相对路径寻址**：在本 skill 目录下即 `references/art-seeds.md`（下文的 `moods/`、`code-genes/`、`chapters/` 同理，均相对 `references/`）。
+> ⚠️ **不要把种子库放进 agent workspace 根**——许多 agent 宿主配置了 workspace 自动清理，会把种子库搬到 archive 或删除，导致引用永久失效。若你是**没有 skill 机制**的 agent，则把仓库 clone 到主目录固定路径（例如 `~/agent-taste-seed-system/`，**不得位于任何 workspace 内**），种子库引用为 `<clone>/references/art-seeds.md`。
+> 《艺术风格百科大全》原文全量在本仓库 `references/chapters/`（逐章）与 `sources/`（docx 归档）
 
 ---
 

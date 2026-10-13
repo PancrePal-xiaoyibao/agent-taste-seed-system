@@ -9,6 +9,14 @@ description: "美学大脑 / 审美操作系统。任何涉及审美与视觉呈
 
 **适用范围：一切需要审美的输出**——图片与插画、HTML/网页/长图、PPT、Word 与文档排版（简历/报告/公文）、图表与数据可视化、UI 与皮肤、视频分镜，乃至生活与社会关系中的审美（穿搭配色、家居氛围、礼物与请柬、仪式感设计）。人眼需要美学，人与人的关系也需要美学。
 
+## 种子库装在哪（引用规则）
+
+**种子库随 skill 安装，四层全库位于本 skill 内部**：`references/art-seeds.md`（L1）、`references/moods/`（L2a）、`references/code-genes/`（L2b）、`references/chapters/`（L2c）。
+
+- **引用一律以 skill 根为基准的相对路径**（`references/art-seeds.md`、`references/moods/01-…`），这样 skill 整体可搬迁，换机器/改用户名都不需要改文档。
+- **绝不把种子库放进 agent workspace 根或 workspace 下的普通目录**——许多 agent 宿主配置了 workspace 自动清理，会把种子库搬进 archive 或删除，导致引用永久失效且无任何报错。
+- 若你所在形态没有 skill 机制（只能用全局规则文件）：种子库留仓库 clone 目录（**不得位于任何 workspace 内**），用 clone 绝对路径引用。
+
 ## 核心原理：风格即基因，艺术家名即激活词
 
 - 风格 = **色彩 × 光线 × 笔触 × 构图 × 情绪** 五个基因位，调风格是调五个基因位，不是换个背景色

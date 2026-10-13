@@ -1,5 +1,22 @@
 # Changelog
 
+## v1.0.2 · 2026-10-13
+
+部署形态纠偏：**种子库落点从 agent workspace 收敛到 agent 自身 skill 内部**，彻底隔离 workspace 自动清理。
+
+- **问题根因**：许多 agent 宿主在宿主机配置了 workspace 自动清理（把 workspace 内文件搬进 archive 或删除）。旧版把种子库平铺进 `<workspace>/taste/`（OpenClaw 形态）或引导用户 clone 到可能位于 workspace 内的路径（通用形态），被清理后注入提示词里写死的路径**永久失效且无任何报错**，agent 静默退化成 AI 味默认审美。
+- **改造内容**：
+  - Claude Code 落点 `~/.claude/skills/taste/references/`（原本就正确，本次补「为什么」说明与验证命令）；
+  - OpenClaw 落点改为 `<workspace>/skills/taste/references/`（`skills/` 是能力目录，清理策略不会动），新增「从旧布局迁移」小节（先备份风味日志）；
+  - Codex 等有 skill 机制的 agent 落点 `~/.codex/skills/taste/references/`（按端 skill 根取值表）；
+  - 无 skill 机制的 agent 兜底为仓库 clone 目录，并显式声明「不得位于任何 workspace 内」；
+  - `TASTE.md` 文首路径段收敛为「skill 内部相对路径」单一说法；`templates/SKILL.md` 增加「种子库装在哪 / 引用规则」段；
+  - `install-claude-skill.sh` 同步安装 `TASTE.md`、落点提示更明确；
+  - README 新增「部署落点铁律」表 + 验证命令（含 workspace 搬迁免疫性证明）；`AGENT-INJECTION.md` 部署表全量对齐。
+- **兼容**：已按旧形态部署的实例可照 `deploy/openclaw.md` 迁移节一条命令搬家，风味日志不丢（先备份再覆盖）。
+- **立项**：`tasks/CHG-20261013-seed-internal-path/`（CHANGE / HEALTH / PRD / SPEC / TRACEABILITY）。
+- ⚠️ 本版把上一版 v1.0.1 的「路径自适配」口径**推翻**：不再宣称“仓库 / OpenClaw 两套布局等价”，改为单一落点（skill 内部）+ 无 skill 机制时的仓库路径兜底。
+
 ## v1.0.1 · 2026-09-25
 
 部署路径一致性修复（OpenClaw 实际部署反馈发现，经多路对抗核查补全）。
