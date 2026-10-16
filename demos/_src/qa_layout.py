@@ -17,12 +17,12 @@ import re
 import sys
 from pathlib import Path
 
-from PIL import Image
 from playwright.sync_api import sync_playwright
 
+from _browser import launch_kwargs
+
 DEMOS = Path(__file__).resolve().parent.parent
-DEFAULT_CHROME = "~/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
-CHROME = os.environ.get("CHROME", DEFAULT_CHROME)
+# 浏览器路径由 _browser 自适应解析
 
 # 允许的越界容差（px）：装饰元素常故意出血
 TOL = 2
@@ -131,11 +131,10 @@ def main() -> int:
             continue
         pages.append((p, int(m.group(1)), m.group(2)))
 
-    chrome = Path(os.path.expanduser(CHROME))
     bad = 0
     with sync_playwright() as pw:
-        browser = pw.chromium.launch(executable_path=str(chrome),
-                                     args=["--no-sandbox", "--font-render-hinting=none"])
+        browser = pw.chromium.launch(
+            **launch_kwargs(["--no-sandbox", "--font-render-hinting=none"]))
         for path, w, hs in pages:
             page_h = 900 if hs == "full" else int(hs)
             ctx = browser.new_context(viewport={"width": w, "height": page_h},

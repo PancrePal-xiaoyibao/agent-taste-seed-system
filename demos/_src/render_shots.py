@@ -26,12 +26,13 @@ from pathlib import Path
 from PIL import Image
 from playwright.sync_api import sync_playwright
 
+from _browser import launch_kwargs
+
 DEMOS = Path(__file__).resolve().parent.parent
 SHOTS = Path(os.environ.get("OUT_DIR") or (DEMOS / "_assets" / "shots"))
 SCALE = int(os.environ.get("SCALE", "2"))  # 设备像素比：2 倍 = 高清
 
-DEFAULT_CHROME = "~/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
-CHROME = os.environ.get("CHROME", DEFAULT_CHROME)
+# 浏览器路径由 _browser 自适应解析（本机快照 ≠ 通用事实，写死路径会让 CI 永久红）
 APPEARANCE = ["--no-sandbox", "--font-render-hinting=none", "--force-color-profile=srgb"]
 
 
@@ -70,14 +71,9 @@ def main() -> int:
         print("没有可渲染的页面", file=sys.stderr)
         return 1
 
-    chrome = Path(os.path.expanduser(CHROME))
-    if not chrome.is_file():
-        print(f"找不到 Chromium：{chrome}", file=sys.stderr)
-        return 1
-
     SHOTS.mkdir(parents=True, exist_ok=True)
     with sync_playwright() as pw:
-        browser = pw.chromium.launch(executable_path=str(chrome), args=APPEARANCE)
+        browser = pw.chromium.launch(**launch_kwargs(APPEARANCE))
         for path, w, hs, slug in pages:
             full = hs == "full"
             h = 900 if full else int(hs)
