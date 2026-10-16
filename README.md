@@ -1,8 +1,25 @@
-# 🎨 agent-taste-seed-system — 给任何 AI Agent 装上美学大脑
+# 🎨 美学大脑 / aesthetic-brain — 给任何 AI Agent 装上审美大脑
+
+[![CI](https://github.com/hhx465453939/agent-taste-seed-system/actions/workflows/ci.yml/badge.svg)](https://github.com/hhx465453939/agent-taste-seed-system/actions/workflows/ci.yml)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/Content-CC%20BY--NC--SA%204.0-lightgrey.svg)](LICENSE-CONTENT.md)
+[![License: MIT](https://img.shields.io/badge/Code-MIT-blue.svg)](LICENSE-CODE.md)
+[![Cite](https://img.shields.io/badge/Cite-CITATION.cff-green.svg)](CITATION.cff)
 
 > 一套可移植的「审美操作系统 + 风格种子库」，让 Claude Code / Codex / OpenClaw / pi / workbuddy / codebuddy / Trae / Qoder / hermas 等任何智能体，在视觉创作上摆脱"AI 味默认审美"。
-> 来源：编制者自藏《艺术风格百科大全》（24 章 250+ 艺术家/风格）→ 提炼为可执行的审美决策体系。v1.0.2 · 2026-10-13
+> 来源：《艺术风格百科大全》（24 章 250+ 艺术家/风格）→ 提炼为可执行的审美决策体系。
+> 版本：**v2.0.0** · 2026-10-16（开源合规与专业化改造）· 旧名 `agent-taste-seed-system`
 > 本仓库：**https://github.com/hhx465453939/agent-taste-seed-system**
+> 🖼️ **先看结果：[十二风格样本墙](demos/index.html)**（12 个真实渲染页面，每种风格附纪律说明）
+>
+> **许可**：文本资产 **CC BY-NC-SA 4.0** · 代码资产 **MIT**（[许可总览](LICENSE)）
+> **商用**：内容需单独授权，脚本可直接商用——见 [许可总览 §商业使用](LICENSE)
+
+<p align="center">
+  <a href="demos/index.html"><img src="demos/_assets/shots/01-cyber-neon.webp" width="24%" alt="赛博霓虹"></a>
+  <a href="demos/index.html"><img src="demos/_assets/shots/03-cixuan-chinese-whitespace.webp" width="24%" alt="中国画留白"></a>
+  <a href="demos/index.html"><img src="demos/_assets/shots/06-baroque-tenebrism.webp" width="24%" alt="巴洛克聚光"></a>
+  <a href="demos/index.html"><img src="demos/_assets/shots/09-pop-collage.webp" width="24%" alt="波普拼贴"></a>
+</p>
 
 ---
 
@@ -59,7 +76,7 @@
 步骤：
 1. git clone https://github.com/hhx465453939/agent-taste-seed-system.git ~/agent-taste-seed-system（已存在则 git pull）
 2. 先读 ~/agent-taste-seed-system/deploy/openclaw.md，然后按文档执行：
-   - 种子库装进 skill 内部：`<workspace>/skills/taste/references/`（四层全库整目录覆盖：`cp -R references/. <workspace>/skills/taste/references/`），决策层随 skill 走（`TASTE.md` 与 `templates/SKILL.md` 放 `<workspace>/skills/taste/`）；**不再平铺到 workspace 根或 workspace/taste/**——workspace 有自动清理，会被搬走导致引用永久失效
+   - 种子库装进 skill 内部：`<workspace>/skills/taste/references/`（四层全库整目录覆盖：`cp -R references/. <workspace>/skills/taste/references/`），决策层随 skill 走（`TASTE.md` 与 `SKILL.md` 放 `<workspace>/skills/taste/`）；**不再平铺到 workspace 根或 workspace/taste/**——workspace 有自动清理，会被搬走导致引用永久失效
    - 已按旧布局（workspace 根 taste/）装过的：按文档「从旧布局迁移」小节操作，先备份风味日志再覆盖、最后清旧落点
    - 把仓库 AGENT-INJECTION.md 里的「注入提示词」整段并入该 workspace 的 AGENTS.md 或 SOUL.md（已有同名节则跳过）
 3. 完成后向我汇报：文件放置路径、注入位置，以及对龙虾的验证方式（如让它画一张海报看是否先报情绪关键词）
@@ -136,6 +153,74 @@ mv "$WS" "$WS.moved" && test -r "$WS.moved/skills/taste/references/art-seeds.md"
 
 ---
 
+## 🖼️ 先看结果：十二风格样本墙
+
+> **一个 Agent，十二种品味。** 下面每一张都是真实浏览器渲染出来的完整页面（不是设计稿、不是文生图）：<br>
+> 逻辑画布 **1440 × 900**，以 **2 倍设备像素比**截取 → 高清 **2880 × 1800** 无损 WebP。<br>
+> 点任意一张 → 打开可交互的原始页面；[**→ 打开样本墙（含每张的风格说明）**](demos/index.html) ｜ [渲染与质检说明](demos/README.md)
+
+<p align="center">
+  <a href="demos/01-赛博霓虹.html"><img src="demos/_assets/shots/01-cyber-neon.webp" width="49%" alt="赛博霓虹：深蓝黑底＋荧光青只施于边线数字的科技控制台"></a>
+  <a href="demos/02-瑞士平面.html"><img src="demos/_assets/shots/02-swiss-international.webp" width="49%" alt="瑞士平面：十二列栅格＋唯一强调色的年度数据报告"></a>
+</p>
+<p align="center">
+  <a href="demos/03-中国画留白.html"><img src="demos/_assets/shots/03-cixuan-chinese-whitespace.webp" width="49%" alt="中国画留白：绢色底、竖排一列点睛、朱砂印参与构图的茶页"></a>
+  <a href="demos/04-吉卜力手绘.html"><img src="demos/_assets/shots/04-ghibli-handdrawn.webp" width="49%" alt="吉卜力手绘：米白纸感、草木绿与天空蓝、暖色阴影的亲子课程页"></a>
+</p>
+<p align="center">
+  <a href="demos/05-浮世绘扁平.html"><img src="demos/_assets/shots/05-ukiyoe-flat.webp" width="49%" alt="浮世绘扁平：普鲁士蓝平涂、三段横向分层、富士山压角的展览页"></a>
+  <a href="demos/06-巴洛克聚光.html"><img src="demos/_assets/shots/06-baroque-tenebrism.webp" width="49%" alt="巴洛克聚光：单一暖光源、黑暗占九成、金色只做线的演出页"></a>
+</p>
+<p align="center">
+  <a href="demos/07-洛可可粉彩.html"><img src="demos/_assets/shots/07-rococo-pastel.webp" width="49%" alt="洛可可粉彩：粉白底、曲线分区、中心对称的甜品花房页"></a>
+  <a href="demos/08-极简主义.html"><img src="demos/_assets/shots/08-minimalism-gallery.webp" width="49%" alt="极简主义：白底无圆角、两个灰阶、一整块 Kelly 式蓝面的画廊页"></a>
+</p>
+<p align="center">
+  <a href="demos/09-波普拼贴.html"><img src="demos/_assets/shots/09-pop-collage.webp" width="49%" alt="波普拼贴：同一张脸四色复制、本戴点、粗黑描边的超市海报"></a>
+  <a href="demos/10-构成主义海报.html"><img src="demos/_assets/shots/10-constructivism-poster.webp" width="49%" alt="构成主义海报：红黑白三色、一条红色斜带、文字沿对角线排布的招募宣言"></a>
+</p>
+<p align="center">
+  <a href="demos/11-赛璐璐动漫UI.html"><img src="demos/_assets/shots/11-cel-shading-anime-ui.webp" width="49%" alt="赛璐璐动漫 UI：立绘取三色做 UI 主轴、两分 cel 阴影、实心位移按钮的角色主站"></a>
+  <a href="demos/12-哥特暗黑.html"><img src="demos/_assets/shots/12-gothic-dark.webp" width="49%" alt="哥特暗黑：铅灰黑底、尖拱图框、占满拱顶的花窗、荆棘纹只出现一次"></a>
+</p>
+
+### 十二张作品的风格基因对照
+
+| # | 风格基因（主 + 辅） | 情绪定位 | 场景 | 该守住的纪律 |
+|---|---|---|---|---|
+| 01 | 赛博霓虹 + 机器美学 | 科技酷感 | 暗色仪表盘 / 科技产品页 | 荧光只给边线数字；暗部 ≥52%；色相 ≤4；禁紫渐变 |
+| 02 | 瑞士平面 + 蒙德里安网格 | 清晰理性 | 数据报告 / B 端信息页 | 浅底 ≥45%；色彩像素 ≤12%；色相 ≤3（唯一强调色） |
+| 03 | 中国画留白 + 计白当黑 | 东方古韵 | 文化产品页（茶） | 留白 ≥62%；色彩像素 ≤6%；色相 ≤3；一图一印 |
+| 04 | 吉卜力手绘 + 水彩淡彩 | 梦幻治愈 | 亲子教育 / 疗愈系 | 浅底 ≥52%；饱和度压一档；阴影永远是暖色 |
+| 05 | 浮世绘扁平 + 手作不规则边 | 东方古韵 | 展览专题 / 和风创意页 | 一版一色（色相 ≤3）；平涂无渐变无阴影 |
+| 06 | 巴洛克聚光 + 金色细线 | 暗黑崇高 | 演出海报 / 人物故事页 | 暗部 ≥45%；亮部 ≤12%；只有一个光源；金色只做线 |
+| 07 | 洛可可粉彩 + 美人绘的柔 | 甜美容爱 | 甜品花店 / 少女向 | 浅底 ≥60%；明度高、饱和度中低；装饰两种封顶 |
+| 08 | 极简主义 + Kelly 单色面 | 清晰理性 | 作品集 / 高端产品 hero | 留白 ≥46%；色相 ≤2；点睛色限一个整块 |
+| 09 | 波普拼贴 + 沃霍尔复制 | 荒诞幽默 | 潮流品牌 / 传播图 | 色彩像素 ≥18%；本戴点只做局部；色相 ≤4 |
+| 10 | 构成主义海报 + 照片拼贴 | 热血冲击 | 活动 KV / 招募宣言 | 三色封顶（色相 ≤3）；零圆角零阴影；一条对角线统治 |
+| 11 | 赛璐璐动漫 UI + 斜切动势 | 热血冲击 | 二次元产品 / 角色主站 | UI 色必须从立绘取；两分 cel 阴影；禁高级灰 |
+| 12 | 哥特暗黑 + 废墟崇高 | 暗黑崇高 | 恐怖悬疑游戏 / 史诗长图 | 暗部 ≥58%；色相 ≤3；点睛色二选一；禁正黑 |
+
+> 上表的纪律**不是形容词，是程序断言**。`demos/_src/qa_style.py` 直接从截图像素反推亮度 / 暗部 / 留白 / 色相 / 饱和度，逐条比对上表阈值；
+> `demos/_src/qa_layout.py` 另查溢出、越界、遮挡、字号与 WCAG 对比度。
+> 当前状态：**13 页布局检查 0 问题 · 12 张图共 34 条基因纪律断言全部通过**。
+
+### 这十二张是由谁做出来的
+
+| 项 | 值 |
+|---|---|
+| 生成者 | **pi agent**（终端里的编码智能体） |
+| 驱动模型 | **DeepSeek V4.1 Flash**（shudie 供应商） |
+| 风格决策 | 本仓库 `references/` 四层种子库（L1 总库 / L2a 情绪档 ×10 / L2b 代码基因卡 ×12 / L2c 风格章档 ×24+后记） |
+| 渲染方式 | headless Chromium 143 实时渲染，2× 设备像素比，无损 WebP |
+| 字体 | 全部本地内嵌（约 2MB 子集，开源许可），**断网也能复现同样的图** |
+
+> 📌 **署名在哪**：十二张页面各自底部的 `风格基因 <b>中国画留白</b> · 辅 计白当黑`、`Built by <b>pi agent</b> × <b>DeepSeek V4.1 Flash</b>` 就是署名本身——它不是水印贴纸，而是参与每张作品构图的一部分（用该作品自己的字体气质、颜色与排版规则排的）。
+
+> ⚠️ **这一节是「演示与验收材料」，不是种子库本体。** `demos/` 只读取 `references/` 做风格决策，不改动任何种子；`deploy/` 的部署脚本也只搬运 `references/` 与 `TASTE.md`，所以新增本目录**不影响任何已部署实例**。
+
+---
+
 ## 这是什么
 
 核心思想：**风格即基因** —— 色彩 × 光线 × 笔触 × 构图 × 情绪，五个基因位。
@@ -154,14 +239,31 @@ mv "$WS" "$WS.moved" && test -r "$WS.moved/skills/taste/references/art-seeds.md"
 | 文件 | 作用 |
 |------|------|
 | [`AGENT-INJECTION.md`](AGENT-INJECTION.md) | ⭐ 通用注入提示词 + 部署说明（最小接入看这个） |
-| [`TASTE.md`](TASTE.md) | 审美操作系统入口：审美观 5 条 + 决策流程 + 情绪→种子索引 |
+| [`SKILL.md`](SKILL.md) | Agent 决策层（四层路由版，安装脚本直接拷贝用） |
+| [`TASTE.md`](TASTE.md) | 审美操作系统文档版：审美观 5 条 + 决策流程 + 情绪→种子索引 |
 | [`references/art-seeds.md`](references/art-seeds.md) | L1 总库速查：全量种子单行表（250+ 艺术家，按需查询勿全文注入） |
+| [`references/ART-SEEDS-LOG.md`](references/ART-SEEDS-LOG.md) | ⭐ 风味日志（活文档）：实战搭配 + 踩坑记录，**贡献只需回填一行** |
 | [`references/moods/`](references/moods/) | L2a 情绪档 ×10：每情绪主推种子的五基因详解 + 媒介适配 + 翻车清单 |
 | [`references/code-genes/`](references/code-genes/) | L2b 代码基因卡 ×12：写代码出图直接抄的部署提示词 + CSS 变量块 + 反模式 |
 | [`references/chapters/`](references/chapters/) | L2c 风格章档 ×24+后记：《艺术风格百科大全》原文全量，每艺术家 2-3 句细述 |
-| [`sources/`](sources/) | 源文档归档（docx 原始百科） |
-| [`templates/SKILL.md`](templates/SKILL.md) | Claude Code skill 文件（四层路由版，安装脚本直接拷贝用） |
+| [`demos/`](demos/) | ⭐ **十二风格样本墙**：12 个真实渲染的演示页 + 高清截图 + 渲染/质检脚本（`index.html` 为浏览入口） |
+| [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md) | 五基因方法论白皮书：为什么「风格即基因」、怎么把审美变成可判定的断言 |
 | [`deploy/`](deploy/) | 各类智能体的详细部署文档 + 一键脚本（上面指令的权威细节都在这里） |
+
+### 合规与工程化文件
+
+| 文件 | 作用 |
+|------|------|
+| [`LICENSE`](LICENSE) | 许可总览（双许可结构 + 逐路径对照 + 商业使用说明） |
+| [`LICENSE-CONTENT.md`](LICENSE-CONTENT.md) | 文本资产许可：**CC BY-NC-SA 4.0** |
+| [`LICENSE-CODE.md`](LICENSE-CODE.md) | 代码资产许可：**MIT** |
+| [`LICENSE-FONTS.md`](LICENSE-FONTS.md) | 内置字体子集的上游来源与 OFL 合规路径 |
+| [`CITATION.cff`](CITATION.cff) | 学术引用格式（GitHub 自动生成「Cite this repository」按钮） |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | 贡献指南：回填一行风味日志 / 补录新种子 / 新增代码基因卡的门槛 |
+| [`docs/ATTRIBUTION.md`](docs/ATTRIBUTION.md) | 出处、署名模板与 **AI 使用披露** |
+| [`docs/TRADEMARKS.md`](docs/TRADEMARKS.md) | 商标、作品名与在世创作者姓名声明 |
+| [`docs/changes/`](docs/changes/) | 已完成的变更过程档案（CHANGE / HEALTH / PRD / SPEC / TRACEABILITY） |
+| [`scripts/`](scripts/) | 合规与完整性闸门（`check_assets.sh` · `check_integrity.py` · `check_links.py`） |
 
 ## 知识库分层架构（重 agent 按需加载，禁止全文注入）
 
@@ -180,7 +282,45 @@ L0  TASTE.md                      决策层：情绪定位 → 该查哪层（�
 └─ L1 art-seeds.md                全量单行速查总表（关键词全局搜）
 ```
 
-> 上述四层的引用基准是 **skill 内部**：装完即 `<skill 根>/taste/references/`，各子路径（`moods/`、`code-genes/`、`chapters/`、`art-seeds.md`）均相对 `references/`。
+### 全仓结构（v2.0.0 开源结构）
+
+```
+aesthetic-brain/
+├── README.md / SKILL.md / TASTE.md / AGENT-INJECTION.md   门面与决策层
+├── LICENSE / LICENSE-CODE.md / LICENSE-CONTENT.md / LICENSE-FONTS.md
+├── CITATION.cff / CONTRIBUTING.md / CHANGELOG.md
+├── references/
+│   ├── art-seeds.md             L1 全量种子库（核心资产）
+│   ├── ART-SEEDS-LOG.md         风味日志（活文档）
+│   ├── code-genes/  ×12         L2b 代码基因卡
+│   ├── moods/       ×10         L2a 情绪档
+│   └── chapters/    ×25         L2c 分章（含许可与商标免责头）
+├── docs/
+│   ├── METHODOLOGY.md           五基因方法论白皮书
+│   ├── ATTRIBUTION.md           出处 · 署名 · AI 使用披露
+│   ├── TRADEMARKS.md            商标与在世创作者声明
+│   └── changes/                 已完成的变更档案
+├── demos/                       12 张演示页 + 截图 + 渲染/质检脚本
+├── scripts/                     合规与完整性闸门
+├── deploy/                      各 agent 形态的部署文档与脚本
+└── .github/workflows/ci.yml     三道 CI 闸门
+
+# 不随仓库分发：sources/（百科底稿 docx，私有资产层）
+```
+
+### 旁边的 `demos/`（演示与验收材料，不随部署安装）
+
+```
+demos/
+├── index.html              样本墙：12 张作品 + 每张的风格说明（浏览入口）
+├── 01..12-*.html            十二张作品，每张文件头都写明「选自哪粒种子 / 激活词 / 守哪几条纪律」
+├── _assets/fonts/*.woff2    开源字体子集（约 2MB／30 字重，随仓库分发，保证断网可复现）
+├── _assets/shots/*.webp     高清截图 2880×1800（README 与样本墙使用）
+└── _src/                   字体子集化 · 实时渲染截图 · 布局质检 · 风格纪律校验
+```
+
+它证明的是**这套方法真的能落成可验收的成品**，而不是只给了一堆风格描述。
+部署时不需要它——`deploy/` 的脚本只搬 `references/` 与 `TASTE.md`。
 
 ## 手动部署（不想发指令、自己动手时）
 
@@ -201,9 +341,71 @@ git clone https://github.com/hhx465453939/agent-taste-seed-system.git \
 ## 使用原则
 
 1. **种子库按需查询，不注入上下文**——创作时按情绪/章节/关键词检索需要的种子卡即可，全文进上下文是浪费
-2. **风味日志是系统的灵魂**——每次交付后把搭配与反馈记进种子库末尾，定期同步回本仓库，越陈越香
-3. **本仓库是活文档**——新风格、新配方、新混种，欢迎 PR 补录
+2. **风味日志是系统的灵魂**——每次交付后把搭配与反馈记进 [`references/ART-SEEDS-LOG.md`](references/ART-SEEDS-LOG.md)，定期同步回本仓库，越陈越香
+3. **本仓库是活文档**——新风格、新配方、新混种，欢迎 PR 补录（见 [`CONTRIBUTING.md`](CONTRIBUTING.md)）
+
+## 出处、AI 使用披露与许可
+
+### 出处
+
+本项目由《艺术风格百科大全》（24 章 250+ 艺术家/风格）提炼而成。**底稿不随仓库分发**，仓库只保留结构化后的 Markdown 产物（`references/chapters/` + `art-seeds.md`）。
+
+### AI 使用披露
+
+诚实披露是开源许可体系的基本要求：
+
+| 环节 | 是否使用 AI |
+|---|---|
+| 百科内容撰写（章节正文、艺术家条目、风格描述） | **编者执笔为主** |
+| 结构化整理（分章切分、单行种子卡提炼、情绪归类、CSS 变量翻译） | **AI 辅助** |
+| `demos/` 演示页与 `_src/` 脚本 | **AI 生成**（pi agent × DeepSeek V4.1 Flash） |
+| 演示截图 | 机器渲染（headless Chromium，非 AI 生图） |
+
+详见 [`docs/ATTRIBUTION.md`](docs/ATTRIBUTION.md)。
+
+### 商标与在世创作者
+
+正文中出现的一切第三方商标、作品名、公司名与创作者姓名，均属**事实性描述**，不构成关联或授权，权利归各自所有者。
+
+> ⚠️ **对外使用红线**：**不得**把「用 XX 画师名字生成」作为产品卖点或宣传话术。
+> 在世艺术家姓名 + 商业 AI 生成涉及人格权与不正当竞争争议。
+> 本仓库提供的是**审美决策方法**，不是「复刻在世创作者」的工具。详见 [`docs/TRADEMARKS.md`](docs/TRADEMARKS.md)。
+
+### 许可
+
+本项目采用**按资产类型分治的双许可结构**：
+
+```
+内容（种子库 / 文档 / 截图）：  CC BY-NC-SA 4.0   署名 · 非商业 · 相同方式共享
+代码（脚本 / CI / 配置）：      MIT               可商用，保留版权声明
+字体（woff2 子集）：            上游 OFL / Apache 随包可分发，已按 OFL 改名
+```
+
+- **完整许可结构与逐路径对照** → [`LICENSE`](LICENSE)
+- **只想用脚本**（想嵌进商业产品的构建流程）→ MIT 不限制，直接用 [`demos/_src/`](demos/_src/)
+- **想用内容做商业产品** → CC BY-NC-SA 4.0 的 NC 条款不允许，请开 Issue 洽谈单独商业许可
+- **引用本项目的方法论** → 按 [`CITATION.cff`](CITATION.cff) 或 [`docs/ATTRIBUTION.md`](docs/ATTRIBUTION.md) 署名
+
+> ⚠️ NC 对「商业性」的界定以许可协议正文为准。公司内部使用等场景的解释存在讨论空间，
+> **进入正式商用前建议咨询执业律师**——这是建议，不是法律意见。
+
+### 质量与合规闸门（三道 CI）
+
+```bash
+bash scripts/check_assets.sh         # 无第三方媒体 · 无外部抄录 · 无敏感信息 · 许可文件齐备
+python3 scripts/check_integrity.py   # 种子条目数 · 分章免责头 · 演示与截图配对 · 字体命名合规
+python3 scripts/check_links.py       # 全仓相对链接无断链
+python3 demos/_src/qa_layout.py      # 布局：溢出 / 越界 / 遮挡 / 字号 / WCAG 对比度
+python3 demos/_src/qa_style.py       # 风格基因纪律断言（34 条）
+python3 demos/_src/check_font_licenses.py   # 字体子集 OFL 命名合规（§1 §3）
+```
+
+当前状态：**6 项闸门全绿**。CI 在每次 push / PR 自动跑（见 [`.github/workflows/ci.yml`](.github/workflows/ci.yml)）。
 
 ## License
 
-MIT
+- 文本资产：**CC BY-NC-SA 4.0** — 详见 [`LICENSE-CONTENT.md`](LICENSE-CONTENT.md)
+- 代码资产：**MIT** — 详见 [`LICENSE-CODE.md`](LICENSE-CODE.md)
+- 内置字体子集：上游 OFL / Apache-2.0 — 详见 [`LICENSE-FONTS.md`](LICENSE-FONTS.md)
+
+总览入口：[`LICENSE`](LICENSE)

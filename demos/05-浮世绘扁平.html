@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-canvas="1440x900" data-slug="05-ukiyoe-flat">
+<head>
+<meta charset="utf-8">
+<title>神奈川 · 浪 — 浮世绘扁平</title>
+<link rel="stylesheet" href="_assets/taste-fonts.css">
+<style>
+/* ── 基因：浮世绘扁平 ──────────────────────────────────────
+   激活词：北斋神奈川冲浪 · 广重东海道 · 锦绘 · 木版画 · 普鲁士蓝
+   上游种子：code-genes/06 · ch21 浮世绘
+   纪律：一版一色，全图色相 ≤3；平涂无渐变；粗轮廓 2-3px；
+        套版印刷没有的东西（渐变/阴影/玻璃拟态）一律不要。 */
+:root{
+  --bg:#f2ead8;         /* 和纸米底 */
+  --indigo:#274a78;     /* 普鲁士蓝（浮世绘蓝）*/
+  --indigo-2:#3f6d9e;
+  --vermilion:#d34e24;  /* 朱红点睛 */
+  --text:#2f3a4a;
+  --line:#274a78;
+  --paper:#e7dcc2;
+  --font-title:'AB Noto Serif SC',serif;
+  --hei:'AB Noto Sans SC',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1440px;height:900px;overflow:hidden}
+body{background:var(--bg);color:var(--text);font-family:var(--hei);position:relative;
+  background-image:repeating-linear-gradient(90deg,rgba(160,145,115,.10) 0 2px,transparent 2px 5px)}
+
+/* 三段式横向分层：天 / 海 / 前岸 —— 浮世绘的空间写法 */
+.sky{position:absolute;left:0;right:0;top:0;height:396px;background:var(--paper)}
+.sea{position:absolute;left:0;right:0;top:396px;height:330px;background:var(--indigo)}
+.shore{position:absolute;left:0;right:0;top:726px;bottom:0;background:var(--bg);
+  border-top:3px solid var(--indigo)}
+
+/* 浪：三层同心圆弧，越外越浅，全部平涂 */
+.wave{position:absolute;border-radius:50%;border:3px solid var(--indigo);
+  border-color:var(--indigo) transparent transparent transparent;transform:rotate(0deg)}
+.w1{left:340px;top:250px;width:1180px;height:1180px;border-width:4px}
+.w2{left:412px;top:322px;width:1036px;height:1036px;border-color:var(--indigo-2) transparent transparent transparent}
+.w3{left:486px;top:396px;width:888px;height:888px;border-color:#6f95bd transparent transparent transparent}
+/* 浪尖泡沫：白色圆点阵，浮世绘的"爪" */
+.foam{position:absolute;background:#f2ead8;border-radius:50%}
+
+/* 富士山：压角（一角式构图），平涂几何 */
+.fuji{position:absolute;left:118px;top:130px;width:0;height:0;
+  border-left:118px solid transparent;border-right:118px solid transparent;
+  border-bottom:112px solid var(--indigo-2)}
+.fuji::after{content:"";position:absolute;left:-52px;top:60px;width:104px;height:54px;
+  background:var(--bg);clip-path:polygon(50% 0,100% 100%,0 100%)}
+
+/* 标题：竖排点睛一列 + 横排正文，字号反差大 */
+.vertical{position:absolute;right:96px;top:116px;writing-mode:vertical-rl;
+  text-orientation:upright;font-family:var(--font-title);font-weight:700;
+  font-size:72px;letter-spacing:.2em;color:var(--indigo);line-height:1}
+.vertical mark{background:none;color:var(--vermilion)}
+
+/* 左上小栏：展览信息 */
+.info{position:absolute;left:96px;top:300px;width:330px}
+.info .k{font-size:11px;letter-spacing:.42em;color:var(--indigo);opacity:.72}
+.info .t{margin-top:12px;font-family:var(--font-title);font-size:29px;font-weight:700;
+  letter-spacing:.06em;line-height:1.45;color:var(--text)}
+.info .d{margin-top:16px;font-size:13.5px;line-height:1.9;color:#5a6478;
+  border-top:2px solid var(--indigo);padding-top:14px}
+
+/* 前岸：三张作品卡，手作不规则圆角（木版画的手感）*/
+.deck{position:absolute;left:0;right:0;bottom:74px;display:flex;justify-content:center;gap:26px}
+.deck a{width:236px;text-decoration:none;color:var(--text);
+  border:3px solid var(--indigo);
+  border-radius:255px 15px 225px 15px/15px 225px 15px 255px;
+  padding:16px 18px;background:rgba(242,234,216,.6)}
+.deck b{display:block;font-family:var(--font-title);font-size:17px;font-weight:700;
+  letter-spacing:.06em}
+.deck span{display:block;margin-top:7px;font-size:11.5px;color:#4e5769;line-height:1.6}
+.deck a.acc{border-color:var(--vermilion)}
+.deck a.acc b{color:#b83f18}
+
+/* 装饰带：一条云纹即止（禁满铺） */
+.band{position:absolute;left:0;right:0;top:726px;height:3px;background:var(--indigo)}
+.clouds{position:absolute;left:0;right:0;top:729px;height:26px;overflow:hidden;opacity:.5}
+
+.sig{position:absolute;left:96px;right:96px;bottom:26px;display:flex;gap:26px;
+  font-size:10.5px;letter-spacing:.1em;color:#4f5b73}
+.sig b{color:var(--indigo);font-weight:700}
+</style>
+</head>
+<body>
+  <div class="sky"></div>
+  <div class="sea"></div>
+  <div class="shore"></div>
+
+  <div class="fuji"></div>
+  <div class="wave w1"></div>
+  <div class="wave w2"></div>
+  <div class="wave w3"></div>
+
+  <div class="foam" style="left:604px;top:452px;width:22px;height:22px"></div>
+  <div class="foam" style="left:648px;top:414px;width:16px;height:16px"></div>
+  <div class="foam" style="left:700px;top:392px;width:12px;height:12px"></div>
+  <div class="foam" style="left:566px;top:496px;width:14px;height:14px"></div>
+  <div class="foam" style="left:760px;top:372px;width:9px;height:9px"></div>
+  <div class="foam" style="left:826px;top:360px;width:7px;height:7px"></div>
+
+  <h1 class="vertical">神奈川<mark>·</mark>浪</h1>
+
+  <div class="info">
+    <div class="k">锦 绘 ／ 木 版 多 色 摺</div>
+    <div class="t">北斋与广重<br>东海道五十三次</div>
+    <div class="d">浮世绘的蓝，是普鲁士蓝。它从荷兰商船进入长崎，又在江户的雕版师手里变成海浪的重量。</div>
+  </div>
+
+  <div class="deck">
+    <a href="#" class="acc"><b>神奈川冲浪里</b><span>葛饰北斋 ／ 天保二年</span></a>
+    <a href="#"><b>凯风快晴</b><span>富岳三十六景 ／ 赤富士</span></a>
+    <a href="#"><b>日本桥</b><span>歌川广重 ／ 东海道</span></a>
+  </div>
+
+  <footer class="sig">
+    <span>风格基因 <b>浮世绘扁平</b> · 辅 一丝手作不规则边</span>
+    <span>Built by <b>pi agent</b> × <b>DeepSeek V4.1 Flash</b></span>
+    <span>场景随机抽取 · 风格按 agent-taste-seed-system 基因库落成</span>
+  </footer>
+</body>
+</html>

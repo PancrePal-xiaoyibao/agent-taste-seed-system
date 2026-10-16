@@ -18,7 +18,7 @@ mkdir -p "$WS/skills/taste/references"
 
 # 决策层文档随 skill 走（TASTE 属能力部件，不属人格部件）
 cp TASTE.md "$WS/skills/taste/TASTE.md"
-cp templates/SKILL.md "$WS/skills/taste/SKILL.md"
+cp SKILL.md "$WS/skills/taste/SKILL.md"
 
 # 旧部署且 skill 内 art-seeds.md 末尾已有风味日志时，先备份再覆盖：
 cp -n "$WS/skills/taste/references/art-seeds.md" \
@@ -64,7 +64,7 @@ fi
 
 # 2) 补装四层全库（在仓库根执行）
 mkdir -p "$NEW/references"
-cp TASTE.md "$NEW/TASTE.md"; cp templates/SKILL.md "$NEW/SKILL.md"
+cp TASTE.md "$NEW/TASTE.md"; cp SKILL.md "$NEW/SKILL.md"
 cp -R references/. "$NEW/references/"
 
 # 3) 清理旧落点（含旧的 workspace 根 TASTE.md）
@@ -93,4 +93,4 @@ mv "$WS" "$WS.moved" \
 
 - 多龙虾舰队（多项目）时，每个 workspace 独立放一份；**人格文件不要跨项目串**（工作助手与心理支持类项目的注入语义各自独立）。
 - 风味日志记在各自 `<workspace>/skills/taste/references/art-seeds.md` 末尾；定期把好搭配同步回本仓库。
-- 不推荐、也不再支持把种子库平铺到 `<workspace>/taste/`——该布局已被本版废弃（见 [`tasks/CHG-20261013-seed-internal-path/`](../tasks/CHG-20261013-seed-internal-path/)）。
+- 不推荐、也不再支持把种子库平铺到 `<workspace>/taste/`——该布局已被本版废弃（见 [`docs/changes/CHG-20261013-seed-internal-path/`](../docs/changes/CHG-20261013-seed-internal-path/)）。

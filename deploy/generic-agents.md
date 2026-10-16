@@ -33,7 +33,7 @@ git clone https://github.com/hhx465453939/agent-taste-seed-system.git ~/agent-ta
 ```bash
 SKILL_ROOT="$HOME/.codex/skills/taste"        # ← 换成上表里你那一行的 skill 根
 mkdir -p "$SKILL_ROOT/references"
-cp ~/agent-taste-seed-system/templates/SKILL.md "$SKILL_ROOT/SKILL.md"
+cp ~/agent-taste-seed-system/SKILL.md "$SKILL_ROOT/SKILL.md"
 cp ~/agent-taste-seed-system/TASTE.md           "$SKILL_ROOT/TASTE.md"
 cp -R ~/agent-taste-seed-system/references/.    "$SKILL_ROOT/references/"   # 四层全量
 ```
@@ -83,7 +83,7 @@ git clone https://github.com/hhx465453939/agent-taste-seed-system.git ~/agent-ta
 
 ## 情形 C：有 skill / 工具机制的 Agent
 
-参照 [`templates/SKILL.md`](../templates/SKILL.md) 的结构做一个触发器：视觉类任务自动先读 `TASTE.md`，再按需查种子库。种子库放在 skill 内部（`<skill 根>/taste/references/`），触发器内引用用相对路径（`references/art-seeds.md`）。
+参照 [`SKILL.md`](../SKILL.md) 的结构做一个触发器：视觉类任务自动先读 `TASTE.md`，再按需查种子库。种子库放在 skill 内部（`<skill 根>/taste/references/`），触发器内引用用相对路径（`references/art-seeds.md`）。
 
 ---
 

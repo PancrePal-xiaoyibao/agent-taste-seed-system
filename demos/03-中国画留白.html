@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-canvas="1440x900" data-slug="03-cixuan-chinese-whitespace">
+<head>
+<meta charset="utf-8">
+<title>茶事 · 明前龙井 — 中国画留白</title>
+<link rel="stylesheet" href="_assets/taste-fonts.css">
+<style>
+/* ── 基因：中国画留白（绢色 · 气口 · 印章） ──────────────────────
+   激活词：马远一角 · 倪瓒疏朗 · 计白当黑 · 绢本设色
+   上游种子：code-genes/03 · moods/06 孤独诗意 · moods/10 东方古韵 */
+:root{
+  --bg:#f5f0e6;      /* 绢色底（禁纯白） */
+  --text:#2b2b2b;
+  --ink-light:#6b6257;
+  --seal:#c3272b;    /* 朱砂，全局仅一处印刷 */
+  --line:#d8d0c0;    /* 淡墨线 */
+  --radius:0px;      /* 中国画的形是直的，没有圆角 */
+  --song:'AB Noto Serif SC',serif;
+  --hei:'AB Noto Sans SC',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1440px;height:900px;overflow:hidden}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--song);
+  position:relative;
+  /* 绢纹：极淡的对角织物感，密度低到只在细看时出现 */
+  background-image:
+    repeating-linear-gradient(90deg,rgba(160,150,130,.055) 0 1px,transparent 1px 3px),
+    repeating-linear-gradient(0deg,rgba(160,150,130,.045) 0 1px,transparent 1px 4px);
+}
+/* 四边留气口：内容永不到纸边 */
+.paper{position:absolute;inset:64px 74px;}
+
+/* ── 远山：一条淡墨横带，做章节间的分隔，不填满气口 ── */
+.ridge{position:absolute;left:0;bottom:150px;width:640px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--line) 12%,var(--line) 88%,transparent)}
+.ridge::after{content:"";position:absolute;left:38px;top:-9px;width:300px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--line),transparent)}
+
+/* ── 竖排标题列：本基因唯一的"点睛"版式，一列即止 ── */
+.vertical{
+  position:absolute;top:0;right:0;
+  writing-mode:vertical-rl;text-orientation:upright;
+  font-size:58px;letter-spacing:.34em;color:var(--text);font-weight:700;
+  line-height:1;
+}
+.vertical .sub{
+  font-size:15px;letter-spacing:.5em;color:var(--ink-light);
+  font-weight:400;margin-right:26px;
+}
+
+/* ── 正文：只占左侧 52%，右侧整块交给留白 ── */
+.col{position:absolute;left:0;top:8px;width:520px}
+.label{font-family:var(--hei);font-size:11px;letter-spacing:.42em;color:var(--ink-light);
+  text-transform:uppercase;margin-bottom:30px}
+.title{font-size:42px;font-weight:700;letter-spacing:.12em;line-height:1.5}
+.title small{display:block;font-size:18px;font-weight:400;color:var(--ink-light);
+  letter-spacing:.34em;margin-top:12px}
+.body{margin-top:40px;font-size:15px;line-height:2.15;color:#4a4438;
+  letter-spacing:.06em;max-width:400px}
+.body p+p{margin-top:18px}
+
+/* 参数表：用淡墨横线分区，禁用卡片与边框盒（西式卡片会污染东方基因） */
+.spec{margin-top:46px;width:400px}
+.spec div{display:flex;justify-content:space-between;align-items:baseline;
+  padding:12px 0;border-bottom:1px solid var(--line)}
+.spec dt{font-family:var(--hei);font-size:12px;letter-spacing:.24em;color:var(--ink-light)}
+.spec dd{font-size:17px;letter-spacing:.1em}
+.spec dd em{font-style:normal;font-size:12px;color:var(--ink-light);margin-left:6px}
+
+/* ── 底部一行：重量 · 产地 · 年份，左侧对齐，右侧仍留白 ── */
+.foot{position:absolute;left:0;bottom:0;display:flex;gap:56px;
+  font-family:var(--hei);font-size:12px;letter-spacing:.3em;color:var(--ink-light)}
+
+/* ── 印章：一图一印，参与构图（压在竖列下方，隔开标题与留白） ── */
+.seal{position:absolute;right:96px;bottom:214px;width:66px;height:66px;
+  background:var(--seal);border-radius:3px;display:grid;place-items:center;
+  box-shadow:inset 0 0 0 1px rgba(245,240,230,.42)}
+.seal span{writing-mode:vertical-rl;text-orientation:upright;color:#f5f0e6;
+  font-size:19px;letter-spacing:.18em;line-height:1.05;font-weight:700;padding:6px 0}
+
+/* ── 署名（每张 demo 都带，风格随基因变）：此页做成淡墨落款 ── */
+.sig{position:absolute;left:74px;bottom:26px;display:flex;gap:22px;
+  font-family:var(--hei);font-size:10.5px;letter-spacing:.22em;color:#6f6659}
+.sig b{font-weight:500;color:var(--ink-light)}
+.sig .dot{color:var(--line)}
+</style>
+</head>
+<body>
+  <div class="paper">
+    <div class="col">
+      <div class="label">Tea · Spring Harvest</div>
+      <h1 class="title">茶事<small>明 前 龙 井</small></h1>
+
+      <div class="body">
+        <p>清明前七日，龙井村头茬。晨露未干时采一芽一叶，杀青不离锅，抖、搭、拓、甩，全靠一双手的温度。</p>
+        <p>汤色清亮，豆香里带一点栗子的甜。第二泡最好，第三泡才知道它还有话要说。</p>
+      </div>
+
+      <dl class="spec">
+        <div><dt>干 茶</dt><dd>50 g<em>／ 二两装</em></dd></div>
+        <div><dt>等 级</dt><dd>明前特级<em>／ 一芽一叶</em></dd></div>
+        <div><dt>产 地</dt><dd>西湖 · 龙井村</dd></div>
+      </dl>
+    </div>
+
+    <h2 class="vertical"><span class="sub">春 之 一 盏</span>不 说 尽</h2>
+  </div>
+
+  <div class="ridge"></div>
+
+  <div class="seal"><span>留白</span></div>
+
+  <div class="foot">
+    <span>净 重 50g</span><span>2026 明前</span><span>手工炒制</span><span>限量 300 份</span>
+  </div>
+
+  <footer class="sig">
+    <span>风格基因 <b>中国画留白</b><i class="dot"> · </i>辅 计白当黑</span>
+    <span>Built by <b>pi agent</b><i class="dot"> × </i><b>DeepSeek V4.1 Flash</b></span>
+    <span>场景随机抽取 · 风格按 agent-taste-seed-system 基因库落成</span>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-canvas="1440x900" data-slug="04-ghibli-handdrawn">
+<head>
+<meta charset="utf-8">
+<title>夏日菜园 · 亲子自然课 — 吉卜力手绘</title>
+<link rel="stylesheet" href="_assets/taste-fonts.css">
+<style>
+/* ── 基因：吉卜力手绘亲和 ──────────────────────────────────
+   激活词：Studio Ghibli · 宫崎骏 · 手绘水粉背景 · 夏日绿
+   上游种子：code-genes/05 · moods/02 梦幻治愈
+   纪律：阴影永远用暖色（禁纯黑纯灰）；圆润是形；饱和度整体压一档；
+        文字必须少，留白 ≥30%。 */
+:root{
+  --bg:#faf7f0;          /* 米白纸感底 */
+  --surface:#ffffff;
+  --green:#7fb069;       /* 草木绿 */
+  --sky:#8ecae6;         /* 天空蓝 */
+  --sun:#ffd166;         /* 阳光暖黄 */
+  --text:#4a4238;        /* 暖褐文字，禁冷黑 */
+  --text-2:#6f6659;
+  --shadow:#e8e0d0;      /* 暖阴影色 */
+  --radius:14px;
+  --sage:#cfe0c3;
+  --round:'AB Noto Sans SC',sans-serif;
+  --song:'AB Noto Serif SC',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1440px;height:900px;overflow:hidden}
+body{background:var(--bg);color:var(--text);font-family:var(--round);
+  background-image:
+    radial-gradient(circle at 88% 8%,rgba(255,209,102,.30),transparent 42%),
+    radial-gradient(circle at 6% 92%,rgba(142,202,230,.22),transparent 40%);
+}
+/* 手绘贴纸感：描边比底色深一号，绝不用黑 */
+.card{position:absolute;left:76px;top:72px;width:566px;
+  background:var(--surface);border:2px solid var(--shadow);border-radius:var(--radius);
+  padding:44px 46px 40px;box-shadow:0 18px 34px rgba(200,190,170,.28)}
+.tag{display:inline-block;background:var(--sage);color:#3c5a33;font-size:12px;
+  letter-spacing:.2em;padding:7px 15px;border-radius:999px;font-weight:500}
+h1{margin-top:22px;font-family:var(--song);font-size:52px;font-weight:700;
+  letter-spacing:.03em;line-height:1.28}
+h1 em{font-style:normal;position:relative}
+h1 em::after{content:"";position:absolute;left:-2px;right:-2px;bottom:6px;height:13px;
+  background:rgba(255,209,102,.52);border-radius:6px;z-index:-1}
+.lede{margin-top:20px;font-size:15.5px;line-height:1.95;color:#6c6154}
+.lede b{color:#4a6b3f;font-weight:500}
+
+/* 课程清单：像绘本页的松散排布，禁严整表格 */
+.list{margin-top:30px;border-top:2px dashed var(--shadow);padding-top:22px}
+.list li{display:flex;align-items:baseline;gap:14px;list-style:none;padding:11px 0;
+  font-size:15px;line-height:1.7}
+.list li i{width:26px;height:26px;flex:none;border-radius:50%;background:var(--sun);
+  display:grid;place-items:center;font-style:normal;font-size:12px;font-weight:500;
+  color:#5c4510;align-self:center}
+.list li span{color:#6f6659;font-size:13px;margin-left:auto;white-space:nowrap}
+
+/* 右侧：手绘感的"便签 + 插画块" */
+.panel{position:absolute;right:76px;top:72px;width:628px;height:756px}
+.scene{position:absolute;inset:0;border-radius:26px;overflow:hidden;
+  background:linear-gradient(180deg,#cfe7f5 0%,#e4f0f7 46%,#f3ecd8 46%,#f7f0e0 100%)}
+.sun{position:absolute;right:74px;top:60px;width:104px;height:104px;border-radius:50%;
+  background:var(--sun);box-shadow:0 0 0 20px rgba(255,209,102,.24),0 0 0 40px rgba(255,209,102,.12)}
+.hill{position:absolute;left:-8%;bottom:0;width:116%;height:270px;
+  background:var(--sage);border-radius:50% 50% 0 0/40% 40% 0 0}
+.hill.b{background:var(--green);height:196px;left:-22%;width:96%;opacity:.85}
+.tree{position:absolute;left:96px;bottom:196px;width:14px;height:112px;background:#a98c69;border-radius:6px}
+.leaf{position:absolute;border-radius:50%;background:var(--green)}
+.leaf.a{left:44px;bottom:270px;width:126px;height:112px}
+.leaf.b{left:120px;bottom:296px;width:98px;height:86px}
+.leaf.c{left:74px;bottom:340px;width:88px;height:74px}
+.soil{position:absolute;left:0;right:0;bottom:0;height:78px;background:#dcd0b4;
+  border-radius:0 0 26px 26px}
+.sprout{position:absolute;bottom:56px;width:8px;height:34px;background:#6f9a5c;border-radius:4px}
+.sprout::after{content:"";position:absolute;top:-2px;left:-13px;width:16px;height:11px;
+  background:#8fbf74;border-radius:60% 20% 60% 20%}
+.sprout::before{content:"";position:absolute;top:-2px;left:5px;width:16px;height:11px;
+  background:#7fb069;border-radius:20% 60% 20% 60%}
+
+/* 便签：贴在场景上，轻微旋转（手作感） */
+.note{position:absolute;left:-34px;bottom:46px;width:268px;background:#fffdf6;
+  border:2px solid var(--shadow);border-radius:var(--radius);padding:22px 24px;
+  box-shadow:0 16px 30px rgba(190,180,160,.34);transform:rotate(-2.4deg)}
+.note h2{font-family:var(--song);font-size:19px;font-weight:700;letter-spacing:.04em}
+.note p{margin-top:10px;font-size:13px;line-height:1.85;color:#786d5e}
+.note .stamp{margin-top:14px;display:inline-block;font-size:11px;letter-spacing:.14em;
+  color:#6b5c34;border-top:2px solid var(--sun);padding-top:8px}
+
+/* 小贴纸：圆形徽章 */
+.badge{position:absolute;right:-18px;top:210px;width:112px;height:112px;border-radius:50%;
+  background:var(--surface);border:2px solid var(--shadow);display:grid;place-items:center;
+  text-align:center;transform:rotate(7deg);box-shadow:0 14px 26px rgba(190,180,160,.34)}
+.badge b{display:block;font-size:26px;font-weight:700;color:#4a6b3f;line-height:1.1}
+.badge span{font-size:9.5px;letter-spacing:.16em;color:var(--text-2)}
+
+.sig{position:absolute;left:76px;right:76px;bottom:20px;display:flex;gap:24px;
+  font-size:11px;color:#7a6f63;letter-spacing:.06em}
+.sig b{color:#6c6154;font-weight:500}
+</style>
+</head>
+<body>
+  <div class="card">
+    <span class="tag">周 末 自 然 课</span>
+    <h1>把一整个夏天<br>交给<em>四平方米</em>的菜园</h1>
+    <p class="lede">给 6 到 10 岁的孩子。不发课本，发一把小铲子。<br>他们要先学会等——<b>番茄不会因为你着急就红</b>。</p>
+    <ul class="list">
+      <li><i>1</i>认土、翻土、辨虫<span>45 分钟</span></li>
+      <li><i>2</i>播种与浇水的手感<span>60 分钟</span></li>
+      <li><i>3</i>搭一个豆角架子<span>40 分钟</span></li>
+      <li><i>4</i>收获，做成午饭<span>90 分钟</span></li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <div class="scene">
+      <div class="sun"></div>
+      <div class="hill b"></div>
+      <div class="hill"></div>
+      <div class="leaf c"></div><div class="leaf b"></div><div class="leaf a"></div>
+      <div class="tree"></div>
+      <div class="soil"></div>
+      <div class="sprout" style="left:250px"></div>
+      <div class="sprout" style="left:340px"></div>
+      <div class="sprout" style="left:430px"></div>
+      <div class="sprout" style="left:520px"></div>
+    </div>
+    <div class="note">
+      <h2>这一期只有 12 个位置</h2>
+      <p>每周六上午 9:00，城郊农场。<br>家长可以旁观，但请不要代替孩子动手。</p>
+      <span class="stamp">报名截止 ／ 6 月 20 日</span>
+    </div>
+    <div class="badge"><div><b>12</b><span>席 位</span></div></div>
+  </div>
+
+  <footer class="sig">
+    <span>风格基因 <b>吉卜力手绘亲和</b> · 辅 水彩淡彩</span>
+    <span>Built by <b>pi agent</b> × <b>DeepSeek V4.1 Flash</b></span>
+    <span>场景随机抽取 · 风格按 agent-taste-seed-system 基因库落成</span>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-canvas="1440x900" data-slug="10-constructivism-poster">
+<head>
+<meta charset="utf-8">
+<title>我们需要你 — 构成主义海报</title>
+<link rel="stylesheet" href="_assets/taste-fonts.css">
+<style>
+/* ── 基因：构成主义海报 ────────────────────────────────────
+   激活词：Rodchenko · El Lissitzky · 红色楔子 · 对角线动势
+           · photomontage · 宣传鼓动
+   上游种子：code-genes/10 · ch14 抽象艺术（俄罗斯先锋派）
+   纪律：红 + 黑 + 米白纸底，三色封顶（三色纪律是力量来源）；
+        零渐变零阴影零圆角；一条强对角线统治全图。 */
+:root{
+  --bg:#f0e9dc;         /* 米白纸底 */
+  --red:#d93025;
+  --black:#141414;
+  --radius:0px;
+  --heavy:'AB Archivo Black','AB Oswald','AB Noto Sans SC',sans-serif;
+  --sans:'AB Oswald','AB Noto Sans SC',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1440px;height:900px;overflow:hidden}
+body{background:var(--bg);color:var(--black);font-family:var(--sans);position:relative}
+/* 做旧纸：3% 噪点，暗示印刷品 */
+body::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;z-index:9;
+  background-image:radial-gradient(circle,rgba(60,50,35,.10) .6px,transparent .7px);
+  background-size:4px 4px}
+
+/* 强对角线：统治全图，元素沿它分布 */
+.diag{position:absolute;left:-16%;top:46%;width:132%;height:196px;
+  background:var(--red);transform:rotate(-19deg);transform-origin:50% 50%}
+.diag-thin{position:absolute;left:-16%;top:60%;width:132%;height:9px;
+  background:var(--black);transform:rotate(-19deg)}
+.wedge{position:absolute;right:-6%;top:-9%;width:640px;height:400px;background:var(--black);
+  clip-path:polygon(100% 0,100% 100%,0 22%)}
+.circle{position:absolute;left:74px;bottom:112px;width:214px;height:214px;border-radius:50%;
+  border:14px solid var(--black)}
+
+/* 标题：倾斜沿对角线排布，超大字 × 小注释 */
+.headline{position:absolute;left:78px;top:96px;transform:rotate(-6deg);transform-origin:left top}
+.headline h1{font-family:var(--heavy);font-size:120px;line-height:1.04;letter-spacing:-.02em}
+.headline h1 em{font-style:normal;display:block;color:var(--red);
+  -webkit-text-stroke:0;
+  text-shadow:6px 6px 0 var(--black)}
+.headline .en{margin-top:24px;font-family:var(--heavy);font-size:22px;letter-spacing:.42em;
+  color:var(--black)}
+
+/* 口号式文案：动词 + 名词，一行 */
+.slogan{position:absolute;right:96px;bottom:212px;text-align:right;transform:rotate(-4deg);
+  transform-origin:right bottom}
+.slogan b{display:block;font-family:var(--heavy);font-size:46px;line-height:1.14;
+  letter-spacing:-.01em}
+.slogan b.inv{background:var(--black);color:var(--bg);display:inline-block;padding:2px 14px 6px}
+.slogan span{display:block;margin-top:16px;font-size:13.5px;letter-spacing:.34em;
+  color:#5a5348}
+
+/* 信息条：几何色块裁切文字 */
+.strip{position:absolute;left:0;bottom:0;width:100%;height:74px;background:var(--black);
+  display:flex;align-items:center;justify-content:space-between;padding:0 78px;
+  color:var(--bg)}
+.strip div{font-size:12.5px;letter-spacing:.32em}
+.strip b{font-family:var(--heavy);font-size:20px;font-weight:700;color:#ff6152;letter-spacing:.14em}
+
+/* 编号：超大数字 + 小注释，先锋派的机械感 */
+.no{position:absolute;left:78px;top:496px;font-family:var(--heavy);font-size:64px;
+  line-height:1;color:var(--black)}
+.no span{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.28em;
+  margin-top:10px;color:#6a6156}
+
+.sig{position:absolute;right:26px;top:16px;text-align:right;font-size:10px;
+  letter-spacing:.16em;color:#5b5346;z-index:9}
+.sig b{color:#a8200f;font-weight:700}
+</style>
+</head>
+<body>
+  <div class="wedge"></div>
+  <div class="diag"></div>
+  <div class="diag-thin"></div>
+  <div class="circle"></div>
+
+  <div class="headline">
+    <h1>我们<em>需要你</em></h1>
+    <div class="en">WE NEED YOU ／ 1924</div>
+  </div>
+
+  <div class="no">№ 07<span>招募编号</span></div>
+
+  <div class="slogan">
+    <b>造一台机器，</b>
+    <b class="inv">它替你劳动</b>
+    <span>器 具 即 解 放</span>
+  </div>
+
+  <div class="strip">
+    <div>钢 铁 · 电 力 · 集 体</div>
+    <div class="no-mark"><b>工厂委员会</b></div>
+    <div>即 日 报 名</div>
+  </div>
+
+  <footer class="sig">
+    <div>风格基因 <b>构成主义海报</b> · 辅 照片拼贴逻辑</div>
+    <div>Built by <b>pi agent</b> × <b>DeepSeek V4.1 Flash</b></div>
+    <div>场景随机抽取 · 风格按 agent-taste-seed-system 基因库落成</div>
+  </footer>
+</body>
+</html>

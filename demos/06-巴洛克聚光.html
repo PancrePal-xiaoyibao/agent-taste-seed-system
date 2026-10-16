@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-canvas="1440x900" data-slug="06-baroque-tenebrism">
+<head>
+<meta charset="utf-8">
+<title>夜航 · 一束光 — 巴洛克聚光</title>
+<link rel="stylesheet" href="_assets/taste-fonts.css">
+<style>
+/* ── 基因：巴洛克聚光（Tenebrism） ──────────────────────────
+   激活词：卡拉瓦乔 · 伦勃朗光 · chiaroscuro · 舞台追光
+   上游种子：code-genes/07 · moods/08 暗黑崇高
+   纪律：只有一个光源；黑暗占 60%+；金色只做线不做面；
+        光源必须暖（烛光），冷白 = 停尸房。 */
+:root{
+  --bg:#14100c;          /* 带暖倾向的近黑褐 */
+  --surface:#1d1812;
+  --surface-lit:#241d15;
+  --text:#d8cfc0;
+  --text-2:#b0a595;
+  --gold:#c9a227;
+  --radius:8px;
+  --serif:'AB Playfair Display','AB Noto Serif SC',serif;
+  --sans:'AB Inter','AB Noto Sans SC',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1440px;height:900px;overflow:hidden}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);position:relative}
+
+/* 唯一光源：从画面上方 42% 处打下一束暖光，向外衰减到全黑 */
+body::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 62% 58% at 46% 34%,rgba(201,162,39,.13),transparent 62%),
+             radial-gradient(ellipse 120% 90% at 50% 120%,rgba(0,0,0,.72),transparent 60%)}
+/* 画布纹理：让黑有物质感，不是空洞的 #000 */
+body::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:repeating-linear-gradient(0deg,rgba(255,240,210,.014) 0 1px,transparent 1px 3px)}
+
+.stage{position:absolute;inset:66px 88px;display:grid;
+  grid-template-columns:1.15fr .85fr;gap:72px;align-items:center}
+
+/* ── 左：一屏一主角（一句台词 + 舞台说明） ── */
+.act{position:relative}
+.act .no{font-family:var(--serif);font-size:13px;letter-spacing:.5em;color:var(--gold)}
+.act .no::after{content:"";display:block;width:74px;height:1px;background:var(--gold);
+  margin-top:16px;opacity:.7}
+h1{margin-top:30px;font-family:var(--serif);font-size:96px;font-weight:700;
+  line-height:1.06;letter-spacing:-.01em;
+  text-shadow:0 0 60px rgba(201,162,39,.20),0 0 16px rgba(201,162,39,.12)}
+h1 em{font-style:italic;color:var(--gold);display:block}
+.line{margin-top:34px;font-family:var(--serif);font-size:23px;line-height:1.85;
+  color:#c8bda9;max-width:460px;font-style:italic}
+.line::before{content:"“";color:var(--gold);font-size:44px;line-height:0;
+  vertical-align:-16px;margin-right:6px}
+
+/* 舞台说明：金色细线勾重点，禁满屏金纹 */
+.cue{margin-top:44px;padding-left:22px;border-left:1px solid rgba(201,162,39,.5);
+  font-size:13.5px;line-height:2;color:var(--text-2)}
+.cue b{color:var(--gold);font-weight:400;font-family:var(--serif);font-size:15px}
+
+/* ── 右：受光面的卡片（靠"更亮"浮起，禁白卡片） ── */
+.cast{display:flex;flex-direction:column;gap:14px}
+.cast .row{background:var(--surface);border:1px solid rgba(201,162,39,.16);
+  border-radius:var(--radius);padding:22px 24px;display:flex;align-items:baseline;
+  gap:20px;transition:none}
+/* 只有被光照到的那一张更亮 —— 光源叙事的物理逻辑 */
+.cast .row.lit{background:var(--surface-lit);border-color:rgba(201,162,39,.34);
+  box-shadow:inset 0 1px 0 rgba(201,162,39,.10),0 0 48px rgba(201,162,39,.07)}
+.cast .row i{font-family:var(--serif);font-style:italic;font-size:26px;color:var(--gold);
+  min-width:44px;opacity:.85}
+.cast .row b{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:.02em}
+.cast .row span{margin-left:auto;font-size:11.5px;letter-spacing:.14em;color:#9a8f7d;
+  text-transform:uppercase}
+.cast .row.lit span{color:var(--gold)}
+
+.note{margin-top:26px;font-size:12px;line-height:1.9;color:#9d9384;
+  padding-top:20px;border-top:1px solid rgba(201,162,39,.14)}
+
+.sig{position:absolute;left:88px;right:88px;bottom:24px;display:flex;gap:26px;
+  font-size:10.5px;letter-spacing:.14em;color:#9c917f}
+.sig b{color:var(--gold);font-weight:400}
+</style>
+</head>
+<body>
+  <div class="stage">
+    <section class="act">
+      <div class="no">第 一 幕</div>
+      <h1>夜航<em>一束光</em></h1>
+      <p class="line">整条船只有一盏灯，所有人都朝它走——这就是全部的权力结构。</p>
+      <div class="cue">
+        舞台说明：灯芯高 <b>三寸</b>，烛火偏向 <b>左前方</b>；<br>
+        除提灯者外，其余角色保持 <b>背光</b>。
+      </div>
+    </section>
+
+    <section class="cast">
+      <div class="row lit"><i>Ⅰ</i><b>提灯的人</b><span>光源 · 主动</span></div>
+      <div class="row"><i>Ⅱ</i><b>掌舵的手</b><span>背光 · 被动</span></div>
+      <div class="row"><i>Ⅲ</i><b>压舱的货</b><span>黑暗 · 缺席</span></div>
+      <div class="row"><i>Ⅳ</i><b>岸上的名字</b><span>不可见</span></div>
+      <p class="note">全剧 47 分钟，无中场休息。演出期间请勿使用闪光灯——<br>这里唯一被允许的强光，来自台上。</p>
+    </section>
+  </div>
+
+  <footer class="sig">
+    <span>风格基因 <b>巴洛克聚光</b> · 辅 金色细线点睛</span>
+    <span>Built by <b>pi agent</b> × <b>DeepSeek V4.1 Flash</b></span>
+    <span>场景随机抽取 · 风格按 agent-taste-seed-system 基因库落成</span>
+  </footer>
+</body>
+</html>

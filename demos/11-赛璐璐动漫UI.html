@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-canvas="1440x900" data-slug="11-cel-shading-anime-ui">
+<head>
+<meta charset="utf-8">
+<title>星见学园 ／ 角色主站 — 赛璐璐动漫 UI</title>
+<link rel="stylesheet" href="_assets/taste-fonts.css">
+<style>
+/* ── 基因：赛璐璐动漫 UI ──────────────────────────────────
+   激活词：cel shading · 京阿尼光影 · SHAFT 45 度
+           · 动画色板 · 两分阴影
+   上游种子：code-genes/11 · moods/03 热血冲击 · ch22/23
+   纪律：从立绘取 3 色做 UI 主轴（60/30/10）；
+        阴影一律两分 cel（纯色阶，无柔和渐变）；
+        实心位移阴影是形态语言；禁写实照片混排。 */
+:root{
+  --bg:#ffffff;
+  --ink:#2a2a35;
+  --main:#4568e8;       /* 主色 60%（对白底 ≥4.5:1）*/
+  --sub:#8fd0f0;        /* 辅色 30% */
+  --sub-deep:#5f9fc4;   /* 辅色深调：用于图形描边 */
+  --hi:#ffd166;         /* 高光色 10% */
+  --outline:2px solid var(--ink);
+  --radius:4px;
+  --cel-shadow:4px 4px 0 var(--ink);
+  --heavy:'AB Noto Sans SC',sans-serif;
+  --round:'AB Noto Sans SC',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1440px;height:900px;overflow:hidden}
+body{background:var(--bg);color:var(--ink);font-family:var(--round);position:relative;
+  overflow:hidden}
+
+/* 背景：斜切分区 + 速度线，制造动感 */
+.bg-a{position:absolute;right:-8%;top:-14%;width:72%;height:132%;background:var(--main);
+  transform:rotate(-8deg);opacity:.10}
+.bg-b{position:absolute;left:-10%;bottom:-8%;width:56%;height:96%;background:var(--sub);
+  transform:rotate(6deg);opacity:.20}
+.speed{position:absolute;inset:0;overflow:hidden;opacity:.5}
+.speed i{position:absolute;height:2px;background:var(--main);opacity:.34;border-radius:2px;
+  transform:rotate(-24deg)}
+
+/* ── 立绘区：允许越出面板边界（层次感的关键手法） ── */
+.art{position:absolute;left:64px;top:78px;width:520px;height:744px}
+.portrait{position:absolute;left:44px;bottom:0;width:404px;height:648px;
+  /* 赛璐璐：纯色阶分层，无柔和渐变 */
+  background:linear-gradient(180deg,#fbe9d2 0 22%,#f3d4b4 22% 100%);
+  border:var(--outline);border-radius:120px 120px 40px 40px;
+  box-shadow:var(--cel-shadow);overflow:hidden}
+.hair{position:absolute;left:-40px;top:-46px;width:486px;height:326px;background:var(--main);
+  border-radius:50% 50% 44% 44%;border:var(--outline)}
+.hair::after{content:"";position:absolute;left:44px;top:44px;width:398px;height:150px;
+  background:#7b98ff;border-radius:50%}   /* 高光色阶（第二分） */
+.eye{position:absolute;width:62px;height:74px;background:var(--ink);border-radius:50% 50% 46% 46%;
+  top:250px}
+.eye.l{left:104px}.eye.r{left:238px}
+.eye i{position:absolute;left:16px;top:10px;width:20px;height:24px;background:#fff;border-radius:50%}
+.eye u{position:absolute;left:24px;bottom:14px;width:22px;height:22px;background:var(--hi);
+  border-radius:50%;text-decoration:none}
+.blush{position:absolute;top:352px;width:58px;height:22px;background:#f7b0b0;
+  border-radius:50%;opacity:.85}
+.blush.l{left:74px}.blush.r{left:274px}
+.mouth{position:absolute;left:186px;top:362px;width:38px;height:17px;
+  border-bottom:3px solid var(--ink);border-radius:0 0 40px 40px}
+.body-fig{position:absolute;left:110px;bottom:0;width:288px;height:242px;
+  background:var(--sub);border:var(--outline);border-left:none;border-right:none}
+.collar{position:absolute;left:150px;bottom:214px;width:208px;height:70px;background:#fff;
+  border:var(--outline);clip-path:polygon(0 0,50% 74%,100% 0,100% 100%,0 100%)}
+
+/* ── 面板：对话框 + 斜切信息卡 + 实心位移按钮 ── */
+.panel{position:absolute;right:64px;top:96px;width:700px}
+.name{display:inline-block;background:var(--hi);border:var(--outline);
+  box-shadow:var(--cel-shadow);padding:11px 22px;transform:rotate(-2deg)}
+.name b{font-family:var(--heavy);font-size:27px;letter-spacing:.06em;display:block;line-height:1.1}
+.name span{font-size:11px;letter-spacing:.3em;color:#5a4a12;font-weight:600}
+
+h1{margin-top:26px;font-family:var(--heavy);font-size:76px;line-height:1.02;
+  letter-spacing:-.01em}
+h1 em{font-style:normal;color:var(--main)}
+.kana{margin-top:12px;font-size:13px;letter-spacing:.44em;color:#63637d}
+
+/* 对话框气泡：承载台词的合法组件 */
+.bubble{position:relative;margin-top:30px;background:#fff;border:var(--outline);
+  border-radius:var(--radius);padding:22px 26px;box-shadow:var(--cel-shadow)}
+.bubble::after{content:"";position:absolute;left:56px;bottom:-17px;width:0;height:0;
+  border-left:13px solid transparent;border-right:13px solid transparent;
+  border-top:17px solid var(--ink)}
+.bubble::before{content:"";position:absolute;left:59px;bottom:-12px;width:0;height:0;
+  border-left:10px solid transparent;border-right:10px solid transparent;
+  border-top:13px solid #fff;z-index:2}
+.bubble p{font-size:16px;line-height:1.9}
+.bubble p b{color:var(--main)}
+
+/* 属性：斜切卡片阵列 */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+.stats div{background:#fff;border:var(--outline);padding:16px 18px;
+  clip-path:polygon(0 0,100% 0,100% 72%,88% 100%,0 100%)}
+.stats dt{font-size:10.5px;letter-spacing:.22em;color:#63637d}
+.stats dd{margin-top:9px;font-family:var(--heavy);font-size:31px;line-height:1;color:var(--main)}
+.stats dd i{font-style:normal;font-size:13px;color:var(--ink);margin-left:2px}
+
+/* 按钮：实心位移阴影（按下态就是位移） */
+.cta{margin-top:32px;display:flex;gap:16px;align-items:center}
+.btn{display:inline-block;background:var(--main);color:#fff;border:var(--outline);
+  box-shadow:var(--cel-shadow);padding:15px 34px;font-family:var(--heavy);font-size:17px;
+  letter-spacing:.1em;text-decoration:none}
+.btn.ghost{background:#fff;color:var(--ink)}
+.tip{font-size:12px;letter-spacing:.14em;color:#63637d}
+
+.sig{position:absolute;left:64px;bottom:22px;display:flex;gap:26px;
+  font-size:10.5px;letter-spacing:.06em;color:#63637d}
+.sig b{color:var(--main);font-weight:700}
+</style>
+</head>
+<body>
+  <div class="bg-a"></div>
+  <div class="bg-b"></div>
+  <div class="speed">
+    <i style="left:6%;top:20%;width:220px"></i>
+    <i style="left:-2%;top:34%;width:340px"></i>
+    <i style="left:14%;top:58%;width:180px"></i>
+    <i style="left:2%;top:74%;width:300px"></i>
+    <i style="left:22%;top:88%;width:240px"></i>
+  </div>
+
+  <div class="art">
+    <div class="portrait">
+      <div class="hair"></div>
+      <div class="eye l"><i></i><u></u></div>
+      <div class="eye r"><i></i><u></u></div>
+      <div class="blush l"></div><div class="blush r"></div>
+      <div class="mouth"></div>
+    </div>
+    <div class="body-fig"></div>
+    <div class="collar"></div>
+  </div>
+
+  <div class="panel">
+    <div class="name"><b>星 见 そ ら</b><span>HOSHIMI SORA</span></div>
+
+    <h1>把台词<br>念到<em>灯亮为止</em></h1>
+    <div class="kana">声 優 ／ 第 二 学 年</div>
+
+    <div class="bubble">
+      <p>「我刚才那句，<b>第三次</b>才是我真正的意思。<br>前两次都在演别人期待的样子。」</p>
+    </div>
+
+    <dl class="stats">
+      <div><dt>音 域</dt><dd>3.4<i> oct</i></dd></div>
+      <div><dt>收 录 时 长</dt><dd>128<i> h</i></dd></div>
+      <div><dt>作 品</dt><dd>27<i> 部</i></dd></div>
+    </dl>
+
+    <div class="cta">
+      <a class="btn" href="#">听 一 段 试 音</a>
+      <a class="btn ghost" href="#">全 部 作 品</a>
+      <span class="tip">✦ 演出日程 12 月更新</span>
+    </div>
+  </div>
+
+  <footer class="sig">
+    <span>风格基因 <b>赛璐璐动漫 UI</b> · 辅 斜切动势分区</span>
+    <span>Built by <b>pi agent</b> × <b>DeepSeek V4.1 Flash</b></span>
+    <span>场景随机抽取 · 风格按 agent-taste-seed-system 基因库落成</span>
+  </footer>
+</body>
+</html>

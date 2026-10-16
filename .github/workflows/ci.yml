@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  # ── 闸门一：合规与完整性（不需要浏览器，秒级）────────────────────
+  compliance:
+    name: 合规与完整性
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 资产扫描（无第三方媒体 / 无外部抄录 / 无敏感信息）
+        run: bash scripts/check_assets.sh
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 内容完整性（种子条目数 / 分章免责头 / 许可文件 / 演示与截图配对）
+        run: python3 scripts/check_integrity.py
+
+      - name: Markdown 相对链接检查
+        run: python3 scripts/check_links.py
+
+  # ── 闸门二：真实渲染 + 布局/风格断言（需要 Chromium）──────────────
+  render-and-verify:
+    name: 渲染与审美断言
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 安装依赖
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install playwright pillow fonttools brotli
+          python3 -m playwright install --with-deps chromium
+
+      # 字体子集已随仓库提交，无需源字体即可渲染；
+      # 这一步在无源码环境下验证「断网可复现」这个承诺是否仍然成立。
+      - name: 实时渲染 12 张演示页（输出到临时目录，不污染工作区）
+        run: OUT_DIR=/tmp/shots python3 demos/_src/render_shots.py
+
+      # 不直接 git diff 截图字节：CI 的 Chromium/FreeType/WebP 编码器版本
+      # 与作者本机不同，逐字节比对必然误报。改为比「结构指纹」：
+      # 尺寸 · 均值亮度 · 16×16 指纹 · 显著色相数 · 暗部/留白占比。
+      - name: 截图新鲜度（防「改了页面忘了重渲染」）
+        run: python3 scripts/check_shots_freshness.py /tmp/shots demos/_assets/shots
+
+      - name: 布局断言（溢出 / 越界 / 遮挡 / 字号 / WCAG 对比度）
+        run: python3 demos/_src/qa_layout.py
+
+      - name: 风格基因纪律断言（亮度 / 暗部 / 留白 / 色相 / 饱和度）
+        run: python3 demos/_src/qa_style.py
+
+  # ── 闸门三：字体子集的 OFL 命名合规 ─────────────────────────────
+  font-license:
+    name: 字体许可合规
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install fonttools
+
+      - name: 子集必须带 AB 前缀，且保留版权与许可记录（OFL §1 §3）
+        run: python3 demos/_src/check_font_licenses.py

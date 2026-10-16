@@ -1,5 +1,8 @@
 <!-- 风格档 · 摘自《艺术风格百科大全》原文，零删减。
-     总库速查：../art-seeds.md · 情绪档：../moods/ · 决策流程：TASTE.md（按部署形态定位；Skill 形态见技能根 SKILL.md） -->
+     总库速查：../art-seeds.md · 情绪档：../moods/ · 决策流程：仓库根 TASTE.md（skill 形态见技能根 SKILL.md）
+     许可：CC BY-NC-SA 4.0（见仓库根 LICENSE-CONTENT.md）。本档仅含事实性风格描述与通用关键词，
+     不含任何第三方作品图像或原文引用；文中提及的商标、作品名与创作者姓名仅作事实描述，
+     不构成关联或授权，权利归各自所有者。详见仓库根 docs/TRADEMARKS.md。 -->
 
 # 第二十四章  实用附录：AI创作风格指南
 下面是一些实用的风格Prompt模板，帮助你在AI绘画工具（如Midjourney、Stable Diffusion、DALL·E等）中精准调用不同的艺术风格。

@@ -16,14 +16,14 @@ git clone https://github.com/hhx465453939/agent-taste-seed-system.git
 bash agent-taste-seed-system/deploy/install-claude-skill.sh
 ```
 
-脚本做的事：建 `~/.claude/skills/taste/` → 拷入 `SKILL.md`（来自 `templates/SKILL.md`）→ `references/` 整目录覆盖拷贝（art-seeds 总库 + moods/ + code-genes/ + chapters/ 四层全量，重装前预清理三个子目录）。已装过会先备份旧种子库（含风味日志）再覆盖。
+脚本做的事：建 `~/.claude/skills/taste/` → 拷入 `SKILL.md`（来自仓库根 `SKILL.md`）→ `references/` 整目录覆盖拷贝（art-seeds 总库 + moods/ + code-genes/ + chapters/ 四层全量，重装前预清理三个子目录）。已装过会先备份旧种子库（含风味日志）再覆盖。
 
 ## 方式 B：手动（在本仓库根目录执行）
 
 ```bash
 SKILL_ROOT="$HOME/.claude/skills/taste"
 mkdir -p "$SKILL_ROOT/references"
-cp templates/SKILL.md "$SKILL_ROOT/SKILL.md"
+cp SKILL.md "$SKILL_ROOT/SKILL.md"
 cp TASTE.md "$SKILL_ROOT/TASTE.md"
 cp -R references/. "$SKILL_ROOT/references/"   # 整目录覆盖拷贝，四层全量
 ```

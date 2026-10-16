@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-canvas="1440x900" data-slug="12-gothic-dark">
+<head>
+<meta charset="utf-8">
+<title>铅与烬 · 第七夜 — 哥特暗黑</title>
+<link rel="stylesheet" href="_assets/taste-fonts.css">
+<style>
+/* ── 基因：哥特暗黑 ────────────────────────────────────────
+   激活词：Beksiński · H.R. Giger · 芳年血月 · 哥特花窗
+           · 废墟崇高 · Lead and Ashes
+   上游种子：code-genes/12 · moods/08 暗黑崇高
+   纪律：点睛色二选一且全局统一（此处取血红）；
+        禁正黑（要铅/烬/褐三向黑的物质感）；
+        一屏一个恐怖符号，禁符号堆叠。 */
+:root{
+  --bg:#12100e;         /* 铅灰黑，带褐倾向 */
+  --surface:#1a1712;
+  --bone:#e8e2d5;       /* 骨白 */
+  --bone-2:#a89f8e;
+  --blood:#8b1a1a;      /* 点睛色：只施于图形与线条（面积元素） */
+  --moon:#cdd5e0;       /* 文字强调：月白（基因卡第二选项，全局统一））*/
+  --line:#3a342a;
+  --radius:0px;
+  --serif:'AB Cinzel','AB Noto Serif SC',serif;
+  --song:'AB Noto Serif SC',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1440px;height:900px;overflow:hidden}
+body{background:var(--bg);color:var(--bone);font-family:var(--song);position:relative}
+/* 三向黑：铅（冷）/ 烬（暖）/ 褐（土），叠加物质感 */
+body::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 78% 62% at 50% 6%,rgba(139,26,26,.13),transparent 62%),
+    radial-gradient(ellipse 120% 80% at 50% 116%,rgba(0,0,0,.66),transparent 62%),
+    repeating-linear-gradient(0deg,rgba(232,226,213,.016) 0 1px,transparent 1px 4px)}
+/* 铁艺细线：一处卷纹，绝不多 */
+.iron{position:absolute;inset:44px 56px;border:1px solid var(--line)}
+.iron::before{content:"";position:absolute;left:0;right:0;top:-1px;height:0}
+
+.stage{position:absolute;inset:44px 56px;display:grid;grid-template-columns:400px 1fr;
+  gap:64px;padding:56px 58px}
+
+/* ── 尖拱图框：哥特窗形，中央对称的仪式感 ── */
+.arch{position:relative;background:var(--surface);border:1px solid var(--line);
+  clip-path:polygon(0 22%,50% 0,100% 22%,100% 100%,0 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:36px 30px;
+  min-height:706px}
+/* 花窗玫瑰：唯一的巨型恐怖符号，放大到占满拱顶 */
+.rose{position:absolute;left:50%;top:118px;width:248px;height:248px;margin-left:-124px;
+  border-radius:50%;border:1px solid var(--blood);opacity:.9}
+.rose i{position:absolute;inset:0;border-radius:50%;border:1px solid var(--blood);
+  opacity:.55}
+.rose i:nth-child(1){transform:rotate(0deg)   scale(.80)}
+.rose i:nth-child(2){transform:rotate(30deg)  scale(.60)}
+.rose i:nth-child(3){transform:rotate(60deg)  scale(.42)}
+.rose i:nth-child(4){transform:rotate(90deg)  scale(.26)}
+.rose::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:10px;
+  margin:-5px 0 0 -5px;background:var(--blood);border-radius:50%}
+/* 辐射：从花窗向下垂落的铁线（铅与烬） */
+.rays{position:absolute;left:0;right:0;top:366px;height:200px;opacity:.5;
+  background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px 17px);
+  mask-image:linear-gradient(180deg,rgba(0,0,0,1),transparent)}
+
+.statue{margin-top:auto;text-align:center}
+.statue b{display:block;font-family:var(--serif);font-size:23px;letter-spacing:.16em;
+  color:var(--bone)}
+.statue span{display:block;margin-top:10px;font-size:11px;letter-spacing:.32em;
+  color:var(--bone-2)}
+
+/* ── 右：标题与正文 ── */
+.text{display:flex;flex-direction:column}
+.no{font-family:var(--serif);font-size:12px;letter-spacing:.6em;color:var(--moon)}
+h1{margin-top:26px;font-family:var(--serif);font-size:82px;font-weight:700;
+  line-height:1.08;letter-spacing:.04em}
+h1 em{font-style:normal;color:var(--moon)}
+/* 荆棘分隔线：只用一次 */
+.thorn{margin-top:30px;height:1px;background:var(--line);position:relative}
+.thorn::before{content:"";position:absolute;left:0;top:-5px;width:11px;height:11px;
+  border:1px solid var(--line);transform:rotate(45deg);background:var(--bg)}
+.thorn::after{content:"";position:absolute;right:0;top:-5px;width:11px;height:11px;
+  border:1px solid var(--line);transform:rotate(45deg);background:var(--bg)}
+
+.lede{margin-top:30px;font-size:15.5px;line-height:2.1;color:#b8ae9c;max-width:560px;
+  letter-spacing:.03em}
+.lede b{color:var(--bone);font-weight:700}
+.lede i{font-style:normal;color:var(--moon)}
+
+/* 三行"铭文"：竖长比例（1:3）的窄条，铁线分隔 */
+.epitaph{margin-top:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--line);border:1px solid var(--line)}
+.epitaph div{background:var(--bg);padding:20px 18px 26px}
+.epitaph dt{font-family:var(--serif);font-size:11px;letter-spacing:.3em;color:var(--bone-2)}
+.epitaph dd{margin-top:12px;font-size:13.5px;line-height:1.85;color:#a2988a}
+.epitaph dd b{color:var(--moon);font-family:var(--serif);font-size:17px;font-weight:400;
+  display:block;margin-bottom:6px;letter-spacing:.06em}
+
+.sig{position:absolute;left:114px;right:114px;bottom:20px;display:flex;gap:26px;
+  font-size:10px;letter-spacing:.2em;color:#a29a8b;font-family:var(--serif)}
+.sig b{color:var(--moon);font-weight:400}
+</style>
+</head>
+<body>
+  <div class="iron"></div>
+
+  <div class="stage">
+    <aside class="arch">
+      <div class="rose"><i></i><i></i><i></i><i></i></div>
+      <div class="rays"></div>
+      <div class="statue">
+        <b>第 七 夜</b>
+        <span>THE SEVENTH NIGHT</span>
+      </div>
+    </aside>
+
+    <section class="text">
+      <div class="no">铅 与 烬 ／ 卷 之 四</div>
+      <h1>所有光<br>都来自<em>燃尽的东西</em></h1>
+      <div class="thorn"></div>
+
+      <p class="lede">
+        教堂烧了三天，钟还挂着。<br>
+        人们说那是奇迹，我说那是<b>金属的固执</b>——<i>它记得自己被敲响过多少次</i>，
+        所以拒绝熔化。
+      </p>
+
+      <dl class="epitaph">
+        <div><dt>Ⅰ ／ 铅</dt><dd><b>沉默者</b>把灰压成形，压在窗口，压了四百年。</dd></div>
+        <div><dt>Ⅱ ／ 烬</dt><dd><b>见证者</b>它不是被烧毁的，它是被记住的。</dd></div>
+        <div><dt>Ⅲ ／ 月</dt><dd><b>归还者</b>血在最后一夜归还给月亮。</dd></div>
+      </dl>
+    </section>
+  </div>
+
+  <footer class="sig">
+    <span>风格基因 <b>哥特暗黑</b> · 辅 废墟崇高的规模感</span>
+    <span>Built by <b>pi agent</b> × <b>DeepSeek V4.1 Flash</b></span>
+    <span>场景随机抽取 · 风格按 agent-taste-seed-system 基因库落成</span>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-canvas="1440x900" data-slug="01-cyber-neon">
+<head>
+<meta charset="utf-8">
+<title>天枢 TIANSHU — 赛博霓虹</title>
+<link rel="stylesheet" href="_assets/taste-fonts.css">
+<style>
+/* ── 基因：赛博霓虹 ──────────────────────────────────────────
+   激活词：攻壳机动队 · Blade Runner · neon noir · synthwave
+   上游种子：code-genes/02 · moods/01 科技酷感
+   纪律：荧光青只给边/线/数字（≤15% 面积），品红仅告警，
+        正文永不用荧光色，紫渐变零容忍。 */
+:root{
+  --bg:#0a0e1a;          /* 深蓝黑，禁 #000 死黑 */
+  --surface:#131b2e;
+  --text:#c9d1d9;
+  --accent:#38f2c8;      /* 荧光青，只做强调 */
+  --danger:#ff2d78;
+  --radius:6px;          /* 4-6px 锐利系，禁软萌大圆角 */
+  --line:rgba(56,242,200,.25);
+  --glow:0 0 12px rgba(56,242,200,.35);
+  --mono:'AB JetBrains Mono',monospace;
+  --sans:'AB Inter','AB Noto Sans SC',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1440px;height:900px;overflow:hidden}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);position:relative;
+  /* 背景 5% 细网格：制造纵深，不抢主体 */
+  background-image:
+    linear-gradient(rgba(56,242,200,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(56,242,200,.05) 1px,transparent 1px),
+    radial-gradient(1100px 620px at 76% 18%,rgba(56,242,200,.09),transparent 68%);
+  background-size:56px 56px,56px 56px,100% 100%;
+}
+.frame{position:absolute;inset:52px 64px;display:grid;
+  grid-template-columns:1fr 1fr;gap:56px}
+
+/* ── 左：品牌与指标 ── */
+.brand{display:flex;flex-direction:column}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.34em;color:var(--accent);
+  display:flex;align-items:center;gap:12px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
+h1{margin-top:26px;font-size:78px;font-weight:900;letter-spacing:-.02em;line-height:1;
+  color:#eef3f7;text-shadow:0 0 26px rgba(56,242,200,.18)}
+h1 em{font-style:normal;color:var(--accent);text-shadow:var(--glow)}
+.sub{margin-top:12px;font-family:var(--mono);font-size:13px;letter-spacing:.3em;color:#7d8ba3}
+.lede{margin-top:34px;font-size:15px;line-height:1.95;color:#93a1b8;max-width:430px;
+  border-left:1px solid var(--line);padding-left:20px}
+
+/* 指标：自发光只给数字，边线用 1px 荧光描边代替实心框 */
+.metrics{margin-top:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+  background:var(--line)}
+.metrics div{background:var(--surface);padding:22px 20px}
+.metrics dt{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:#93a3c0}
+.metrics dd{margin-top:10px;font-family:var(--mono);font-size:34px;font-weight:700;
+  color:var(--accent);text-shadow:var(--glow);line-height:1}
+.metrics dd span{font-size:14px;color:#8b98ae;text-shadow:none;margin-left:3px}
+
+/* ── 右：终端面板 + 一处呼吸辉光点睛 ── */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 26px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.panel::before{content:"";position:absolute;left:0;top:0;width:2px;height:100%;
+  background:var(--accent);box-shadow:var(--glow);animation:breathe 3.6s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:.35}50%{opacity:1}}
+.panel-hd{display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:#93a3c0}
+.panel-hd b{color:var(--danger);font-weight:400}
+.term{margin-top:18px;font-family:var(--mono);font-size:12.5px;line-height:2;color:#8fa3ad;
+  flex:1}
+.term i{font-style:normal;color:#93a3bd;margin-right:10px}
+.term b{color:var(--accent);font-weight:400}
+.term u{text-decoration:none;color:#eef3f7}
+.term .warn{color:var(--danger)}
+.bar{margin-top:16px;border-top:1px solid var(--line);padding-top:16px}
+.bar div{display:flex;justify-content:space-between;font-family:var(--mono);
+  font-size:10.5px;color:#9aa9c4;margin-bottom:7px}
+.bar .track{height:3px;background:#1d2740;border-radius:2px;overflow:hidden;margin-bottom:14px}
+.bar .track i{display:block;height:100%;background:var(--accent);box-shadow:var(--glow)}
+
+/* 底部状态条 */
+.status{position:absolute;left:64px;right:64px;bottom:56px;display:flex;
+  justify-content:space-between;font-family:var(--mono);font-size:10.5px;
+  letter-spacing:.16em;color:#8b99b0}
+.status s{text-decoration:none;color:var(--accent)}
+
+/* 署名（每张 demo 都带，风格随基因变） */
+.sig{position:absolute;left:64px;right:64px;bottom:18px;display:flex;gap:26px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:#7b89a3}
+.sig b{color:var(--accent);font-weight:400}
+</style>
+</head>
+<body>
+  <div class="frame">
+    <section class="brand">
+      <div class="eyebrow">ORBITAL INFRASTRUCTURE v7.3</div>
+      <h1>天枢<em>·</em>TIANSHU</h1>
+      <div class="sub">EDGE FABRIC ／ SELF-HEALING</div>
+
+      <p class="lede">节点在故障发生前 400 毫秒完成迁移。你不必知道哪台机器在承载流量，正如你不必知道电流从哪一段铜线流进房间。</p>
+
+      <dl class="metrics">
+        <div><dt>P99 延迟</dt><dd>42<span>ms</span></dd></div>
+        <div><dt>可用性</dt><dd>99.99<span>%</span></dd></div>
+        <div><dt>在网节点</dt><dd>1,284<span>台</span></dd></div>
+      </dl>
+    </section>
+
+    <section class="panel">
+      <div class="panel-hd"><span>MIGRATION LOG ／ 迁移日志</span><b>1 ALERT</b></div>
+      <div class="term">
+        <div><i>09:42:11</i> 探测到 <b>edge-sin-07</b> 温度漂移</div>
+        <div><i>09:42:11</i> 预分配影子节点 <u>edge-sin-19</u></div>
+        <div><i>09:42:12</i> 会话状态同步 · 完成 <b>100%</b></div>
+        <div><i>09:42:12</i> 流量切转 · 丢包 <b>0</b> ／ 抖动 <b>0.4ms</b></div>
+        <div><i>09:42:12</i> 旧节点下线 · 冷却 90s</div>
+        <div class="warn"><i>09:42:19</i> WARN ／ 证书轮换窗口剩余 6h</div>
+        <div><i>09:42:20</i> 自愈闭环达成，无人工介入</div>
+      </div>
+      <div class="bar">
+        <div><span>CPU 饱和度</span><span>0.41</span></div>
+        <div class="track"><i style="width:41%"></i></div>
+        <div><span>内存水位</span><span>0.62</span></div>
+        <div class="track"><i style="width:62%"></i></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="status">
+    <span>REGION <s>AP-SOUTHEAST</s></span>
+    <span>SHARD <s>17/24</s></span>
+    <span>STATUS <s>NOMINAL</s></span>
+    <span>UPTIME <s>312d 06:14</s></span>
+  </div>
+
+  <footer class="sig">
+    <span>风格基因 <b>赛博霓虹</b> · 辅 机器美学</span>
+    <span>Built by <b>pi agent</b> × <b>DeepSeek V4.1 Flash</b></span>
+    <span>场景随机抽取 · 风格按 agent-taste-seed-system 基因库落成</span>
+  </footer>
+</body>
+</html>

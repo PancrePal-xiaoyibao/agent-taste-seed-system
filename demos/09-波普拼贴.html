@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-canvas="1440x900" data-slug="09-pop-collage">
+<head>
+<meta charset="utf-8">
+<title>SUPER MART 超级超市 — 波普拼贴</title>
+<link rel="stylesheet" href="_assets/taste-fonts.css">
+<style>
+/* ── 基因：波普拼贴 ────────────────────────────────────────
+   激活词：Warhol 丝网印刷 · Lichtenstein 本戴点
+           · supermarket shelf · 复制的明星
+   上游种子：code-genes/09 · moods/07 荒诞幽默
+   纪律：油墨的物理感（禁柔和渐变/玻璃拟态）；
+        色相 ≤4；本戴点只做局部阴影；幽默元素一个梗封顶。 */
+:root{
+  --bg:#ffffff;
+  --pop-red:#ff3b30;
+  --pop-yellow:#ffcc00;
+  --pop-blue:#007aff;
+  --ink:#111111;
+  --outline:3px solid var(--ink);
+  --benday:radial-gradient(circle,rgba(17,17,17,.22) 1.2px,transparent 1.3px);
+  --benday-size:8px 8px;
+  --heavy:'AB Archivo Black','AB Noto Sans SC',sans-serif;
+  --sans:'AB Inter','AB Noto Sans SC',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1440px;height:900px;overflow:hidden}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);position:relative}
+
+/* 顶部粗黑条：印刷套色的封口 */
+.rail{position:absolute;left:0;right:0;top:0;height:26px;background:var(--ink)}
+.rail b{position:absolute;right:24px;top:5px;color:#fff;font-size:12px;letter-spacing:.36em;
+  font-family:var(--sans);font-weight:700}
+
+.stage{position:absolute;inset:26px 0 0;display:grid;grid-template-columns:1fr 1fr}
+
+/* ── 左半：沃霍尔式 2×2 换色复制 ── */
+.grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;
+  border-right:var(--outline)}
+.cell{position:relative;overflow:hidden;display:grid;place-items:center;
+  border-right:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.cell:nth-child(2n){border-right:none}
+.cell:nth-child(n+3){border-bottom:none}
+.cell .face{width:168px;height:196px;border-radius:50% 50% 44% 44%;position:relative}
+.cell .face::after{content:"";position:absolute;left:50%;bottom:-24px;margin-left:-92px;
+  width:184px;height:110px;border-radius:50% 50% 0 0;background:currentColor}
+.cell .hat{position:absolute;left:50%;top:-14px;margin-left:-104px;width:208px;height:34px;
+  background:var(--ink);border-radius:8px}
+.cell .hat::after{content:"";position:absolute;left:14px;top:26px;width:180px;height:20px;
+  background:var(--ink);border-radius:0 0 8px 8px}
+
+.cell .tag{position:absolute;left:14px;top:14px;font-family:var(--heavy);font-size:11px;
+  letter-spacing:.18em;background:var(--ink);color:#fff;padding:5px 10px}
+
+/* ── 右半：价格标签 + 标语 ── */
+.pitch{padding:44px 52px;display:flex;flex-direction:column;position:relative}
+.pitch::before{content:"";position:absolute;inset:0;background-image:var(--benday);
+  background-size:var(--benday-size);opacity:.6;
+  clip-path:polygon(0 62%,100% 62%,100% 100%,0 100%)}
+
+.kicker{display:inline-block;align-self:flex-start;background:var(--pop-yellow);
+  border:var(--outline);padding:9px 18px;font-family:var(--heavy);font-size:14px;
+  letter-spacing:.16em;transform:rotate(-2.4deg)}
+h1{margin-top:26px;width:fit-content;font-family:var(--heavy);font-size:82px;line-height:.98;
+  letter-spacing:-.02em;position:relative;
+  text-shadow:4px 0 0 var(--ink),-4px 0 0 var(--ink),0 4px 0 var(--ink),0 -4px 0 var(--ink)}
+h1 em{font-style:normal;color:var(--pop-red);
+  text-shadow:4px 0 0 var(--ink),-4px 0 0 var(--ink),0 4px 0 var(--ink),0 -4px 0 var(--ink)}
+
+/* 拟声词：一处，封顶 */
+.bam{position:absolute;right:46px;top:118px;font-family:var(--heavy);font-size:44px;
+  color:var(--pop-red);transform:rotate(-9deg);
+  text-shadow:3px 0 0 var(--ink),-3px 0 0 var(--ink),0 3px 0 var(--ink),0 -3px 0 var(--ink)}
+
+/* 价格标签：方框印章式，波普的经典组件 */
+.prices{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:14px;
+  position:relative;z-index:2}
+.prices div{border:var(--outline);background:#fff;padding:16px 18px}
+.prices dt{font-size:11px;letter-spacing:.2em;font-family:var(--heavy)}
+.prices dd{margin-top:8px;font-family:var(--heavy);font-size:34px;line-height:1;
+  color:var(--pop-red)}
+.prices dd i{font-style:normal;font-size:14px;color:var(--ink)}
+.prices div.inv{background:var(--ink)}
+.prices div.inv dt{color:var(--pop-yellow)}
+.prices div.inv dd{color:#fff}
+.prices div.inv dd i{color:var(--pop-yellow)}
+
+/* 贴纸感元素：轻微旋转 */
+.sticker{position:absolute;left:52px;top:392px;background:var(--pop-yellow);color:var(--ink);
+  border:var(--outline);padding:10px 16px;font-family:var(--heavy);font-size:12px;
+  letter-spacing:.14em;transform:rotate(-3.2deg);z-index:3}
+
+.sig{position:absolute;left:52px;right:52px;bottom:14px;display:flex;gap:26px;
+  font-size:10px;letter-spacing:.12em;color:#666;z-index:3}
+.sig b{color:var(--ink);font-weight:700}
+</style>
+</head>
+<body>
+  <div class="rail"><b>SUPER MART ／ 24H</b></div>
+
+  <div class="stage">
+    <div class="grid">
+      <div class="cell" style="background:#ff3b30">
+        <span class="tag">A / 01</span>
+        <span class="hat"></span>
+        <span class="face" style="background:#ffcc00;color:#ff3b30"></span>
+      </div>
+      <div class="cell" style="background:#007aff">
+        <span class="tag">A / 02</span>
+        <span class="hat"></span>
+        <span class="face" style="background:#ffcc00;color:#007aff"></span>
+      </div>
+      <div class="cell" style="background:#ffcc00">
+        <span class="tag">A / 03</span>
+        <span class="hat"></span>
+        <span class="face" style="background:#007aff;color:#ffcc00"></span>
+      </div>
+      <div class="cell" style="background:#111111">
+        <span class="tag" style="background:#fff;color:#111">A / 04</span>
+        <span class="hat" style="background:#fff"></span>
+        <span class="face" style="background:#ff3b30;color:#111"></span>
+      </div>
+    </div>
+
+    <div class="pitch">
+      <span class="kicker">同 一 张 脸 · 四 种 价 格</span>
+      <h1>超级<br><em>超市</em></h1>
+      <div class="bam">WOW!</div>
+
+      <dl class="prices">
+        <div><dt>普 通 版</dt><dd>¥ 99<i> / 张</i></dd></div>
+        <div class="inv"><dt>签 名 版</dt><dd>¥ 399<i> / 张</i></dd></div>
+        <div><dt>四 张 套 装</dt><dd>¥ 320<i> / 套</i></dd></div>
+        <div><dt>买 断 全 部</dt><dd>¥ 9,999</dd></div>
+      </dl>
+
+      <span class="sticker">限 量 ／ 卖 完 就 印 更 多</span>
+    </div>
+  </div>
+
+  <footer class="sig">
+    <span>风格基因 <b>波普拼贴</b> · 辅 沃霍尔复制逻辑</span>
+    <span>Built by <b>pi agent</b> × <b>DeepSeek V4.1 Flash</b></span>
+    <span>场景随机抽取 · 风格按 agent-taste-seed-system 基因库落成</span>
+  </footer>
+</body>
+</html>

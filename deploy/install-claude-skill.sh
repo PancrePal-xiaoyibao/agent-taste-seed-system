@@ -9,7 +9,7 @@ set -euo pipefail
 SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DST="${HOME}/.claude/skills/taste"
 
-[[ -f "$SRC/templates/SKILL.md" ]] || { echo "❌ 找不到 $SRC/templates/SKILL.md，请在仓库内运行"; exit 1; }
+[[ -f "$SRC/SKILL.md" ]] || { echo "❌ 找不到 $SRC/SKILL.md，请在仓库内运行"; exit 1; }
 [[ -f "$SRC/references/art-seeds.md" ]] || { echo "❌ 找不到 $SRC/references/art-seeds.md"; exit 1; }
 
 mkdir -p "$DST"
@@ -21,7 +21,7 @@ if [[ -f "$DST/references/art-seeds.md" ]]; then
   echo "📦 已备份旧种子库（含风味日志）→ $BAK"
 fi
 
-cp "$SRC/templates/SKILL.md" "$DST/SKILL.md"
+cp "$SRC/SKILL.md" "$DST/SKILL.md"
 # 决策层文档随 skill 走（属能力部件，不属人格部件）
 cp "$SRC/TASTE.md" "$DST/TASTE.md"
 # references/ 整目录覆盖拷贝（art-seeds 总库 + chapters/ + moods/ + code-genes/ 四层全量）

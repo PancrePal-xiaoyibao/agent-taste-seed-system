@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-canvas="1440x900" data-slug="07-rococo-pastel">
+<head>
+<meta charset="utf-8">
+<title>午后花房 · 甜品与花 — 洛可可粉彩</title>
+<link rel="stylesheet" href="_assets/taste-fonts.css">
+<style>
+/* ── 基因：洛可可粉彩 ──────────────────────────────────────
+   激活词：布歇 · 弗拉戈纳尔秋千 · 蓬巴杜粉 · fête galante
+           · 马卡龙色 · 缎面珍珠光
+   上游种子：code-genes/08 · moods/05 甜美容爱
+   纪律：明度高、饱和度中低（甜的防腐剂）；
+        装饰元素两种封顶；深玫瑰压粉底，绝不用纯黑。 */
+:root{
+  --bg:#fdf6f6;
+  --pink:#f4c2c2;
+  --pink-deep:#e79ea8;
+  --babyblue:#cfe0f0;
+  --butter:#f7e8b5;
+  --rosegold:#9c4f66;
+  --text:#5d3a3a;        /* 深玫瑰代替黑 */
+  --text-2:#7a6161;
+  --radius:18px;
+  --serif:'AB Cormorant Garamond','AB Noto Serif SC',serif;
+  --round:'AB Noto Sans SC',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1440px;height:900px;overflow:hidden}
+body{background:var(--bg);color:var(--text);font-family:var(--round);position:relative;
+  background-image:
+    radial-gradient(circle at 12% 12%,rgba(244,194,194,.60),transparent 44%),
+    radial-gradient(circle at 88% 88%,rgba(207,224,240,.55),transparent 46%),
+    radial-gradient(circle at 78% 6%,rgba(247,232,181,.45),transparent 34%)}
+
+/* 曲线分区：弧形分界（禁硬直线切割） */
+.arc{position:absolute;left:-10%;right:-10%;top:560px;height:420px;background:#fffdf9;
+  border-radius:50% 50% 0 0/34% 34% 0 0;box-shadow:0 -14px 44px rgba(212,170,175,.20)}
+
+.stage{position:absolute;inset:70px 92px}
+
+/* ── 中心对称构图（甜美的语法是对称） ── */
+.head{text-align:center}
+.head .k{font-family:var(--serif);font-size:15px;letter-spacing:.52em;color:var(--rosegold);
+  text-transform:uppercase}
+h1{margin-top:16px;font-family:var(--serif);font-size:82px;font-weight:600;
+  letter-spacing:.02em;line-height:1.1}
+h1 em{font-style:italic;color:var(--rosegold)}
+.head .sub{margin-top:14px;font-size:14px;letter-spacing:.3em;color:var(--text-2)}
+/* C 形弧线装饰（限两处，此处为第一处） */
+.swash{width:220px;height:34px;margin:22px auto 0;position:relative}
+.swash::before,.swash::after{content:"";position:absolute;top:16px;width:96px;height:1px;
+  background:var(--rosegold);opacity:.75}
+.swash::before{left:0;transform:rotate(-6deg)}
+.swash::after{right:0;transform:rotate(6deg)}
+.swash i{position:absolute;left:50%;top:9px;width:13px;height:13px;margin-left:-6.5px;
+  background:var(--pink);border-radius:50% 0 50% 0;transform:rotate(45deg)}
+
+/* ── 三张卡：像下午茶摆盘一样疏朗 ── */
+.row{display:flex;justify-content:center;gap:30px;margin-top:62px}
+.cake{width:318px;background:#fffdf9;border:1px solid rgba(192,132,151,.34);
+  border-radius:var(--radius);padding:28px 26px 24px;text-align:center;
+  box-shadow:0 16px 32px rgba(212,170,175,.22)}
+/* 缎带角饰（限两处，此处为第二处） */
+.cake.ribbon{position:relative}
+.cake.ribbon::before{content:"";position:absolute;right:-11px;top:-11px;width:34px;height:34px;
+  background:var(--pink);border-radius:50% 0 50% 50%;transform:rotate(18deg)}
+.cake .dot{width:52px;height:52px;margin:0 auto;border-radius:50%;
+  display:grid;place-items:center;font-family:var(--serif);font-size:22px;color:#4a2f2f}
+.cake h2{margin-top:16px;font-family:var(--serif);font-size:24px;font-weight:600;
+  letter-spacing:.04em}
+.cake h2 small{display:block;font-family:var(--round);font-size:11px;font-weight:400;
+  letter-spacing:.22em;color:var(--text-2);margin-top:6px}
+.cake p{margin-top:14px;font-size:13px;line-height:1.95;color:#7d6060}
+.cake .price{margin-top:18px;padding-top:14px;border-top:1px solid rgba(192,132,151,.28);
+  font-family:var(--serif);font-size:21px;color:var(--rosegold);letter-spacing:.05em}
+.cake .price i{font-style:normal;font-size:12px;color:var(--text-2);letter-spacing:.1em;
+  margin-left:6px;font-family:var(--round)}
+
+/* 底部：一次性信息，留白 40%+ */
+.foot{position:absolute;left:92px;right:92px;bottom:76px;display:flex;
+  justify-content:center;gap:64px;font-size:12.5px;letter-spacing:.13em;color:#6b5555}
+.foot b{color:var(--rosegold);font-weight:500}
+
+.sig{position:absolute;left:92px;right:92px;bottom:26px;display:flex;justify-content:center;
+  gap:26px;font-size:10.5px;letter-spacing:.1em;color:#7d6a6f}
+.sig b{color:var(--rosegold);font-weight:500}
+</style>
+</head>
+<body>
+  <div class="arc"></div>
+
+  <div class="stage">
+    <header class="head">
+      <div class="k">Fleur &amp; Sucre</div>
+      <h1>午后<em>花房</em></h1>
+      <div class="sub">甜 点 与 花 · 只 做 当 天</div>
+      <div class="swash"><i></i></div>
+    </header>
+
+    <div class="row">
+      <article class="cake">
+        <div class="dot" style="background:#f4c2c2">✿</div>
+        <h2>玫瑰荔枝<small>ROSE · LYCHEE</small></h2>
+        <p>大马士革玫瑰水与新鲜荔枝肉，慕斯体偏轻，收口有一点酸。</p>
+        <div class="price">¥ 48<i>／ 件</i></div>
+      </article>
+
+      <article class="cake ribbon">
+        <div class="dot" style="background:#cfe0f0">❀</div>
+        <h2>香草千层<small>VANILLA · MILLE</small></h2>
+        <p>马达加斯加香草荚现刮，四十二层，蛋皮薄到透光。</p>
+        <div class="price">¥ 52<i>／ 件</i></div>
+      </article>
+
+      <article class="cake">
+        <div class="dot" style="background:#f7e8b5;color:#8a7333">✾</div>
+        <h2>柠檬罗勒<small>LEMON · BASIL</small></h2>
+        <p>西西里柠檬皮屑配自家罗勒，清爽到不像甜品。</p>
+        <div class="price">¥ 46<i>／ 件</i></div>
+      </article>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>每日 <b>11:00</b> 出炉</span>
+    <span>限量 <b>120</b> 件</span>
+    <span>同城 <b>2 小时</b> 送达</span>
+    <span>花束 <b>＋¥30</b></span>
+  </div>
+
+  <footer class="sig">
+    <span>风格基因 <b>洛可可粉彩</b> · 辅 浮世绘美人线的柔</span>
+    <span>Built by <b>pi agent</b> × <b>DeepSeek V4.1 Flash</b></span>
+    <span>场景随机抽取 · 风格按 agent-taste-seed-system 基因库落成</span>
+  </footer>
+</body>
+</html>

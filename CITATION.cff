@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: "如果本项目对你的研究或产品有帮助，请按以下格式引用。"
+title: "美学大脑 / aesthetic-brain：面向 AI Agent 的审美决策系统与风格种子库"
+abstract: >-
+  一套可移植的「审美操作系统 + 风格种子库」。核心主张是把风格拆成
+  色彩 / 光线 / 笔触 / 构图 / 情绪 五个基因位，让 AI Agent 依据明确的
+  审美纪律先做决策再做产出，而不是落到「AI 味默认审美」（通用卡片、
+  蓝紫渐变）。含 250+ 艺术家种子库、12 张代码基因卡、10 份情绪档、
+  24 章风格分章，以及 12 个可复现的实时渲染演示页。
+  纯文本项目，不含任何第三方图像或作品复制品。
+type: software
+authors:
+  - alias: hhx465453939
+    name-particle: ""
+version: "2.0.0"
+date-released: "2026-10-16"
+license: "CC-BY-NC-SA-4.0"
+license-url: "https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.zh-Hans"
+repository-code: "https://github.com/hhx465453939/agent-taste-seed-system"
+url: "https://github.com/hhx465453939/agent-taste-seed-system"
+keywords:
+  - aesthetic
+  - art-style
+  - prompt-engineering
+  - ai-agent
+  - design-system
+  - generative-ai
+  - art-history
+  - 审美
+  - 风格种子库
+  - 提示词工程
+notes: >-
+  代码资产（demos/_src/、scripts/、deploy/）采用 MIT 许可，文本资产采用
+  CC BY-NC-SA 4.0。完整许可结构见仓库根 LICENSE。
+  演示材料的生产者：pi agent × DeepSeek V4.1 Flash，详见 docs/ATTRIBUTION.md。
