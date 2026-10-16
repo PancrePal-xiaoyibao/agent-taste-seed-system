@@ -1,84 +1,825 @@
-美学大脑 / aesthetic-brain — 许可总览 (Licensing Overview)
-================================================================
+美学大脑 / aesthetic-brain — 许可 (Licensing)
+==============================================================================
 
-本项目采用「按资产类型分治」的双许可结构。不同内容适用不同许可，
-请按你使用的部分选择对应文件。
+Copyright (c) 2026 hhx465453939
+SPDX-License-Identifier: MIT AND CC-BY-NC-SA-4.0 AND OFL-1.1
 
-  你使用的部分                                适用许可                完整条款
-  --------------------------------------------------------------------------------
-  脚本 / 配置 / CI 定义 / 构建与校验代码        MIT                    LICENSE-CODE.md
-  种子库 / 基因卡 / 情绪卡 / 分章 / 方法论       CC BY-NC-SA 4.0        LICENSE-CONTENT.md
-  演示页截图 (demos/_assets/shots/)            CC BY-NC-SA 4.0        LICENSE-CONTENT.md
-  字体子集 (demos/_assets/fonts/)              上游开源字体许可        LICENSE-FONTS.md
-                                                (SIL OFL 1.1 / Apache-2.0)
+本项目按**资产类型**适用三种不同许可。本文件是唯一权威许可见证：
+前三节是速览与适用范围，后三节是三份许可的**官方完整正文**（逐字未改）。
 
 
-逐路径对照
-----------------------------------------------------------------
+──────────────────────────────────────────────────────────────────────────────
+零 · 30 秒速览
+──────────────────────────────────────────────────────────────────────────────
 
-  LICENSE-CODE.md       ->  demos/_src/*.py  scripts/*.sh  deploy/*.sh  .github/**
+  你的资产                          适用许可                     完整正文
+  ---------------------------------------------------------------------------
+  代码（脚本 / CI / 部署）           MIT                          §二
+  内容（种子库 / 文档 / 截图）        CC BY-NC-SA 4.0              §三
+  字体子集（demos/_assets/fonts/）   SIL OFL 1.1 / Apache-2.0     §四
 
-  LICENSE-CONTENT.md    ->  references/**            (art-seeds.md · code-genes/ · moods/ · chapters/)
-                            TASTE.md  SKILL.md  templates/SKILL.md
-                            AGENT-INJECTION.md  README.md  docs/**
-                            references/ART-SEEDS-LOG.md
-                            demos/*.html  demos/README.md  demos/index.html
-                            demos/_assets/shots/**  demos/_assets/taste-fonts.css
+  一句话版：
 
-  LICENSE-FONTS.md      ->  demos/_assets/fonts/**
-
-  「代码与内容的边界」：一个文件里既有代码又有说明文字时，以该文件的主要用途判定。
-  demos/_src/*.py 与 *.sh 的主要用途是执行 -> MIT；
-  其余文件的主要用途是传递审美知识与文本表达 -> CC BY-NC-SA 4.0。
+    内容（种子库/文档/截图）：  CC BY-NC-SA 4.0   署名 · 非商业 · 相同方式共享
+    代码（脚本/CI/部署）：      MIT               可商用，保留版权声明
+    字体（woff2 子集）：        上游 OFL/Apache   随包可分发，已按 OFL 改名
 
 
-为什么这么分
-----------------------------------------------------------------
+──────────────────────────────────────────────────────────────────────────────
+一 · 适用范围（逐路径对照）
+──────────────────────────────────────────────────────────────────────────────
 
-  内容走 CC BY-NC-SA 4.0
-    NC (非商业)  本项目定位为公共审美知识资产 —— 不靠卖这份资料本身获利。
-                 非商业限制与该定位一致，同时保留未来单独洽谈商业授权的空间。
-    SA (相同方式) 种子库是活文档，靠使用者回填「风味日志」持续进化。
-                 相同方式共享保证社区补录的内容同样开放，
-                 避免有人拿去闭源改造后反过来限制上游。
-    BY (署名)     使用与再分发时保留出处、作者与许可声明。
+  §二 MIT —— 代码资产
+      demos/_src/*.py        字体子集化 · 实时渲染 · 布局质检 · 风格校验 · 字体许可检查
+      scripts/*.py           build_license · check_integrity · check_links ·
+                             check_shots_freshness
+      scripts/*.sh           check_assets
+      deploy/*.sh            各 agent 形态的部署脚本
+      .github/**             CI 工作流与配置
 
-  代码走 MIT
-    脚本承担「把标准变成可执行断言」的工程职责，MIT 让它被最大范围复用，
-    包括嵌进商业产品的构建流程。闭源商业软件也可自由使用 demos/_src/ 与 scripts/。
+  §三 CC BY-NC-SA 4.0 —— 文本与视觉资产
+      LICENSE（本文件） · CITATION.cff · CONTRIBUTING.md · .gitignore
+      README.md · CHANGELOG.md · SKILL.md · TASTE.md · AGENT-INJECTION.md
+      docs/**                METHODOLOGY · ATTRIBUTION · TRADEMARKS · changes/**
+      references/**          art-seeds.md · ART-SEEDS-LOG.md · code-genes/ · moods/ · chapters/
+      deploy/*.md            部署文档
+      demos/*.html           十二张演示页
+      demos/README.md
+      demos/_assets/taste-fonts.css
+      demos/_assets/shots/** 演示截图
+
+  §四 OFL 1.1 / Apache-2.0 —— 字体子集
+      demos/_assets/fonts/*.woff2            （除 JetBrains Mono 外适用 OFL 1.1）
+      demos/_assets/fonts/JetBrainsMono-*    （Apache-2.0）
+
+  §五 例外 —— 许可正文自身
+      scripts/license-sources/**             三份官方许可正文原文（供生成本文件）
+      这些文本本身不受著作权保护，随本文件一并分发，不适用 §三。
+
+  ── 边界规则（防止新增文件掉进缝里）──
+
+  1. 默认规则：位于 demos/_src/、scripts/、deploy/、.github/ 下的
+     .py / .sh / .yml 文件 → §二 MIT；其余一切文件 → §三 CC BY-NC-SA 4.0。
+     本项由 scripts/check_integrity.py 自动守卫，新增文件无需手工登记。
+
+  2. 一个文件里既有代码又有说明文字：以该文件的主要用途判定。
+     脚本的主要用途是执行 → MIT；
+     文档、种子卡、演示页的主要用途是传递文本表达 → CC BY-NC-SA 4.0。
+
+  3. 字体文件例外：demos/_assets/fonts/** 的权利不属于本项目，归各自上游作者，
+     适用其上游许可（见 §四）。本项目只做字形裁剪与重命名。
 
 
-商业使用
-----------------------------------------------------------------
+──────────────────────────────────────────────────────────────────────────────
+二 · MIT License（代码资产完整正文）
+──────────────────────────────────────────────────────────────────────────────
 
-  内容 (CC BY-NC-SA 4.0 部分) 用于商业产品：不允许。
-    需要商用请先开 Issue 说明用途，与作者单独洽谈商业许可。
-  只想用脚本：直接用。MIT 不限商业用途，保留版权声明即可。
-  公开产品/文章中引用本项目的审美方法论：请按 CITATION.cff 或
-    docs/ATTRIBUTION.md 的格式署名。
+MIT License
 
-  ⚠️ 关于 NC 的边界：CC BY-NC-SA 4.0 对「商业性」的界定以许可协议正文为准。
-     公司内部使用、内部培训等场景是否构成「商业性使用」，协议解释存在讨论空间。
-     进入正式商用前，建议就具体场景咨询执业律师。这是建议，不是法律意见。
+Copyright (c) 2026 hhx465453939 (美学大脑 / aesthetic-brain)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 
-字体与商标
-----------------------------------------------------------------
+──────────────────────────────────────────────────────────────────────────────
+三 · CC BY-NC-SA 4.0（内容资产）
+──────────────────────────────────────────────────────────────────────────────
 
-  字体子集均为开源字体 (SIL OFL 1.1 / Apache-2.0)，允许随仓库分发。
-  子集文件已按 OFL 要求改名（家族名加 "AB " 前缀），不占用原字体的保留字体名。
-  详见 LICENSE-FONTS.md。
+  完整名称：Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+  中文名称：知识共享 署名-非商业性使用-相同方式共享 4.0 国际
+  SPDX    ：CC-BY-NC-SA-4.0
 
-  本项目正文会事实性提及第三方商标、作品名与在世创作者姓名。
-  这些名称仅用于风格描述与溯源，不构成关联、背书或授权关系，权利归各自所有者。
-  完整声明见 docs/TRADEMARKS.md。
+  官方中文法律条款（权威文本的官方译本）：
+      https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.zh-Hans
+  人类可读摘要：
+      https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+  ⚠️ 依 Creative Commons 官方立场，英文版为权威文本，中文版为官方译本。
+     下方「三·附 官方完整法律条款」一节逐字收录英文全文，作为本仓库的权威依据。
+
+  ── 你可以做什么（在遵守下列条件的前提下）──
+
+    · 共享 —— 以任何媒介或格式复制、发行本作品
+    · 演绎 —— 修改、转换、基于本作品进行创作
+    · 任何目的，包括非商业性使用（个人学习、教学、研究、非营利项目、公益内容）
+
+    许可方不能撤回这些自由，只要使用者遵守许可条款。
+
+  ── 必须遵守的条件 ──
+
+    署名 BY        必须给出适当署名，提供指向本许可的链接，并说明是否作了修改。
+                   可以任何合理方式署名，但不得暗示许可方为你或你的使用背书。
+    非商业性 NC    不得将本作品用于商业目的。商业目的指主要以商业利益或
+                   金钱报酬为目的的使用。
+    相同方式共享 SA 如果你再混、转换或基于本作品进行创作，必须以相同的许可
+                   分发你的贡献。这意味着补录进种子库的新内容同样开放，
+                   任何人都能继续使用。
+    无附加限制     不得适用法律条款或技术措施，从而限制他人做本许可允许的事。
+
+  ── 推荐署名格式（把尖括号内换成你的实际信息）──
+
+      本作品使用了「美学大脑 / aesthetic-brain」（作者 hhx465453939），
+      依据 CC BY-NC-SA 4.0 许可使用。
+      来源：https://github.com/hhx465453939/agent-taste-seed-system
+      修改说明：<例如「仅使用 code-genes/02 赛博霓虹，未作修改」>
+
+    机器可读格式见 CITATION.cff；更多模板见 docs/ATTRIBUTION.md。
+
+  ── 商业使用 ──
+
+    CC BY-NC-SA 4.0 不允许商业性使用。若你的场景涉及商业目的：
+
+      · 请先开 Issue 说明用途，与作者单独洽谈商业许可
+        （dual-licensing 是常规做法，见 CONTRIBUTING.md）；
+      · 但你仍可直接使用 §二 下的脚本 —— MIT 不限商业用途；
+      · 进入正式商用前，建议就你的具体场景咨询执业律师。
+
+    ⚠️ NC 对「商业性」的界定以法律条款正文为准。公司内部使用、内部培训等
+       场景是否构成「商业性使用」，协议解释存在讨论空间。
+       本文件不构成法律意见。
 
 
-三行速览
-----------------------------------------------------------------
+──────────────────────────────────────────────────────────────────────────────
+三·附 · 官方完整法律条款（CC BY-NC-SA 4.0，英文权威文本，逐字未改）
+──────────────────────────────────────────────────────────────────────────────
 
-  内容 (种子库/文档/截图)：  CC BY-NC-SA 4.0   署名 · 非商业 · 相同方式共享
-  代码 (脚本/CI/配置)：      MIT               可商用，保留版权声明
-  字体 (woff2 子集)：        上游 OFL/Apache   随包可分发，已改名
+Attribution-NonCommercial-ShareAlike 4.0 International
 
-  Copyright (c) 2026 hhx465453939
+=======================================================================
+
+Creative Commons Corporation ("Creative Commons") is not a law firm and
+does not provide legal services or legal advice. Distribution of
+Creative Commons public licenses does not create a lawyer-client or
+other relationship. Creative Commons makes its licenses and related
+information available on an "as-is" basis. Creative Commons gives no
+warranties regarding its licenses, any material licensed under their
+terms and conditions, or any related information. Creative Commons
+disclaims all liability for damages resulting from their use to the
+fullest extent possible.
+
+Using Creative Commons Public Licenses
+
+Creative Commons public licenses provide a standard set of terms and
+conditions that creators and other rights holders may use to share
+original works of authorship and other material subject to copyright
+and certain other rights specified in the public license below. The
+following considerations are for informational purposes only, are not
+exhaustive, and do not form part of our licenses.
+
+     Considerations for licensors: Our public licenses are
+     intended for use by those authorized to give the public
+     permission to use material in ways otherwise restricted by
+     copyright and certain other rights. Our licenses are
+     irrevocable. Licensors should read and understand the terms
+     and conditions of the license they choose before applying it.
+     Licensors should also secure all rights necessary before
+     applying our licenses so that the public can reuse the
+     material as expected. Licensors should clearly mark any
+     material not subject to the license. This includes other CC-
+     licensed material, or material used under an exception or
+     limitation to copyright. More considerations for licensors:
+    wiki.creativecommons.org/Considerations_for_licensors
+
+     Considerations for the public: By using one of our public
+     licenses, a licensor grants the public permission to use the
+     licensed material under specified terms and conditions. If
+     the licensor's permission is not necessary for any reason--for
+     example, because of any applicable exception or limitation to
+     copyright--then that use is not regulated by the license. Our
+     licenses grant only permissions under copyright and certain
+     other rights that a licensor has authority to grant. Use of
+     the licensed material may still be restricted for other
+     reasons, including because others have copyright or other
+     rights in the material. A licensor may make special requests,
+     such as asking that all changes be marked or described.
+     Although not required by our licenses, you are encouraged to
+     respect those requests where reasonable. More considerations
+     for the public:
+    wiki.creativecommons.org/Considerations_for_licensees
+
+=======================================================================
+
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+Public License
+
+By exercising the Licensed Rights (defined below), You accept and agree
+to be bound by the terms and conditions of this Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0 International Public License
+("Public License"). To the extent this Public License may be
+interpreted as a contract, You are granted the Licensed Rights in
+consideration of Your acceptance of these terms and conditions, and the
+Licensor grants You such rights in consideration of benefits the
+Licensor receives from making the Licensed Material available under
+these terms and conditions.
+
+
+Section 1 -- Definitions.
+
+  a. Adapted Material means material subject to Copyright and Similar
+     Rights that is derived from or based upon the Licensed Material
+     and in which the Licensed Material is translated, altered,
+     arranged, transformed, or otherwise modified in a manner requiring
+     permission under the Copyright and Similar Rights held by the
+     Licensor. For purposes of this Public License, where the Licensed
+     Material is a musical work, performance, or sound recording,
+     Adapted Material is always produced where the Licensed Material is
+     synched in timed relation with a moving image.
+
+  b. Adapter's License means the license You apply to Your Copyright
+     and Similar Rights in Your contributions to Adapted Material in
+     accordance with the terms and conditions of this Public License.
+
+  c. BY-NC-SA Compatible License means a license listed at
+     creativecommons.org/compatiblelicenses, approved by Creative
+     Commons as essentially the equivalent of this Public License.
+
+  d. Copyright and Similar Rights means copyright and/or similar rights
+     closely related to copyright including, without limitation,
+     performance, broadcast, sound recording, and Sui Generis Database
+     Rights, without regard to how the rights are labeled or
+     categorized. For purposes of this Public License, the rights
+     specified in Section 2(b)(1)-(2) are not Copyright and Similar
+     Rights.
+
+  e. Effective Technological Measures means those measures that, in the
+     absence of proper authority, may not be circumvented under laws
+     fulfilling obligations under Article 11 of the WIPO Copyright
+     Treaty adopted on December 20, 1996, and/or similar international
+     agreements.
+
+  f. Exceptions and Limitations means fair use, fair dealing, and/or
+     any other exception or limitation to Copyright and Similar Rights
+     that applies to Your use of the Licensed Material.
+
+  g. License Elements means the license attributes listed in the name
+     of a Creative Commons Public License. The License Elements of this
+     Public License are Attribution, NonCommercial, and ShareAlike.
+
+  h. Licensed Material means the artistic or literary work, database,
+     or other material to which the Licensor applied this Public
+     License.
+
+  i. Licensed Rights means the rights granted to You subject to the
+     terms and conditions of this Public License, which are limited to
+     all Copyright and Similar Rights that apply to Your use of the
+     Licensed Material and that the Licensor has authority to license.
+
+  j. Licensor means the individual(s) or entity(ies) granting rights
+     under this Public License.
+
+  k. NonCommercial means not primarily intended for or directed towards
+     commercial advantage or monetary compensation. For purposes of
+     this Public License, the exchange of the Licensed Material for
+     other material subject to Copyright and Similar Rights by digital
+     file-sharing or similar means is NonCommercial provided there is
+     no payment of monetary compensation in connection with the
+     exchange.
+
+  l. Share means to provide material to the public by any means or
+     process that requires permission under the Licensed Rights, such
+     as reproduction, public display, public performance, distribution,
+     dissemination, communication, or importation, and to make material
+     available to the public including in ways that members of the
+     public may access the material from a place and at a time
+     individually chosen by them.
+
+  m. Sui Generis Database Rights means rights other than copyright
+     resulting from Directive 96/9/EC of the European Parliament and of
+     the Council of 11 March 1996 on the legal protection of databases,
+     as amended and/or succeeded, as well as other essentially
+     equivalent rights anywhere in the world.
+
+  n. You means the individual or entity exercising the Licensed Rights
+     under this Public License. Your has a corresponding meaning.
+
+
+Section 2 -- Scope.
+
+  a. License grant.
+
+       1. Subject to the terms and conditions of this Public License,
+          the Licensor hereby grants You a worldwide, royalty-free,
+          non-sublicensable, non-exclusive, irrevocable license to
+          exercise the Licensed Rights in the Licensed Material to:
+
+            a. reproduce and Share the Licensed Material, in whole or
+               in part, for NonCommercial purposes only; and
+
+            b. produce, reproduce, and Share Adapted Material for
+               NonCommercial purposes only.
+
+       2. Exceptions and Limitations. For the avoidance of doubt, where
+          Exceptions and Limitations apply to Your use, this Public
+          License does not apply, and You do not need to comply with
+          its terms and conditions.
+
+       3. Term. The term of this Public License is specified in Section
+          6(a).
+
+       4. Media and formats; technical modifications allowed. The
+          Licensor authorizes You to exercise the Licensed Rights in
+          all media and formats whether now known or hereafter created,
+          and to make technical modifications necessary to do so. The
+          Licensor waives and/or agrees not to assert any right or
+          authority to forbid You from making technical modifications
+          necessary to exercise the Licensed Rights, including
+          technical modifications necessary to circumvent Effective
+          Technological Measures. For purposes of this Public License,
+          simply making modifications authorized by this Section 2(a)
+          (4) never produces Adapted Material.
+
+       5. Downstream recipients.
+
+            a. Offer from the Licensor -- Licensed Material. Every
+               recipient of the Licensed Material automatically
+               receives an offer from the Licensor to exercise the
+               Licensed Rights under the terms and conditions of this
+               Public License.
+
+            b. Additional offer from the Licensor -- Adapted Material.
+               Every recipient of Adapted Material from You
+               automatically receives an offer from the Licensor to
+               exercise the Licensed Rights in the Adapted Material
+               under the conditions of the Adapter's License You apply.
+
+            c. No downstream restrictions. You may not offer or impose
+               any additional or different terms or conditions on, or
+               apply any Effective Technological Measures to, the
+               Licensed Material if doing so restricts exercise of the
+               Licensed Rights by any recipient of the Licensed
+               Material.
+
+       6. No endorsement. Nothing in this Public License constitutes or
+          may be construed as permission to assert or imply that You
+          are, or that Your use of the Licensed Material is, connected
+          with, or sponsored, endorsed, or granted official status by,
+          the Licensor or others designated to receive attribution as
+          provided in Section 3(a)(1)(A)(i).
+
+  b. Other rights.
+
+       1. Moral rights, such as the right of integrity, are not
+          licensed under this Public License, nor are publicity,
+          privacy, and/or other similar personality rights; however, to
+          the extent possible, the Licensor waives and/or agrees not to
+          assert any such rights held by the Licensor to the limited
+          extent necessary to allow You to exercise the Licensed
+          Rights, but not otherwise.
+
+       2. Patent and trademark rights are not licensed under this
+          Public License.
+
+       3. To the extent possible, the Licensor waives any right to
+          collect royalties from You for the exercise of the Licensed
+          Rights, whether directly or through a collecting society
+          under any voluntary or waivable statutory or compulsory
+          licensing scheme. In all other cases the Licensor expressly
+          reserves any right to collect such royalties, including when
+          the Licensed Material is used other than for NonCommercial
+          purposes.
+
+
+Section 3 -- License Conditions.
+
+Your exercise of the Licensed Rights is expressly made subject to the
+following conditions.
+
+  a. Attribution.
+
+       1. If You Share the Licensed Material (including in modified
+          form), You must:
+
+            a. retain the following if it is supplied by the Licensor
+               with the Licensed Material:
+
+                 i. identification of the creator(s) of the Licensed
+                    Material and any others designated to receive
+                    attribution, in any reasonable manner requested by
+                    the Licensor (including by pseudonym if
+                    designated);
+
+                ii. a copyright notice;
+
+               iii. a notice that refers to this Public License;
+
+                iv. a notice that refers to the disclaimer of
+                    warranties;
+
+                 v. a URI or hyperlink to the Licensed Material to the
+                    extent reasonably practicable;
+
+            b. indicate if You modified the Licensed Material and
+               retain an indication of any previous modifications; and
+
+            c. indicate the Licensed Material is licensed under this
+               Public License, and include the text of, or the URI or
+               hyperlink to, this Public License.
+
+       2. You may satisfy the conditions in Section 3(a)(1) in any
+          reasonable manner based on the medium, means, and context in
+          which You Share the Licensed Material. For example, it may be
+          reasonable to satisfy the conditions by providing a URI or
+          hyperlink to a resource that includes the required
+          information.
+       3. If requested by the Licensor, You must remove any of the
+          information required by Section 3(a)(1)(A) to the extent
+          reasonably practicable.
+
+  b. ShareAlike.
+
+     In addition to the conditions in Section 3(a), if You Share
+     Adapted Material You produce, the following conditions also apply.
+
+       1. The Adapter's License You apply must be a Creative Commons
+          license with the same License Elements, this version or
+          later, or a BY-NC-SA Compatible License.
+
+       2. You must include the text of, or the URI or hyperlink to, the
+          Adapter's License You apply. You may satisfy this condition
+          in any reasonable manner based on the medium, means, and
+          context in which You Share Adapted Material.
+
+       3. You may not offer or impose any additional or different terms
+          or conditions on, or apply any Effective Technological
+          Measures to, Adapted Material that restrict exercise of the
+          rights granted under the Adapter's License You apply.
+
+
+Section 4 -- Sui Generis Database Rights.
+
+Where the Licensed Rights include Sui Generis Database Rights that
+apply to Your use of the Licensed Material:
+
+  a. for the avoidance of doubt, Section 2(a)(1) grants You the right
+     to extract, reuse, reproduce, and Share all or a substantial
+     portion of the contents of the database for NonCommercial purposes
+     only;
+
+  b. if You include all or a substantial portion of the database
+     contents in a database in which You have Sui Generis Database
+     Rights, then the database in which You have Sui Generis Database
+     Rights (but not its individual contents) is Adapted Material,
+     including for purposes of Section 3(b); and
+
+  c. You must comply with the conditions in Section 3(a) if You Share
+     all or a substantial portion of the contents of the database.
+
+For the avoidance of doubt, this Section 4 supplements and does not
+replace Your obligations under this Public License where the Licensed
+Rights include other Copyright and Similar Rights.
+
+
+Section 5 -- Disclaimer of Warranties and Limitation of Liability.
+
+  a. UNLESS OTHERWISE SEPARATELY UNDERTAKEN BY THE LICENSOR, TO THE
+     EXTENT POSSIBLE, THE LICENSOR OFFERS THE LICENSED MATERIAL AS-IS
+     AND AS-AVAILABLE, AND MAKES NO REPRESENTATIONS OR WARRANTIES OF
+     ANY KIND CONCERNING THE LICENSED MATERIAL, WHETHER EXPRESS,
+     IMPLIED, STATUTORY, OR OTHER. THIS INCLUDES, WITHOUT LIMITATION,
+     WARRANTIES OF TITLE, MERCHANTABILITY, FITNESS FOR A PARTICULAR
+     PURPOSE, NON-INFRINGEMENT, ABSENCE OF LATENT OR OTHER DEFECTS,
+     ACCURACY, OR THE PRESENCE OR ABSENCE OF ERRORS, WHETHER OR NOT
+     KNOWN OR DISCOVERABLE. WHERE DISCLAIMERS OF WARRANTIES ARE NOT
+     ALLOWED IN FULL OR IN PART, THIS DISCLAIMER MAY NOT APPLY TO YOU.
+
+  b. TO THE EXTENT POSSIBLE, IN NO EVENT WILL THE LICENSOR BE LIABLE
+     TO YOU ON ANY LEGAL THEORY (INCLUDING, WITHOUT LIMITATION,
+     NEGLIGENCE) OR OTHERWISE FOR ANY DIRECT, SPECIAL, INDIRECT,
+     INCIDENTAL, CONSEQUENTIAL, PUNITIVE, EXEMPLARY, OR OTHER LOSSES,
+     COSTS, EXPENSES, OR DAMAGES ARISING OUT OF THIS PUBLIC LICENSE OR
+     USE OF THE LICENSED MATERIAL, EVEN IF THE LICENSOR HAS BEEN
+     ADVISED OF THE POSSIBILITY OF SUCH LOSSES, COSTS, EXPENSES, OR
+     DAMAGES. WHERE A LIMITATION OF LIABILITY IS NOT ALLOWED IN FULL OR
+     IN PART, THIS LIMITATION MAY NOT APPLY TO YOU.
+
+  c. The disclaimer of warranties and limitation of liability provided
+     above shall be interpreted in a manner that, to the extent
+     possible, most closely approximates an absolute disclaimer and
+     waiver of all liability.
+
+
+Section 6 -- Term and Termination.
+
+  a. This Public License applies for the term of the Copyright and
+     Similar Rights licensed here. However, if You fail to comply with
+     this Public License, then Your rights under this Public License
+     terminate automatically.
+
+  b. Where Your right to use the Licensed Material has terminated under
+     Section 6(a), it reinstates:
+
+       1. automatically as of the date the violation is cured, provided
+          it is cured within 30 days of Your discovery of the
+          violation; or
+
+       2. upon express reinstatement by the Licensor.
+
+     For the avoidance of doubt, this Section 6(b) does not affect any
+     right the Licensor may have to seek remedies for Your violations
+     of this Public License.
+
+  c. For the avoidance of doubt, the Licensor may also offer the
+     Licensed Material under separate terms or conditions or stop
+     distributing the Licensed Material at any time; however, doing so
+     will not terminate this Public License.
+
+  d. Sections 1, 5, 6, 7, and 8 survive termination of this Public
+     License.
+
+
+Section 7 -- Other Terms and Conditions.
+
+  a. The Licensor shall not be bound by any additional or different
+     terms or conditions communicated by You unless expressly agreed.
+
+  b. Any arrangements, understandings, or agreements regarding the
+     Licensed Material not stated herein are separate from and
+     independent of the terms and conditions of this Public License.
+
+
+Section 8 -- Interpretation.
+
+  a. For the avoidance of doubt, this Public License does not, and
+     shall not be interpreted to, reduce, limit, restrict, or impose
+     conditions on any use of the Licensed Material that could lawfully
+     be made without permission under this Public License.
+
+  b. To the extent possible, if any provision of this Public License is
+     deemed unenforceable, it shall be automatically reformed to the
+     minimum extent necessary to make it enforceable. If the provision
+     cannot be reformed, it shall be severed from this Public License
+     without affecting the enforceability of the remaining terms and
+     conditions.
+
+  c. No term or condition of this Public License will be waived and no
+     failure to comply consented to unless expressly agreed to by the
+     Licensor.
+
+  d. Nothing in this Public License constitutes or may be interpreted
+     as a limitation upon, or waiver of, any privileges and immunities
+     that apply to the Licensor or You, including from the legal
+     processes of any jurisdiction or authority.
+
+=======================================================================
+
+Creative Commons is not a party to its public
+licenses. Notwithstanding, Creative Commons may elect to apply one of
+its public licenses to material it publishes and in those instances
+will be considered the “Licensor.” The text of the Creative Commons
+public licenses is dedicated to the public domain under the CC0 Public
+Domain Dedication. Except for the limited purpose of indicating that
+material is shared under a Creative Commons public license or as
+otherwise permitted by the Creative Commons policies published at
+creativecommons.org/policies, Creative Commons does not authorize the
+use of the trademark "Creative Commons" or any other trademark or logo
+of Creative Commons without its prior written consent including,
+without limitation, in connection with any unauthorized modifications
+to any of its public licenses or any other arrangements,
+understandings, or agreements concerning use of licensed material. For
+the avoidance of doubt, this paragraph does not form part of the
+public licenses.
+
+Creative Commons may be contacted at creativecommons.org.
+
+
+──────────────────────────────────────────────────────────────────────────────
+四 · SIL Open Font License 1.1（字体子集）
+──────────────────────────────────────────────────────────────────────────────
+
+  demos/_assets/fonts/*.woff2 是开源字体的子集（subset），随本仓库分发
+  以保证演示页与截图离线可复现。这些文件不是本项目原创资产，
+  其权利归各自上游作者。本项目只做字形裁剪与重命名。
+
+  JetBrains Mono 适用 Apache License 2.0，其余全部适用 SIL OFL 1.1。
+
+  ── 字体清单 ──
+
+  输出文件（子集）           上游字体            上游许可     版权与保留字体名
+  NotoSansSC-*.woff2         Noto Sans SC        SIL OFL 1.1  © 2014-2021 Adobe；保留字体名 Source（另有 Google 参与）
+  NotoSerifSC-*.woff2        Noto Serif SC       SIL OFL 1.1  © 2017-2024 Adobe
+  PlayfairDisplay-*.woff2    Playfair Display    SIL OFL 1.1  © 2017 The Playfair Display Project Authors；保留字体名 Playfair Display
+  Cinzel-*.woff2             Cinzel              SIL OFL 1.1  © The Cinzel Project Authors
+  CormorantGaramond-*.woff2  Cormorant Garamond  SIL OFL 1.1  © The Cormorant Project Authors
+  EBGaramond-*.woff2         EB Garamond         SIL OFL 1.1  © The EB Garamond Project Authors
+  LibreBaskerville-*.woff2   Libre Baskerville   SIL OFL 1.1  © 2012 Impallari Type
+  Marcellus-*.woff2          Marcellus           SIL OFL 1.1  © 2012 Brian J. Bonislawsky DBA Astigmatic；保留字体名 Marcellus
+  Italiana-*.woff2           Italiana            SIL OFL 1.1  © 2011 Brian J. Bonislawsky DBA Astigmatic
+  YesevaOne-*.woff2          Yeseva One          SIL OFL 1.1  © 2012 The Yeseva One Project Authors；保留字体名 Yeseva
+  ArchivoBlack-*.woff2       Archivo Black       SIL OFL 1.1  © 2017 The Archivo Black Project Authors（Omnibus-Type）
+  BebasNeue-*.woff2          Bebas Neue          SIL OFL 1.1  © 2019 The Bebas Neue Project Authors（Dharma Type）
+  Oswald-*.woff2             Oswald              SIL OFL 1.1  © 2016 The Oswald Project Authors
+  Inter-*.woff2              Inter               SIL OFL 1.1  © The Inter Project Authors
+  JetBrainsMono-*.woff2      JetBrains Mono      Apache-2.0   © 2020 The JetBrains Mono Project Authors
+
+  上表信息由 fontTools 直接读取各源字体 name 表（nameID 0/13/14）得出，
+  可用 demos/_src/check_font_licenses.py 复核。
+
+  SIL Open Font License 1.1 允许自由使用、研究、修改与再分发（含嵌入文档与网页、
+  含商业用途），但有三条与本仓库直接相关的约束：
+
+  ── 1. 保留字体名（Reserved Font Name, RFN）—— OFL §3 ──
+
+    OFL 规定：修改版不得使用保留字体名。子集是 OFL 意义上的 Modified Version。
+
+    本项目实测（各源字体 name 表 nameID 0）有以下字体声明了 RFN：
+
+        Noto Sans SC        → Reserved Font Name 'Source'
+        Playfair Display    → Reserved Font Name "Playfair Display"
+        Yeseva One          → Reserved Font Name "Yeseva"
+        Marcellus           → Reserved Font Name "Marcellus"
+
+    处置：`demos/_src/build_fonts.py` 对所有子集统一重命名，家族名加 `AB ` 前缀
+    （AB Noto Serif SC、AB Playfair Display …），并同步改写 name 表
+    nameID 1/2/3/4/6/16/17。一条规则覆盖全部字体，不需要记忆例外。
+
+    未声明 RFN 的字体虽然可以沿用原名，本项目同样改名 —— 子集顶着原名会误导使用者。
+
+  ── 2. 版权与许可声明必须保留 —— OFL §1 ──
+
+    处置：重命名时刻意不动 nameID 0（版权）与 nameID 13/14（许可与许可链接），
+    因此每个 woff2 子集内部仍完整携带上游版权声明与 OFL 链接。
+
+  ── 3. 字体不得单独售卖 —— OFL §5 ──
+
+    处置：字体子集仅作为本仓库演示页的组成部分分发，不与任何形式的字体售卖捆绑。
+
+  上述三条已由 `demos/_src/check_font_licenses.py` 在 CI 中自动校验。
+
+  ── 上游项目地址 ──
+
+  Noto Sans SC / Noto Serif SC   https://github.com/notofonts/noto-cjk
+  Playfair Display               https://github.com/clauseggers/Playfair-Display
+  Cinzel                         https://github.com/natanaelgama/Cinzel
+  Cormorant Garamond             https://github.com/CatharsisFonts/Cormorant
+  EB Garamond                    https://github.com/octaviopardo/EBGaramond12
+  Libre Baskerville              https://github.com/impallari/Libre-Baskerville
+  Marcellus / Italiana           https://github.com/astigmatic/marcellus-font
+  Yeseva One                     https://github.com/lemonad/yeseva
+  Archivo Black                  https://github.com/Omnibus-Type/ArchivoBlack
+  Bebas Neue                     https://github.com/dharmatype/Bebas-Neue
+  Oswald                         https://github.com/googlefonts/OswaldFont
+  Inter                          https://github.com/rsms/inter
+  JetBrains Mono                 https://github.com/JetBrains/JetBrainsMono
+
+  ── 为什么必须内置中文字体 ──
+
+  本项目的三个风格基因（中国画留白 / 哥特暗黑 / 巴洛克聚光）依赖中文衬线体。
+  而常见 Linux 服务器上 `fc-match "Noto Serif SC"` 会回落到无衬线的
+  DejaVu Sans / 文泉驿正黑 —— 中文衬线并不存在，渲染结果会静默退化成黑体，
+  风格基因随之失效。
+
+  因此本仓库选择内置字体子集（30 个字重、约 2 MB），把「渲染结果可复现」
+  变成硬保证：任何人 clone 后断网也能得到与仓库截图一致的结果。
+
+  子集只保留演示页实际出现的字形（由页面上所有可见文本扫描得出），
+  因此体积远小于完整字体；原始 42 MB 源字体不随仓库分发。
+
+
+──────────────────────────────────────────────────────────────────────────────
+四·附 · 官方完整正文（SIL Open Font License 1.1，逐字未改）
+──────────────────────────────────────────────────────────────────────────────
+
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded,
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION AND CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+
+──────────────────────────────────────────────────────────────────────────────
+五 · 附录
+──────────────────────────────────────────────────────────────────────────────
+
+  ── 商标、作品名与在世创作者 ──
+
+    本项目正文会事实性提及第三方商标、作品名、公司名与在世创作者姓名。
+    这些名称仅用于风格描述与溯源，不构成关联、背书或授权关系，
+    一切权利归各自所有者。完整声明见 docs/TRADEMARKS.md。
+
+    ⚠️ 对外使用红线：不得把「用 XX 画师名字生成」作为产品卖点或宣传话术。
+       在世艺术家姓名 + 商业 AI 生成涉及人格权与不正当竞争争议。
+       本项目提供的是审美决策方法，不是「复刻在世创作者」的工具。
+
+  ── 出处与 AI 使用披露 ──
+
+    出处：由《艺术风格百科大全》（24 章 250+ 艺术家/风格）提炼而成。
+          底稿不随仓库分发。
+    AI  ：百科内容为编者执笔为主 + AI 辅助结构化整理；
+          演示页与脚本由 AI 生成（pi agent × DeepSeek V4.1 Flash）。
+    详见 docs/ATTRIBUTION.md。
+
+  ── 无担保声明 ──
+
+    本作品按「原样」提供，不附带任何形式的明示或默示担保，包括但不限于
+    对适销性、特定用途适用性及不侵权的担保。作者不对因使用本作品而产生的
+    任何索赔、损害或其他责任负责。（各许可正文中另有详尽的免责条款，
+    均为其组成部分。）
+
+  ── 许可变更史 ──
+
+    v2.0.1（2026-10-16）  三份分拆许可文件（LICENSE-CODE / LICENSE-CONTENT /
+                          LICENSE-FONTS）合并为本单一 LICENSE；
+                          三份官方正文固化进 scripts/license-sources/，
+                          本文件改由 scripts/build_license.py 生成。
+    v2.0.0（2026-10-16）  建立三许可分治结构。
+
+==============================================================================
+美学大脑 / aesthetic-brain
+https://github.com/hhx465453939/agent-taste-seed-system
+==============================================================================

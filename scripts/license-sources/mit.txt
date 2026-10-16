@@ -19,22 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-适用范围 / Scope
-=================
-
-本许可适用于本仓库中的**代码资产**：
-
-- `demos/_src/*.py`        —— 字体子集化、实时渲染截图、布局质检、风格基因校验
-- `scripts/*.sh`           —— 组包、资产扫描
-- `deploy/*.sh`            —— 各 agent 形态的部署脚本
-- `.github/**`             —— CI 工作流与配置
-
-文档、种子库、演示页面等**文本与视觉资产**不适用本许可，
-详见 LICENSE-CONTENT。
-
-This license covers the CODE assets listed above. Text and visual assets
-(the seed library, docs, demo pages and screenshots) are licensed
-separately — see LICENSE-CONTENT.

@@ -13,7 +13,9 @@
 退出码：0 = 齐备；1 = 有缺失或退化
 """
 
+import fnmatch
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -33,17 +35,27 @@ MIN_KB = {
     "README.md": 6,
 }
 
+# 许可与合规文件（三份官方正文已并入单一 LICENSE，见 scripts/build_license.py）
 LEGAL_FILES = [
     "LICENSE",
-    "LICENSE-CODE.md",
-    "LICENSE-CONTENT.md",
-    "LICENSE-FONTS.md",
     "CITATION.cff",
     "CONTRIBUTING.md",
     "docs/TRADEMARKS.md",
     "docs/ATTRIBUTION.md",
     "docs/METHODOLOGY.md",
+    "scripts/build_license.py",
+    "scripts/license-sources/cc-by-nc-sa-4.0-legalcode.txt",
+    "scripts/license-sources/ofl-1.1.txt",
+    "scripts/license-sources/mit.txt",
 ]
+
+# LICENSE §一「适用范围」里声明的三块分区（用于反向校验许可覆盖无盲区）
+LICENSE_ZONES = {
+    "MIT": ("demos/_src/*.py", "scripts/*.py", "scripts/*.sh",
+            "deploy/*.sh", ".github/**"),
+    "FONT": ("demos/_assets/fonts/**",),
+    "EXEMPT": ("scripts/license-sources/**",),
+}
 
 
 class Report:
@@ -145,13 +157,98 @@ def check_demos(r: Report) -> None:
     else:
         r.ok(f"CSS 引用的 {len(refs)} 个字体子集全部存在")
 
-    # 子集家族名必须带 AB 前缀（OFL 保留字体名合规，见 LICENSE-FONTS.md）
+    # 子集家族名必须带 AB 前缀（OFL 保留字体名合规，见 LICENSE）
     bad_fam = re.findall(r"font-family:'(?!AB )([^']+)'", css.read_text(encoding="utf-8"))
     if bad_fam:
         r.bad(f"{len(bad_fam)} 个 @font-face 家族名未加 'AB ' 前缀（违反 OFL §3）："
               f"{sorted(set(bad_fam))[:3]}")
     else:
         r.ok("所有 @font-face 家族名均带 'AB ' 前缀（OFL 命名合规）")
+
+
+def check_license_zones(r: Report) -> None:
+    """许可覆盖守卫 —— 防「新增文件掉进许可的缝里」。
+
+    本文件里最有价值的一项。LICENSE 里写的是**模式**（scripts/*.py），
+    仓库里却是**具体文件**，两者会悄悄地脱节：
+      · 新增 scripts/foo.py，但 LICENSE 只写了 scripts/*.sh → 该文件无人认领
+      · 把某份文档挪进 _src/ → 它被 MIT 覆盖了，作者却以为是 CC
+
+    所以做双向断言：
+      1. 代码扩展名的文件必须落在 MIT 区
+      2. 内容扩展名的文件不能落在 MIT 区
+      3. LICENSE 里必须真实声明这些模式（代码改了、许可文档没跟上就报错）
+    """
+    print("\n\033[1m6. 许可覆盖守卫（防新增文件掉进缝里）\033[0m")
+    out = subprocess.run(["git", "ls-files", "-z"], cwd=ROOT,
+                         capture_output=True, text=True).stdout
+    tracked = [p for p in out.split("\0") if p]
+    if not tracked:
+        r.bad("git ls-files 返回空——无法核验许可覆盖")
+        return
+
+    def match(path: str, pat: str) -> bool:
+        if pat.endswith("/**"):
+            base = pat[:-3]
+            return path == base or path.startswith(base + "/")
+        return fnmatch.fnmatch(path, pat)
+
+    def zone_of(path: str) -> str:
+        for zone, pats in LICENSE_ZONES.items():
+            if any(match(path, p) for p in pats):
+                return zone
+        return "CONTENT"          # 默认区：其余一切文件
+
+    CODE_EXT = {".py", ".sh", ".yml", ".yaml"}
+    CONTENT_EXT = {".md", ".html", ".css", ".cff", ".txt", ".jpg", ".png"}
+
+    miszoned = []
+    for p in tracked:
+        ext = Path(p).suffix.lower()
+        zone = zone_of(p)
+        if zone == "MIT" and ext in CONTENT_EXT and not p.startswith("scripts/license-sources/"):
+            miszoned.append((p, f"内容扩展名 {ext} 落在 MIT 区"))
+        if zone == "CONTENT" and ext in CODE_EXT:
+            miszoned.append((p, f"代码扩展名 {ext} 却落在 CONTENT 兜底区"))
+
+    if miszoned:
+        r.bad(f"{len(miszoned)} 个文件的许可分区与类型不符：")
+        for p, why in miszoned[:6]:
+            print(f"        {p} —— {why}")
+    else:
+        r.ok(f"{len(tracked)} 个跟踪文件全部落在预期许可分区")
+
+    lic_path = ROOT / "LICENSE"
+    if not lic_path.is_file():
+        r.bad("LICENSE 不存在")
+        return
+    lic = lic_path.read_text(encoding="utf-8")
+    missing = []
+    for zone, pats in LICENSE_ZONES.items():
+        for pat in pats:
+            core = pat.replace("/**", "").replace("*.py", "").replace("*.sh", "").rstrip("/")
+            if core and core not in lic:
+                missing.append(f"{zone}:{pat}")
+    if missing:
+        r.bad(f"LICENSE 未声明以下分区（代码与许可文档脱节）：{missing}")
+    else:
+        r.ok("LICENSE §一 已声明全部分区模式")
+
+
+def check_license_sync(r: Report) -> None:
+    """LICENSE 必须能由 scripts/license-sources/ 重跑生成（否则素材与产物脱节）。"""
+    print("\n\033[1m7. LICENSE 与素材同步\033[0m")
+    script = ROOT / "scripts" / "build_license.py"
+    if not script.is_file():
+        r.bad("缺少 scripts/build_license.py")
+        return
+    out = subprocess.run([sys.executable, str(script), "--check"],
+                         capture_output=True, text=True)
+    if out.returncode == 0:
+        r.ok(out.stdout.strip().replace("✅ ", ""))
+    else:
+        r.bad("LICENSE 与 scripts/license-sources/ 不同步")
+        print("        处理：python3 scripts/build_license.py")
 
 
 def main() -> int:
@@ -161,6 +258,8 @@ def main() -> int:
     check_chapter_headers(r)
     check_legal(r)
     check_demos(r)
+    check_license_zones(r)
+    check_license_sync(r)
     if r.fail == 0:
         print("\n\033[32m完整性检查通过。\033[0m")
     else:

@@ -1,13 +1,13 @@
 # 🎨 美学大脑 / aesthetic-brain — 给任何 AI Agent 装上审美大脑
 
 [![CI](https://github.com/hhx465453939/agent-taste-seed-system/actions/workflows/ci.yml/badge.svg)](https://github.com/hhx465453939/agent-taste-seed-system/actions/workflows/ci.yml)
-[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/Content-CC%20BY--NC--SA%204.0-lightgrey.svg)](LICENSE-CONTENT.md)
-[![License: MIT](https://img.shields.io/badge/Code-MIT-blue.svg)](LICENSE-CODE.md)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/Content-CC%20BY--NC--SA%204.0-lightgrey.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/Code-MIT-blue.svg)](LICENSE)
 [![Cite](https://img.shields.io/badge/Cite-CITATION.cff-green.svg)](CITATION.cff)
 
 > 一套可移植的「审美操作系统 + 风格种子库」，让 Claude Code / Codex / OpenClaw / pi / workbuddy / codebuddy / Trae / Qoder / hermas 等任何智能体，在视觉创作上摆脱"AI 味默认审美"。
 > 来源：《艺术风格百科大全》（24 章 250+ 艺术家/风格）→ 提炼为可执行的审美决策体系。
-> 版本：**v2.0.0** · 2026-10-16（开源合规与专业化改造）· 旧名 `agent-taste-seed-system`
+> 版本：**v2.0.1** · 2026-10-16（开源合规与专业化改造）· 旧名 `agent-taste-seed-system`
 > 本仓库：**https://github.com/hhx465453939/agent-taste-seed-system**
 > 🖼️ **先看结果：[十二风格样本墙](demos/index.html)**（12 个真实渲染页面，每种风格附纪律说明）
 >
@@ -254,10 +254,7 @@ mv "$WS" "$WS.moved" && test -r "$WS.moved/skills/taste/references/art-seeds.md"
 
 | 文件 | 作用 |
 |------|------|
-| [`LICENSE`](LICENSE) | 许可总览（双许可结构 + 逐路径对照 + 商业使用说明） |
-| [`LICENSE-CONTENT.md`](LICENSE-CONTENT.md) | 文本资产许可：**CC BY-NC-SA 4.0** |
-| [`LICENSE-CODE.md`](LICENSE-CODE.md) | 代码资产许可：**MIT** |
-| [`LICENSE-FONTS.md`](LICENSE-FONTS.md) | 内置字体子集的上游来源与 OFL 合规路径 |
+| [`LICENSE`](LICENSE) | ⭐ 单一许可文件：三许可分治说明 + 逐路径对照 + 商业使用 + **MIT / CC BY-NC-SA 4.0 / OFL 1.1 三份官方完整正文** |
 | [`CITATION.cff`](CITATION.cff) | 学术引用格式（GitHub 自动生成「Cite this repository」按钮） |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | 贡献指南：回填一行风味日志 / 补录新种子 / 新增代码基因卡的门槛 |
 | [`docs/ATTRIBUTION.md`](docs/ATTRIBUTION.md) | 出处、署名模板与 **AI 使用披露** |
@@ -287,7 +284,7 @@ L0  TASTE.md                      决策层：情绪定位 → 该查哪层（�
 ```
 aesthetic-brain/
 ├── README.md / SKILL.md / TASTE.md / AGENT-INJECTION.md   门面与决策层
-├── LICENSE / LICENSE-CODE.md / LICENSE-CONTENT.md / LICENSE-FONTS.md
+├── LICENSE / LICENSE / LICENSE / LICENSE
 ├── CITATION.cff / CONTRIBUTING.md / CHANGELOG.md
 ├── references/
 │   ├── art-seeds.md             L1 全量种子库（核心资产）
@@ -404,8 +401,8 @@ python3 demos/_src/check_font_licenses.py   # 字体子集 OFL 命名合规（§
 
 ## License
 
-- 文本资产：**CC BY-NC-SA 4.0** — 详见 [`LICENSE-CONTENT.md`](LICENSE-CONTENT.md)
-- 代码资产：**MIT** — 详见 [`LICENSE-CODE.md`](LICENSE-CODE.md)
-- 内置字体子集：上游 OFL / Apache-2.0 — 详见 [`LICENSE-FONTS.md`](LICENSE-FONTS.md)
+- 文本资产：**CC BY-NC-SA 4.0** — 详见 [`LICENSE`](LICENSE) §三
+- 代码资产：**MIT** — 详见 [`LICENSE`](LICENSE) §二
+- 内置字体子集：上游 OFL / Apache-2.0 — 详见 [`LICENSE`](LICENSE) §四
 
 总览入口：[`LICENSE`](LICENSE)

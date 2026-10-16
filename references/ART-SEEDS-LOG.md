@@ -3,7 +3,7 @@
 > 这是**整个系统进化的地方**。每次交付后把搭配与真实反馈记在这里，
 > 种子库就会越用越准。
 >
-> - 许可：本文件为文本资产，适用 **CC BY-NC-SA 4.0**（见仓库根 [`LICENSE-CONTENT.md`](../LICENSE-CONTENT.md)）
+> - 许可：本文件为文本资产，适用 **CC BY-NC-SA 4.0**（见仓库根 [`LICENSE`](../LICENSE)）
 > - 想只贡献一行记录？见 [`../CONTRIBUTING.md`](../CONTRIBUTING.md) §一——**不需要会写代码**
 
 ## 记录格式

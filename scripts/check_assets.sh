@@ -88,11 +88,21 @@ else
   ok "无敏感信息（绝对路径 / 内网地址 / 凭据均未出现）"
 fi
 
-# ── 6. 许可文件齐备性 ────────────────────────────────────────────
+# ── 6. 许可与合规文件 ────────────────────────────────────────────
+# 三份官方正文已并入单一 LICENSE（见 scripts/build_license.py），
+# 因此这里只校验这一个许可文件 + 其余合规文档。
 head_ "6. 许可与合规文件"
-for f in LICENSE LICENSE-CODE.md LICENSE-CONTENT.md LICENSE-FONTS.md \
-         CITATION.cff CONTRIBUTING.md docs/TRADEMARKS.md docs/ATTRIBUTION.md; do
+for f in LICENSE CITATION.cff CONTRIBUTING.md \
+         docs/TRADEMARKS.md docs/ATTRIBUTION.md docs/METHODOLOGY.md \
+         scripts/build_license.py scripts/license-sources/README.md; do
   [ -f "$f" ] && ok "$f" || bad "缺少 $f"
+done
+
+# 三份官方正文必须在场（LICENSE 由它们组装而成）
+for f in scripts/license-sources/cc-by-nc-sa-4.0-legalcode.txt \
+         scripts/license-sources/ofl-1.1.txt \
+         scripts/license-sources/mit.txt; do
+  [ -f "$f" ] && ok "$f" || bad "缺少许可正文素材 $f"
 done
 
 # ── 结论 ─────────────────────────────────────────────────────────

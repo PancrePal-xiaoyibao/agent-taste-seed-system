@@ -180,7 +180,7 @@ def main() -> int:
 
     CSS_OUT.write_text(
         "/* 由 demos/_src/build_fonts.py 生成，请勿手改。\n"
-        "   子集来源字体与完整许可：见仓库根目录 LICENSE-FONTS。\n"
+        "   子集来源字体与完整许可：见仓库根目录 LICENSE。\n"
         "   家族名统一加 'AB ' 前缀：OFL 字体多有 Reserved Font Name，\n"
         "   子集（修改版）按 OFL 1.1 §3 不得沿用保留字体名。*/\n"
         + "\n".join(rules)
