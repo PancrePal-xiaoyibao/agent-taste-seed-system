@@ -64,6 +64,38 @@
 
 ---
 
+### 2.4 运行时增量新增（agent 在用的时候顺手加一粒）
+
+上面 2.1~2.3 是「策展入库」的路——慢、严、要过 PR。
+但实际使用中有另一条更常见的路：**智能体在会话里发现了一个库里没有的风格，当下就得用**。
+这时不建议它直接往 `art-seeds.md` 里插行（会绕过分层与格式约束），而是写进**增量池**：
+
+```bash
+python3 scripts/seed_brain.py add \
+  --name "Beeple 数字拼贴" \
+  --layer chapter \
+  --signals "数字拼贴,流行符号,高饱和,密集元素" \
+  --one-liner "每日一图式数字拼贴，符号过载的当代波普" \
+  --ref "references/chapters/ch18-当代艺术.md"
+```
+
+| 它会做什么 | 它不会做什么 |
+|---|---|
+| 写入 `references/seed-additions.jsonl`（带日期，可审计、可回滚） | ❌ 不修改 `art-seeds.md` |
+| 立即 rebuild，新种子**与库内种子同权**参与匹配 | ❌ 不会因为「新」而被优先 |
+| 校验 `--ref` 指向的文件真实存在（防静默断链） | ❌ 不代替你写五基因 / CSS 变量块 |
+| 同层查重（包含度 ≥0.75 告警） | ❌ 不自动合并重复种子 |
+
+**两条硬约束**（写进了测试套件 T10/T12，会一直守着）：
+
+1. **已有 ID 零改写** —— 增量绝不能把老 ID 挤成 `-2`，否则风味日志、状态记忆、外部引用全断链；
+2. **增量结果 ≡ 全量重建** —— split-half 拆库验证：半库建库 + 另一半增量插入，必须与全量逐位相同。
+
+> 想把增量转正：按 2.1~2.3 把内容搬进对应层，再从 `seed-additions.jsonl` 删掉那一行即可（build 结果不变）。
+> 索引侧效果：`SEED-INDEX.md` 里带 🌱 的就是这类条目。
+
+---
+
 ## 三、贡献代码 / 工具
 
 代码资产走 **MIT** 许可。改动前请：
@@ -76,9 +108,13 @@ python3 demos/_src/qa_layout.py       # 布局闸门
 python3 demos/_src/qa_style.py        # 风格纪律闸门
 bash scripts/check_assets.sh          # 合规闸门
 python3 scripts/check_integrity.py    # 完整性闸门
+
+# 种子大脑（改了 art-seeds.md / code-genes / moods 后必须重建索引）
+python3 scripts/seed_brain.py build            # 重建 SEED-INDEX.md + seed-index.jsonl
+python3 scripts/seed_brain_selftest.py         # 27 项无偏分布门槛断言（evidence 见 docs/EVIDENCE-seed-brain.md）
 ```
 
-**五条闸门全绿才算完成。** 改了演示页文本却忘了重建字体子集，
+**以上闸门全绿才算完成。** 改了演示页文本却忘了重建字体子集，
 会出现「字变成豆腐块但测试不报错」的静默故障——`check_integrity.py` 会拦住。
 
 ---

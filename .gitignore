@@ -16,3 +16,8 @@ __pycache__/
 
 # 字体源原料（42MB），仓库只带子集
 /tmp-fonts/
+
+# ── 种子大脑的本地状态（因人而异，不入库）─────────────────
+# 派生索引（SEED-INDEX.md / seed-index.jsonl）**要入库**：agent 不跑脚本也能读全景。
+# 但「谁用过什么」是本地历史，提交会让每次 pick 都产生噪声 diff。
+/references/.seed-usage.json
