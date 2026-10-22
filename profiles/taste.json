@@ -1,0 +1,99 @@
+{
+  "_comment": [
+    "美学大脑的 seedbrain 接入配置。",
+    "引擎来自 agent-seed-brain（CC BY-NC-SA 4.0），本仓库只提供内容与解析规则。",
+    "用法（在本仓库根）：seedbrain build --profile profiles/taste.json",
+    "该文件里的 legacy_shelf 指向旧「快速索引表」的 12 粒代码基因卡，",
+    "用于 T9「去中心化」断言：证明新算法不再只落在旧货架前排。"
+  ],
+  "schema_version": 1,
+  "name": "taste",
+  "label": "美学种子大脑",
+  "sources": [
+    {
+      "kind": "table",
+      "path": "references/art-seeds.md",
+      "layer": "chapter",
+      "group_re": "^##\\s+(?P<group>[^#].*)$",
+      "entry_re": "^🎨\\s*\\*\\*(?P<name>[^*]+?)\\*\\*\\s*(?:（(?P<years>[^）]*)）)?\\s*·?\\s*(?P<tag>[^—]*?)\\s*——\\s*(?P<desc>.+)$",
+      "aux_re": "^`AI:\\s*(?P<kw>.+?)`$"
+    },
+    {
+      "kind": "card",
+      "dir": "references/code-genes",
+      "layer": "code-gene",
+      "title_re": "^#\\s+(?P<title>.+)$",
+      "field_re": "^>\\s*\\*\\*(?P<key>[^*]+?)\\*\\*\\s*[（(]?[^：:）)]*[）)]?\\s*[：:]\\s*(?P<val>.*)$",
+      "list_re": "^>\\s*(?:[-*]|\\d+\\.)\\s+(?P<item>.+)$",
+      "template_parts": ["code-gene", "code gene"]
+    },
+    {
+      "kind": "card",
+      "dir": "references/moods",
+      "layer": "mood",
+      "title_re": "^#\\s+(?P<title>.+)$",
+      "field_re": "^>\\s*\\*\\*(?P<key>[^*]+?)\\*\\*\\s*[（(]?[^：:）)]*[）)]?\\s*[：:]\\s*(?P<val>.*)$",
+      "list_re": "^>\\s*(?:[-*]|\\d+\\.)\\s+(?P<item>.+)$",
+      "template_parts": ["情绪选种档案", "情绪档"]
+    }
+  ],
+  "layers": {
+    "chapter": { "prefix": "ch", "quota": 0.42, "label": "风格章档" },
+    "code-gene": { "prefix": "cg", "quota": 0.33, "label": "代码基因卡" },
+    "mood": { "prefix": "md", "quota": 0.25, "label": "情绪档" }
+  },
+  "paths": {
+    "index_jsonl": "references/seed-index.jsonl",
+    "index_md": "references/SEED-INDEX.md",
+    "additions": "references/seed-additions.jsonl",
+    "state": "references/.seed-usage.json"
+  },
+  "norms": {
+    "decay_tau_days": 14.0,
+    "count_penalty": 0.5,
+    "max_hits": 5,
+    "gram_w2": 1.0,
+    "gram_w3": 0.35,
+    "dup_threshold": 0.75
+  },
+  "verify": {
+    "probes": [
+      "科技感长图，深色背景霓虹光效",
+      "东方古韵，留白和墨色层次",
+      "B 端数据看板，信息密度高，清晰理性",
+      "孤独诗意的散文配图，雾气弥漫",
+      "庄重典雅的展览折页，克制高级",
+      "甜美的婚礼请柬，粉色柔和",
+      "荒诞幽默的品牌包装，超现实梦境",
+      "恐怖电影海报，暗黑压迫",
+      "极简主义产品落地页，留白克制",
+      "瑞士国际主义海报，网格排版",
+      "波普艺术拼贴封面，高饱和",
+      "巴洛克戏剧海报，单光源强对比"
+    ],
+    "generic_fill": ["设计", "页面", "内容", "风格"],
+    "legacy_shelf": [
+      "cg-01-瑞士平面",
+      "cg-02-赛博霓虹",
+      "cg-03-中国画留白",
+      "cg-04-极简主义",
+      "cg-05-吉卜力手绘亲和",
+      "cg-06-浮世绘扁平",
+      "cg-07-巴洛克聚光",
+      "cg-08-洛可可粉彩",
+      "cg-09-波普拼贴",
+      "cg-10-构成主义海报",
+      "cg-11-赛璐璐动漫ui",
+      "cg-12-哥特暗黑"
+    ],
+    "thresholds": {
+      "recall_name": 0.98,
+      "recall_feature": 0.6,
+      "gini_max": 0.8,
+      "idf_top1_gain": 0.15,
+      "layer_dominance_max": 0.7,
+      "rotation_min": 4,
+      "decenter_min": 0.5
+    }
+  }
+}
