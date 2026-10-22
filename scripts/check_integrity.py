@@ -78,11 +78,13 @@ def check_counts(r: Report) -> None:
             r.bad(f"{rel} 目录不存在")
             continue
         files = sorted(p for p in d.glob("*.md") if p.is_file())
-        if len(files) == expect:
-            r.ok(f"{rel}  {len(files)} 份")
+        # 下限断言：允许 agent 在运行时增量新增（不改源文件），
+        # 但绝不允许多于原数的「变少」——那是删了内容或被截断。
+        if len(files) >= expect:
+            extra = len(files) - expect
+            r.ok(f"{rel}  {len(files)} 份（下限 {expect}" + (f"，新增 {extra}" if extra else "") + "）")
         else:
-            r.bad(f"{rel}  期望 {expect} 份，实际 {len(files)} 份"
-                  f"（缺：{ {p.name for p in files} ^ set() } 或有多余文件）")
+            r.bad(f"{rel}  期望至少 {expect} 份，实际 {len(files)} 份（可能被误删）")
 
 
 def check_min_size(r: Report) -> None:
@@ -181,8 +183,8 @@ def check_license_zones(r: Report) -> None:
     """
     print("\n\033[1m6. 许可覆盖守卫（防新增文件掉进缝里）\033[0m")
     out = subprocess.run(["git", "ls-files", "-z"], cwd=ROOT,
-                         capture_output=True, text=True).stdout
-    tracked = [p for p in out.split("\0") if p]
+                         capture_output=True, text=True, encoding="utf-8").stdout
+    tracked = [p for p in (out or "").split("\0") if p]
     if not tracked:
         r.bad("git ls-files 返回空——无法核验许可覆盖")
         return
@@ -243,9 +245,9 @@ def check_license_sync(r: Report) -> None:
         r.bad("缺少 scripts/build_license.py")
         return
     out = subprocess.run([sys.executable, str(script), "--check"],
-                         capture_output=True, text=True)
+                         capture_output=True, text=True, encoding="utf-8", errors="replace")
     if out.returncode == 0:
-        r.ok(out.stdout.strip().replace("✅ ", ""))
+        r.ok((out.stdout or "").strip().replace("✅ ", ""))
     else:
         r.bad("LICENSE 与 scripts/license-sources/ 不同步")
         print("        处理：python3 scripts/build_license.py")

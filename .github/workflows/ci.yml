@@ -30,6 +30,18 @@ jobs:
       - name: Markdown 相对链接检查
         run: python3 scripts/check_links.py
 
+      # 种子大脑：拦住两件会静默退化的事 ——
+      #   ① 改了 art-seeds.md / code-genes / moods 却忘了重建索引
+      #   ② 算法改动让「无偏分布」退化（19 项门槛断言）
+      - name: 种子大脑：索引与源文件同步
+        run: |
+          python3 scripts/seed_brain.py build
+          git diff --exit-code --stat references/SEED-INDEX.md references/seed-index.jsonl \
+            || { echo "::error::SEED-INDEX 与源种子库不同步，请本地跑 python3 scripts/seed_brain.py build 后提交"; exit 1; }
+
+      - name: 种子大脑：无偏分布验证
+        run: python3 scripts/seed_brain_selftest.py
+
   # ── 闸门二：真实渲染 + 布局/风格断言（需要 Chromium）──────────────
   render-and-verify:
     name: 渲染与审美断言
