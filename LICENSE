@@ -39,7 +39,8 @@ SPDX-License-Identifier: MIT AND CC-BY-NC-SA-4.0 AND OFL-1.1
 
   §三 CC BY-NC-SA 4.0 —— 文本与视觉资产
       LICENSE（本文件） · CITATION.cff · CONTRIBUTING.md · .gitignore
-      README.md · CHANGELOG.md · SKILL.md · TASTE.md · AGENT-INJECTION.md
+      README*.md · CHANGELOG.md · SKILL.md · TASTE.md · AGENT-INJECTION.md
+      AGENTS.md · CLAUDE.md
       docs/**                METHODOLOGY · ATTRIBUTION · TRADEMARKS · changes/**
       references/**          art-seeds.md · ART-SEEDS-LOG.md · code-genes/ · moods/ · chapters/
       deploy/*.md            部署文档
