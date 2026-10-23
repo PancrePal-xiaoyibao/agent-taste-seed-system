@@ -24,6 +24,10 @@ fi
 cp "$SRC/SKILL.md" "$DST/SKILL.md"
 # 决策层文档随 skill 走（属能力部件，不属人格部件）
 cp "$SRC/TASTE.md" "$DST/TASTE.md"
+# 检索层配置也随 skill 走：seedbrain 靠它解析 references/。
+# 不复制会导致装完 skill 后 `seedbrain` 找不到 profile（命令必然失败）。
+mkdir -p "$DST/profiles"
+cp "$SRC/profiles/"*.json "$DST/profiles/"
 # references/ 整目录覆盖拷贝（art-seeds 总库 + chapters/ + moods/ + code-genes/ 四层全量）
 mkdir -p "$DST/references"
 rm -rf "$DST/references/chapters" "$DST/references/moods" "$DST/references/code-genes"
@@ -32,6 +36,7 @@ cp -R "$SRC/references/." "$DST/references/"
 echo "✅ taste 美学大脑已安装 → $DST"
 echo "   ├─ SKILL.md                  （审美 OS + 四层查询路由）"
 echo "   ├─ TASTE.md                  （决策层文档版）"
+echo "   ├─ profiles/                 （seedbrain 检索配置，相对 skill 根寻址）"
 echo "   └─ references/"
 echo "      ├─ art-seeds.md           （L1 总库速查，250+ 种子）"
 echo "      ├─ moods/                 （L2a 10 份情绪选种档案）"

@@ -71,7 +71,8 @@
 这时不建议它直接往 `art-seeds.md` 里插行（会绕过分层与格式约束），而是写进**增量池**：
 
 ```bash
-python3 scripts/seed_brain.py add \
+python3 -m pip install "git+https://github.com/hhx465453939/agent-seed-brain@v0.1.1"
+seedbrain add \
   --name "Beeple 数字拼贴" \
   --layer chapter \
   --signals "数字拼贴,流行符号,高饱和,密集元素" \
@@ -109,9 +110,10 @@ python3 demos/_src/qa_style.py        # 风格纪律闸门
 bash scripts/check_assets.sh          # 合规闸门
 python3 scripts/check_integrity.py    # 完整性闸门
 
-# 种子大脑（改了 art-seeds.md / code-genes / moods 后必须重建索引）
-python3 scripts/seed_brain.py build            # 重建 SEED-INDEX.md + seed-index.jsonl
-python3 scripts/seed_brain_selftest.py         # 27 项无偏分布门槛断言（evidence 见 docs/EVIDENCE-seed-brain.md）
+# 种子大脑（引擎来自 agent-seed-brain，本仓库只提供内容与 profiles/）
+python3 -m pip install "git+https://github.com/hhx465453939/agent-seed-brain@v0.1.1"
+seedbrain build  --profile profiles/taste.json    # 重建 SEED-INDEX.md + seed-index.jsonl
+seedbrain verify --profile profiles/taste.json    # 28 项无偏分布门槛断言（evidence 见 docs/EVIDENCE-seed-brain.md）
 ```
 
 **以上闸门全绿才算完成。** 改了演示页文本却忘了重建字体子集，
