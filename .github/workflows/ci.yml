@@ -37,7 +37,7 @@ jobs:
       - name: 安装 seedbrain 引擎
         run: |
           python3 -m pip install --upgrade pip
-          python3 -m pip install "git+https://github.com/hhx465453939/agent-seed-brain@v0.2.0"
+          python3 -m pip install "git+https://github.com/hhx465453939/agent-seed-brain@v0.3.0"
 
       - name: 种子大脑：索引与源文件同步
         run: |

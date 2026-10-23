@@ -1,12 +1,14 @@
 {
   "_comment": [
-    "美学大脑的 seedbrain 接入配置。",
+    "美学大脑的 seedbrain 接入配置（v0.3）。",
     "引擎来自 agent-seed-brain（CC BY-NC-SA 4.0），本仓库只提供内容与解析规则。",
+    "  · extends → builtin:base：公共 norms / paths / thresholds 随 SDK 版本走，零复制。",
+    "  · 本域探针保持领域适配（12 条视觉任务）；未启用 probes_ref，因为实测抽象形态",
+    "    探针在 374 粒视觉库里命中过窄，会把 T6b（单层垄断）拉破——宁可不用。",
     "用法（在本仓库根）：seedbrain build --profile profiles/taste.json",
-    "该文件里的 legacy_shelf 指向旧「快速索引表」的 12 粒代码基因卡，",
-    "用于 T9「去中心化」断言：证明新算法不再只落在旧货架前排。"
+    "legacy_shelf 指向旧「快速索引表」的 12 粒代码基因卡，用于 T9 去中心化断言。"
   ],
-  "schema_version": 1,
+  "extends": "builtin:base",
   "name": "taste",
   "label": "美学种子大脑",
   "sources": [
@@ -42,20 +44,6 @@
     "code-gene": { "prefix": "cg", "quota": 0.33, "label": "代码基因卡" },
     "mood": { "prefix": "md", "quota": 0.25, "label": "情绪档" }
   },
-  "paths": {
-    "index_jsonl": "references/seed-index.jsonl",
-    "index_md": "references/SEED-INDEX.md",
-    "additions": "references/seed-additions.jsonl",
-    "state": "references/.seed-usage.json"
-  },
-  "norms": {
-    "decay_tau_days": 14.0,
-    "count_penalty": 0.5,
-    "max_hits": 5,
-    "gram_w2": 1.0,
-    "gram_w3": 0.35,
-    "dup_threshold": 0.75
-  },
   "verify": {
     "probes": [
       "科技感长图，深色背景霓虹光效",
@@ -85,15 +73,6 @@
       "cg-10-构成主义海报",
       "cg-11-赛璐璐动漫ui",
       "cg-12-哥特暗黑"
-    ],
-    "thresholds": {
-      "recall_name": 0.98,
-      "recall_feature": 0.6,
-      "gini_max": 0.8,
-      "idf_top1_gain": 0.15,
-      "layer_dominance_max": 0.7,
-      "rotation_min": 4,
-      "decenter_min": 0.5
-    }
+    ]
   }
 }
