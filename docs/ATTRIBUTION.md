@@ -14,7 +14,7 @@
 | 首次建立 | 2026-09-24 |
 | 内容来源 | 《艺术风格百科大全》（2026-06-20 编制，24 章 250+ 艺术家/风格全览） |
 | 内容形态 | 纯文本（Markdown）。**不含任何图片、音视频或第三方作品复制品** |
-| 许可 | 文本资产 CC BY-NC-SA 4.0 · 代码资产 MIT（见 [`../LICENSE`](../LICENSE)） |
+| 许可 | 文本资产 CC BY 4.0 · 代码资产 MIT（见 [`../LICENSE`](../LICENSE)） |
 
 ### 内容是怎么变成现在这样的
 
@@ -75,7 +75,7 @@ APA 格式示例：
 
 ```
 hhx465453939. (2026). 美学大脑 / aesthetic-brain: 面向 AI Agent 的审美决策系统与风格种子库
-(Version 2.0.0) [Computer software]. https://github.com/hhx465453939/agent-taste-seed-system
+(Version 3.0.0) [Computer software]. https://github.com/hhx465453939/agent-taste-seed-system
 ```
 
 ### 3.2 在作品 / 产品中署名
@@ -84,7 +84,7 @@ hhx465453939. (2026). 美学大脑 / aesthetic-brain: 面向 AI Agent 的审美�
 
 ```
 本作品使用了「美学大脑 / aesthetic-brain」（作者 hhx465453939），
-依据 CC BY-NC-SA 4.0 许可使用。
+依据 CC BY 4.0 许可使用。
 来源：https://github.com/hhx465453939/agent-taste-seed-system
 修改说明：<例如「仅使用 code-genes/02 赛博霓虹，未作修改」>
 ```
@@ -92,7 +92,7 @@ hhx465453939. (2026). 美学大脑 / aesthetic-brain: 面向 AI Agent 的审美�
 **最小格式**（空间受限时，如页脚）：
 
 ```
-风格决策：美学大脑 (aesthetic-brain) · CC BY-NC-SA 4.0
+风格决策：美学大脑 (aesthetic-brain) · CC BY 4.0
 ```
 
 ### 3.3 只在代码里用了脚本
@@ -109,7 +109,7 @@ https://github.com/hhx465453939/agent-taste-seed-system
 
 ## 四、署名必须说明的两件事
 
-CC BY-NC-SA 4.0 的署名条款要求（BY 条件）：
+CC BY 4.0 的署名条款要求（BY 条件）：
 
 1. **说明是否作了修改**
    「未作修改」/「仅使用其中 X 号基因卡」/「在 X 基础上扩展了 Y」——都行，但必须说。
@@ -122,8 +122,8 @@ CC BY-NC-SA 4.0 的署名条款要求（BY 条件）：
 
 | 规则 | 依据 |
 |---|---|
-| 你补录进种子库的新内容，**必须以 CC BY-NC-SA 4.0 分发** | SA（相同方式共享）条件 |
-| **不得用于商业目的**；商用请先开 Issue 洽谈单独许可 | NC（非商业性）条件 |
+| 你补录进种子库的新内容，**可以用任何条款分发**（包括专有条款）——不再有 ShareAlike 要求 | CC BY 4.0 不含 SA 条件 |
+| **商业使用无需单独授权**，但必须保留署名、许可链接与修改说明 | BY（署名）条件；不含 NC 条件 |
 
 想回馈种子库？见 [`../CONTRIBUTING.md`](../CONTRIBUTING.md)。
 

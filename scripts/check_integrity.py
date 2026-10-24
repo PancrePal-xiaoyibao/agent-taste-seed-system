@@ -44,7 +44,7 @@ LEGAL_FILES = [
     "docs/ATTRIBUTION.md",
     "docs/METHODOLOGY.md",
     "scripts/build_license.py",
-    "scripts/license-sources/cc-by-nc-sa-4.0-legalcode.txt",
+    "scripts/license-sources/cc-by-4.0-legalcode.txt",
     "scripts/license-sources/ofl-1.1.txt",
     "scripts/license-sources/mit.txt",
 ]
@@ -106,7 +106,7 @@ def check_chapter_headers(r: Report) -> None:
     miss = []
     for p in sorted((ROOT / "references/chapters").glob("ch*.md")):
         txt = p.read_text(encoding="utf-8")[:800]
-        if "CC BY-NC-SA" not in txt:
+        if "CC BY 4.0" not in txt:
             miss.append(p.name)
     if miss:
         r.bad(f"{len(miss)} 份分章缺少许可/商标免责头：{miss[:4]}")

@@ -9,7 +9,7 @@
 > - 📖 风格章档：`chapters/`（24 章+后记原文，每位艺术家 2-3 句细述）
 > - ⚡ 本文件：全量单行速查总表
 > **数据来源**：《艺术风格百科大全》（24 章 250+ 艺术家）全量收录，无删减。底稿 docx 不随仓库分发。
-> **许可**：本文件为文本资产，适用 **CC BY-NC-SA 4.0**（见仓库根 [`LICENSE`](../LICENSE)）；署名建议见 [`docs/ATTRIBUTION.md`](../docs/ATTRIBUTION.md)。
+> **许可**：本文件为文本资产，适用 **CC BY 4.0**（见仓库根 [`LICENSE`](../LICENSE)）；署名建议见 [`docs/ATTRIBUTION.md`](../docs/ATTRIBUTION.md)。
 > **查询方式**：① 按章节浏览 ② Ctrl+F 搜关键词 ③ 按情绪选种见 TASTE.md 索引 ④ 按媒介见文末 G16。
 > **每条记录**：艺术家（生卒年）· 流派标签 —— 风格基因描述 + AI Prompt Keywords。
 

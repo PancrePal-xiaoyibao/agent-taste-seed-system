@@ -2,7 +2,7 @@
 ==============================================================================
 
 Copyright (c) 2026 hhx465453939
-SPDX-License-Identifier: MIT AND CC-BY-NC-SA-4.0 AND OFL-1.1
+SPDX-License-Identifier: MIT AND CC-BY-4.0 AND OFL-1.1
 
 本项目按**资产类型**适用三种不同许可。本文件是唯一权威许可见证：
 前三节是速览与适用范围，后三节是三份许可的**官方完整正文**（逐字未改）。
@@ -15,12 +15,12 @@ SPDX-License-Identifier: MIT AND CC-BY-NC-SA-4.0 AND OFL-1.1
   你的资产                          适用许可                     完整正文
   ---------------------------------------------------------------------------
   代码（脚本 / CI / 部署）           MIT                          §二
-  内容（种子库 / 文档 / 截图）        CC BY-NC-SA 4.0              §三
+  内容（种子库 / 文档 / 截图）        CC BY 4.0                    §三
   字体子集（demos/_assets/fonts/）   SIL OFL 1.1 / Apache-2.0     §四
 
   一句话版：
 
-    内容（种子库/文档/截图）：  CC BY-NC-SA 4.0   署名 · 非商业 · 相同方式共享
+    内容（种子库/文档/截图）：  CC BY 4.0         署名；可商用，无需附加限制
     代码（脚本/CI/部署）：      MIT               可商用，保留版权声明
     字体（woff2 子集）：        上游 OFL/Apache   随包可分发，已按 OFL 改名
 
@@ -37,7 +37,7 @@ SPDX-License-Identifier: MIT AND CC-BY-NC-SA-4.0 AND OFL-1.1
       deploy/*.sh            各 agent 形态的部署脚本
       .github/**             CI 工作流与配置
 
-  §三 CC BY-NC-SA 4.0 —— 文本与视觉资产
+  §三 CC BY 4.0 —— 文本与视觉资产
       LICENSE（本文件） · CITATION.cff · CONTRIBUTING.md · .gitignore
       README*.md · CHANGELOG.md · SKILL.md · TASTE.md · AGENT-INJECTION.md
       AGENTS.md · CLAUDE.md
@@ -60,12 +60,12 @@ SPDX-License-Identifier: MIT AND CC-BY-NC-SA-4.0 AND OFL-1.1
   ── 边界规则（防止新增文件掉进缝里）──
 
   1. 默认规则：位于 demos/_src/、scripts/、deploy/、.github/ 下的
-     .py / .sh / .yml 文件 → §二 MIT；其余一切文件 → §三 CC BY-NC-SA 4.0。
+     .py / .sh / .yml 文件 → §二 MIT；其余一切文件 → §三 CC BY 4.0。
      本项由 scripts/check_integrity.py 自动守卫，新增文件无需手工登记。
 
   2. 一个文件里既有代码又有说明文字：以该文件的主要用途判定。
      脚本的主要用途是执行 → MIT；
-     文档、种子卡、演示页的主要用途是传递文本表达 → CC BY-NC-SA 4.0。
+     文档、种子卡、演示页的主要用途是传递文本表达 → CC BY 4.0。
 
   3. 字体文件例外：demos/_assets/fonts/** 的权利不属于本项目，归各自上游作者，
      适用其上游许可（见 §四）。本项目只做字形裁剪与重命名。
@@ -99,26 +99,27 @@ SOFTWARE.
 
 
 ──────────────────────────────────────────────────────────────────────────────
-三 · CC BY-NC-SA 4.0（内容资产）
+三 · CC BY 4.0（内容资产）
 ──────────────────────────────────────────────────────────────────────────────
 
-  完整名称：Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
-  中文名称：知识共享 署名-非商业性使用-相同方式共享 4.0 国际
-  SPDX    ：CC-BY-NC-SA-4.0
+  完整名称：Creative Commons Attribution 4.0 International
+  中文名称：知识共享 署名 4.0 国际
+  SPDX    ：CC-BY-4.0
 
   官方中文法律条款（权威文本的官方译本）：
-      https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.zh-Hans
+      https://creativecommons.org/licenses/by/4.0/legalcode.zh-Hans
   人类可读摘要：
-      https://creativecommons.org/licenses/by-nc-sa/4.0/
+      https://creativecommons.org/licenses/by/4.0/
 
   ⚠️ 依 Creative Commons 官方立场，英文版为权威文本，中文版为官方译本。
      下方「三·附 官方完整法律条款」一节逐字收录英文全文，作为本仓库的权威依据。
 
-  ── 你可以做什么（在遵守下列条件的前提下）──
+  ── 你可以做什么 ──
 
     · 共享 —— 以任何媒介或格式复制、发行本作品
     · 演绎 —— 修改、转换、基于本作品进行创作
-    · 任何目的，包括非商业性使用（个人学习、教学、研究、非营利项目、公益内容）
+    · 任何目的，**包括商业目的** —— 本许可不含 NonCommercial 限制
+    · 上述自由无需额外授权、无需付费
 
     许可方不能撤回这些自由，只要使用者遵守许可条款。
 
@@ -126,41 +127,31 @@ SOFTWARE.
 
     署名 BY        必须给出适当署名，提供指向本许可的链接，并说明是否作了修改。
                    可以任何合理方式署名，但不得暗示许可方为你或你的使用背书。
-    非商业性 NC    不得将本作品用于商业目的。商业目的指主要以商业利益或
-                   金钱报酬为目的的使用。
-    相同方式共享 SA 如果你再混、转换或基于本作品进行创作，必须以相同的许可
-                   分发你的贡献。这意味着补录进种子库的新内容同样开放，
-                   任何人都能继续使用。
     无附加限制     不得适用法律条款或技术措施，从而限制他人做本许可允许的事。
+
+    完整条件以「三·附」的官方正文为准（CC BY 4.0 §2）。
+
+  ── 补录内容怎么授权 ──
+
+    CC BY 4.0 没有 ShareAlike：你补录进种子库的新内容可以用任何条款发布，
+    包括专有条款；基于本仓库内容的演绎作品同样可以另行授权。
+    前提是保留署名、许可链接与修改说明，并且不对他人的 CC BY 权利附加限制。
 
   ── 推荐署名格式（把尖括号内换成你的实际信息）──
 
       本作品使用了「美学大脑 / aesthetic-brain」（作者 hhx465453939），
-      依据 CC BY-NC-SA 4.0 许可使用。
+      依据 CC BY 4.0 许可使用。
       来源：https://github.com/hhx465453939/agent-taste-seed-system
       修改说明：<例如「仅使用 code-genes/02 赛博霓虹，未作修改」>
 
     机器可读格式见 CITATION.cff；更多模板见 docs/ATTRIBUTION.md。
 
-  ── 商业使用 ──
-
-    CC BY-NC-SA 4.0 不允许商业性使用。若你的场景涉及商业目的：
-
-      · 请先开 Issue 说明用途，与作者单独洽谈商业许可
-        （dual-licensing 是常规做法，见 CONTRIBUTING.md）；
-      · 但你仍可直接使用 §二 下的脚本 —— MIT 不限商业用途；
-      · 进入正式商用前，建议就你的具体场景咨询执业律师。
-
-    ⚠️ NC 对「商业性」的界定以法律条款正文为准。公司内部使用、内部培训等
-       场景是否构成「商业性使用」，协议解释存在讨论空间。
-       本文件不构成法律意见。
-
 
 ──────────────────────────────────────────────────────────────────────────────
-三·附 · 官方完整法律条款（CC BY-NC-SA 4.0，英文权威文本，逐字未改）
+三·附 · 官方完整法律条款（CC BY 4.0，英文权威文本，逐字未改）
 ──────────────────────────────────────────────────────────────────────────────
 
-Attribution-NonCommercial-ShareAlike 4.0 International
+Attribution 4.0 International
 
 =======================================================================
 
@@ -216,18 +207,16 @@ exhaustive, and do not form part of our licenses.
 
 =======================================================================
 
-Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
-Public License
+Creative Commons Attribution 4.0 International Public License
 
 By exercising the Licensed Rights (defined below), You accept and agree
 to be bound by the terms and conditions of this Creative Commons
-Attribution-NonCommercial-ShareAlike 4.0 International Public License
-("Public License"). To the extent this Public License may be
-interpreted as a contract, You are granted the Licensed Rights in
-consideration of Your acceptance of these terms and conditions, and the
-Licensor grants You such rights in consideration of benefits the
-Licensor receives from making the Licensed Material available under
-these terms and conditions.
+Attribution 4.0 International Public License ("Public License"). To the
+extent this Public License may be interpreted as a contract, You are
+granted the Licensed Rights in consideration of Your acceptance of
+these terms and conditions, and the Licensor grants You such rights in
+consideration of benefits the Licensor receives from making the
+Licensed Material available under these terms and conditions.
 
 
 Section 1 -- Definitions.
@@ -246,11 +235,7 @@ Section 1 -- Definitions.
      and Similar Rights in Your contributions to Adapted Material in
      accordance with the terms and conditions of this Public License.
 
-  c. BY-NC-SA Compatible License means a license listed at
-     creativecommons.org/compatiblelicenses, approved by Creative
-     Commons as essentially the equivalent of this Public License.
-
-  d. Copyright and Similar Rights means copyright and/or similar rights
+  c. Copyright and Similar Rights means copyright and/or similar rights
      closely related to copyright including, without limitation,
      performance, broadcast, sound recording, and Sui Generis Database
      Rights, without regard to how the rights are labeled or
@@ -258,41 +243,29 @@ Section 1 -- Definitions.
      specified in Section 2(b)(1)-(2) are not Copyright and Similar
      Rights.
 
-  e. Effective Technological Measures means those measures that, in the
+  d. Effective Technological Measures means those measures that, in the
      absence of proper authority, may not be circumvented under laws
      fulfilling obligations under Article 11 of the WIPO Copyright
      Treaty adopted on December 20, 1996, and/or similar international
      agreements.
 
-  f. Exceptions and Limitations means fair use, fair dealing, and/or
+  e. Exceptions and Limitations means fair use, fair dealing, and/or
      any other exception or limitation to Copyright and Similar Rights
      that applies to Your use of the Licensed Material.
 
-  g. License Elements means the license attributes listed in the name
-     of a Creative Commons Public License. The License Elements of this
-     Public License are Attribution, NonCommercial, and ShareAlike.
-
-  h. Licensed Material means the artistic or literary work, database,
+  f. Licensed Material means the artistic or literary work, database,
      or other material to which the Licensor applied this Public
      License.
 
-  i. Licensed Rights means the rights granted to You subject to the
+  g. Licensed Rights means the rights granted to You subject to the
      terms and conditions of this Public License, which are limited to
      all Copyright and Similar Rights that apply to Your use of the
      Licensed Material and that the Licensor has authority to license.
 
-  j. Licensor means the individual(s) or entity(ies) granting rights
+  h. Licensor means the individual(s) or entity(ies) granting rights
      under this Public License.
 
-  k. NonCommercial means not primarily intended for or directed towards
-     commercial advantage or monetary compensation. For purposes of
-     this Public License, the exchange of the Licensed Material for
-     other material subject to Copyright and Similar Rights by digital
-     file-sharing or similar means is NonCommercial provided there is
-     no payment of monetary compensation in connection with the
-     exchange.
-
-  l. Share means to provide material to the public by any means or
+  i. Share means to provide material to the public by any means or
      process that requires permission under the Licensed Rights, such
      as reproduction, public display, public performance, distribution,
      dissemination, communication, or importation, and to make material
@@ -300,13 +273,13 @@ Section 1 -- Definitions.
      public may access the material from a place and at a time
      individually chosen by them.
 
-  m. Sui Generis Database Rights means rights other than copyright
+  j. Sui Generis Database Rights means rights other than copyright
      resulting from Directive 96/9/EC of the European Parliament and of
      the Council of 11 March 1996 on the legal protection of databases,
      as amended and/or succeeded, as well as other essentially
      equivalent rights anywhere in the world.
 
-  n. You means the individual or entity exercising the Licensed Rights
+  k. You means the individual or entity exercising the Licensed Rights
      under this Public License. Your has a corresponding meaning.
 
 
@@ -320,10 +293,9 @@ Section 2 -- Scope.
           exercise the Licensed Rights in the Licensed Material to:
 
             a. reproduce and Share the Licensed Material, in whole or
-               in part, for NonCommercial purposes only; and
+               in part; and
 
-            b. produce, reproduce, and Share Adapted Material for
-               NonCommercial purposes only.
+            b. produce, reproduce, and Share Adapted Material.
 
        2. Exceptions and Limitations. For the avoidance of doubt, where
           Exceptions and Limitations apply to Your use, this Public
@@ -353,13 +325,7 @@ Section 2 -- Scope.
                Licensed Rights under the terms and conditions of this
                Public License.
 
-            b. Additional offer from the Licensor -- Adapted Material.
-               Every recipient of Adapted Material from You
-               automatically receives an offer from the Licensor to
-               exercise the Licensed Rights in the Adapted Material
-               under the conditions of the Adapter's License You apply.
-
-            c. No downstream restrictions. You may not offer or impose
+            b. No downstream restrictions. You may not offer or impose
                any additional or different terms or conditions on, or
                apply any Effective Technological Measures to, the
                Licensed Material if doing so restricts exercise of the
@@ -391,9 +357,7 @@ Section 2 -- Scope.
           Rights, whether directly or through a collecting society
           under any voluntary or waivable statutory or compulsory
           licensing scheme. In all other cases the Licensor expressly
-          reserves any right to collect such royalties, including when
-          the Licensed Material is used other than for NonCommercial
-          purposes.
+          reserves any right to collect such royalties.
 
 
 Section 3 -- License Conditions.
@@ -438,28 +402,14 @@ following conditions.
           reasonable to satisfy the conditions by providing a URI or
           hyperlink to a resource that includes the required
           information.
+
        3. If requested by the Licensor, You must remove any of the
           information required by Section 3(a)(1)(A) to the extent
           reasonably practicable.
 
-  b. ShareAlike.
-
-     In addition to the conditions in Section 3(a), if You Share
-     Adapted Material You produce, the following conditions also apply.
-
-       1. The Adapter's License You apply must be a Creative Commons
-          license with the same License Elements, this version or
-          later, or a BY-NC-SA Compatible License.
-
-       2. You must include the text of, or the URI or hyperlink to, the
-          Adapter's License You apply. You may satisfy this condition
-          in any reasonable manner based on the medium, means, and
-          context in which You Share Adapted Material.
-
-       3. You may not offer or impose any additional or different terms
-          or conditions on, or apply any Effective Technological
-          Measures to, Adapted Material that restrict exercise of the
-          rights granted under the Adapter's License You apply.
+       4. If You Share Adapted Material You produce, the Adapter's
+          License You apply must not prevent recipients of the Adapted
+          Material from complying with this Public License.
 
 
 Section 4 -- Sui Generis Database Rights.
@@ -469,14 +419,12 @@ apply to Your use of the Licensed Material:
 
   a. for the avoidance of doubt, Section 2(a)(1) grants You the right
      to extract, reuse, reproduce, and Share all or a substantial
-     portion of the contents of the database for NonCommercial purposes
-     only;
+     portion of the contents of the database;
 
   b. if You include all or a substantial portion of the database
      contents in a database in which You have Sui Generis Database
      Rights, then the database in which You have Sui Generis Database
-     Rights (but not its individual contents) is Adapted Material,
-     including for purposes of Section 3(b); and
+     Rights (but not its individual contents) is Adapted Material; and
 
   c. You must comply with the conditions in Section 3(a) if You Share
      all or a substantial portion of the contents of the database.
@@ -576,6 +524,7 @@ Section 8 -- Interpretation.
      as a limitation upon, or waiver of, any privileges and immunities
      that apply to the Licensor or You, including from the legal
      processes of any jurisdiction or authority.
+
 
 =======================================================================
 
@@ -814,6 +763,10 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 
   ── 许可变更史 ──
 
+    v3.0.0（2026-10-24）  内容许可由 CC BY-NC-SA 4.0 改为 CC BY 4.0：去掉
+                          非商业（NC）与相同方式共享（SA）两条限制，全仓库
+                          成为完全开源（代码 MIT、字体 OFL/Apache 不变）。
+                          v2.x 及更早版本继续按其原始许可。
     v2.0.1（2026-10-16）  三份分拆许可文件（LICENSE-CODE / LICENSE-CONTENT /
                           LICENSE-FONTS）合并为本单一 LICENSE；
                           三份官方正文固化进 scripts/license-sources/，

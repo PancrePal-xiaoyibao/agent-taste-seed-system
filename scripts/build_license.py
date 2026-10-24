@@ -4,7 +4,7 @@
 
 ## 为什么要用脚本而不是手写
 
-`LICENSE` 里包含三份**官方许可全文**（MIT / CC BY-NC-SA 4.0 / SIL OFL 1.1），
+`LICENSE` 里包含三份**官方许可全文**（MIT / CC BY 4.0 / SIL OFL 1.1），
 共约 4 万字节。手写会带来两个问题：
 
   1. 复制粘贴极易出现缺行、错字——而许可正文**错一个字都是法律风险**；
@@ -161,7 +161,7 @@ def build_font_why() -> str:
 
 
 def render() -> str:
-    cc = read_source("cc-by-nc-sa-4.0-legalcode.txt")
+    cc = read_source("cc-by-4.0-legalcode.txt")
     ofl = read_source("ofl-1.1.txt")
     mit = read_source("mit.txt").replace("hhx465453939", HOLDER)
 
@@ -169,7 +169,7 @@ def render() -> str:
 {BAR}
 
 Copyright (c) {YEAR} {HOLDER}
-SPDX-License-Identifier: MIT AND CC-BY-NC-SA-4.0 AND OFL-1.1
+SPDX-License-Identifier: MIT AND CC-BY-4.0 AND OFL-1.1
 
 本项目按**资产类型**适用三种不同许可。本文件是唯一权威许可见证：
 前三节是速览与适用范围，后三节是三份许可的**官方完整正文**（逐字未改）。
@@ -182,12 +182,12 @@ SPDX-License-Identifier: MIT AND CC-BY-NC-SA-4.0 AND OFL-1.1
   你的资产                          适用许可                     完整正文
   ---------------------------------------------------------------------------
   代码（脚本 / CI / 部署）           MIT                          §二
-  内容（种子库 / 文档 / 截图）        CC BY-NC-SA 4.0              §三
+  内容（种子库 / 文档 / 截图）        CC BY 4.0                    §三
   字体子集（demos/_assets/fonts/）   SIL OFL 1.1 / Apache-2.0     §四
 
   一句话版：
 
-    内容（种子库/文档/截图）：  CC BY-NC-SA 4.0   署名 · 非商业 · 相同方式共享
+    内容（种子库/文档/截图）：  CC BY 4.0         署名；可商用，无需附加限制
     代码（脚本/CI/部署）：      MIT               可商用，保留版权声明
     字体（woff2 子集）：        上游 OFL/Apache   随包可分发，已按 OFL 改名
 
@@ -204,7 +204,7 @@ SPDX-License-Identifier: MIT AND CC-BY-NC-SA-4.0 AND OFL-1.1
       deploy/*.sh            各 agent 形态的部署脚本
       .github/**             CI 工作流与配置
 
-  §三 CC BY-NC-SA 4.0 —— 文本与视觉资产
+  §三 CC BY 4.0 —— 文本与视觉资产
       LICENSE（本文件） · CITATION.cff · CONTRIBUTING.md · .gitignore
       README*.md · CHANGELOG.md · SKILL.md · TASTE.md · AGENT-INJECTION.md
       AGENTS.md · CLAUDE.md
@@ -227,12 +227,12 @@ SPDX-License-Identifier: MIT AND CC-BY-NC-SA-4.0 AND OFL-1.1
   ── 边界规则（防止新增文件掉进缝里）──
 
   1. 默认规则：位于 demos/_src/、scripts/、deploy/、.github/ 下的
-     .py / .sh / .yml 文件 → §二 MIT；其余一切文件 → §三 CC BY-NC-SA 4.0。
+     .py / .sh / .yml 文件 → §二 MIT；其余一切文件 → §三 CC BY 4.0。
      本项由 scripts/check_integrity.py 自动守卫，新增文件无需手工登记。
 
   2. 一个文件里既有代码又有说明文字：以该文件的主要用途判定。
      脚本的主要用途是执行 → MIT；
-     文档、种子卡、演示页的主要用途是传递文本表达 → CC BY-NC-SA 4.0。
+     文档、种子卡、演示页的主要用途是传递文本表达 → CC BY 4.0。
 
   3. 字体文件例外：demos/_assets/fonts/** 的权利不属于本项目，归各自上游作者，
      适用其上游许可（见 §四）。本项目只做字形裁剪与重命名。
@@ -246,26 +246,27 @@ SPDX-License-Identifier: MIT AND CC-BY-NC-SA-4.0 AND OFL-1.1
 
 
 {RULE}
-三 · CC BY-NC-SA 4.0（内容资产）
+三 · CC BY 4.0（内容资产）
 {RULE}
 
-  完整名称：Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
-  中文名称：知识共享 署名-非商业性使用-相同方式共享 4.0 国际
-  SPDX    ：CC-BY-NC-SA-4.0
+  完整名称：Creative Commons Attribution 4.0 International
+  中文名称：知识共享 署名 4.0 国际
+  SPDX    ：CC-BY-4.0
 
   官方中文法律条款（权威文本的官方译本）：
-      https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.zh-Hans
+      https://creativecommons.org/licenses/by/4.0/legalcode.zh-Hans
   人类可读摘要：
-      https://creativecommons.org/licenses/by-nc-sa/4.0/
+      https://creativecommons.org/licenses/by/4.0/
 
   ⚠️ 依 Creative Commons 官方立场，英文版为权威文本，中文版为官方译本。
      下方「三·附 官方完整法律条款」一节逐字收录英文全文，作为本仓库的权威依据。
 
-  ── 你可以做什么（在遵守下列条件的前提下）──
+  ── 你可以做什么 ──
 
     · 共享 —— 以任何媒介或格式复制、发行本作品
     · 演绎 —— 修改、转换、基于本作品进行创作
-    · 任何目的，包括非商业性使用（个人学习、教学、研究、非营利项目、公益内容）
+    · 任何目的，**包括商业目的** —— 本许可不含 NonCommercial 限制
+    · 上述自由无需额外授权、无需付费
 
     许可方不能撤回这些自由，只要使用者遵守许可条款。
 
@@ -273,38 +274,28 @@ SPDX-License-Identifier: MIT AND CC-BY-NC-SA-4.0 AND OFL-1.1
 
     署名 BY        必须给出适当署名，提供指向本许可的链接，并说明是否作了修改。
                    可以任何合理方式署名，但不得暗示许可方为你或你的使用背书。
-    非商业性 NC    不得将本作品用于商业目的。商业目的指主要以商业利益或
-                   金钱报酬为目的的使用。
-    相同方式共享 SA 如果你再混、转换或基于本作品进行创作，必须以相同的许可
-                   分发你的贡献。这意味着补录进种子库的新内容同样开放，
-                   任何人都能继续使用。
     无附加限制     不得适用法律条款或技术措施，从而限制他人做本许可允许的事。
+
+    完整条件以「三·附」的官方正文为准（CC BY 4.0 §2）。
+
+  ── 补录内容怎么授权 ──
+
+    CC BY 4.0 没有 ShareAlike：你补录进种子库的新内容可以用任何条款发布，
+    包括专有条款；基于本仓库内容的演绎作品同样可以另行授权。
+    前提是保留署名、许可链接与修改说明，并且不对他人的 CC BY 权利附加限制。
 
   ── 推荐署名格式（把尖括号内换成你的实际信息）──
 
       本作品使用了「{PROJECT}」（作者 {HOLDER}），
-      依据 CC BY-NC-SA 4.0 许可使用。
+      依据 CC BY 4.0 许可使用。
       来源：{REPO}
       修改说明：<例如「仅使用 code-genes/02 赛博霓虹，未作修改」>
 
     机器可读格式见 CITATION.cff；更多模板见 docs/ATTRIBUTION.md。
 
-  ── 商业使用 ──
-
-    CC BY-NC-SA 4.0 不允许商业性使用。若你的场景涉及商业目的：
-
-      · 请先开 Issue 说明用途，与作者单独洽谈商业许可
-        （dual-licensing 是常规做法，见 CONTRIBUTING.md）；
-      · 但你仍可直接使用 §二 下的脚本 —— MIT 不限商业用途；
-      · 进入正式商用前，建议就你的具体场景咨询执业律师。
-
-    ⚠️ NC 对「商业性」的界定以法律条款正文为准。公司内部使用、内部培训等
-       场景是否构成「商业性使用」，协议解释存在讨论空间。
-       本文件不构成法律意见。
-
 
 {RULE}
-三·附 · 官方完整法律条款（CC BY-NC-SA 4.0，英文权威文本，逐字未改）
+三·附 · 官方完整法律条款（CC BY 4.0，英文权威文本，逐字未改）
 {RULE}
 
 {cc}
@@ -376,6 +367,10 @@ SPDX-License-Identifier: MIT AND CC-BY-NC-SA-4.0 AND OFL-1.1
 
   ── 许可变更史 ──
 
+    v3.0.0（2026-10-24）  内容许可由 CC BY-NC-SA 4.0 改为 CC BY 4.0：去掉
+                          非商业（NC）与相同方式共享（SA）两条限制，全仓库
+                          成为完全开源（代码 MIT、字体 OFL/Apache 不变）。
+                          v2.x 及更早版本继续按其原始许可。
     v2.0.1（2026-10-16）  三份分拆许可文件（LICENSE-CODE / LICENSE-CONTENT /
                           LICENSE-FONTS）合并为本单一 LICENSE；
                           三份官方正文固化进 scripts/license-sources/，

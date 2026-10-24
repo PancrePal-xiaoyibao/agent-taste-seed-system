@@ -5,7 +5,7 @@
 > 风格种子速查表 → 种子库 `art-seeds.md`（全量种子库，按需查询勿全文注入）。**种子库随 skill 安装，引用一律以 skill 根为基准的相对路径寻址**：在本 skill 目录下即 `references/art-seeds.md`（下文的 `moods/`、`code-genes/`、`chapters/` 同理，均相对 `references/`）。
 > ⚠️ **不要把种子库放进 agent workspace 根**——许多 agent 宿主配置了 workspace 自动清理，会把种子库搬到 archive 或删除，导致引用永久失效。若你是**没有 skill 机制**的 agent，则把仓库 clone 到主目录固定路径（例如 `~/aesthetic-brain/`，**不得位于任何 workspace 内**），种子库引用为 `<clone>/references/art-seeds.md`。
 > 《艺术风格百科大全》原文全量在本仓库 `references/chapters/`（逐章）。底稿 docx 不随仓库分发。
-> 许可：本文件为文本资产，适用 **CC BY-NC-SA 4.0**（见 [`LICENSE`](LICENSE)）；出处与署名建议见 [`docs/ATTRIBUTION.md`](docs/ATTRIBUTION.md)。
+> 许可：本文件为文本资产，适用 **CC BY 4.0**（见 [`LICENSE`](LICENSE)）；出处与署名建议见 [`docs/ATTRIBUTION.md`](docs/ATTRIBUTION.md)。
 
 ---
 

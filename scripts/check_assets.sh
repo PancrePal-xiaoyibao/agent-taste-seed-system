@@ -99,7 +99,7 @@ for f in LICENSE CITATION.cff CONTRIBUTING.md \
 done
 
 # 三份官方正文必须在场（LICENSE 由它们组装而成）
-for f in scripts/license-sources/cc-by-nc-sa-4.0-legalcode.txt \
+for f in scripts/license-sources/cc-by-4.0-legalcode.txt \
          scripts/license-sources/ofl-1.1.txt \
          scripts/license-sources/mit.txt; do
   [ -f "$f" ] && ok "$f" || bad "缺少许可正文素材 $f"

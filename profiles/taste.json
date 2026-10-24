@@ -1,7 +1,7 @@
 {
   "_comment": [
     "美学大脑的 seedbrain 接入配置（v0.3）。",
-    "引擎来自 agent-seed-brain（CC BY-NC-SA 4.0），本仓库只提供内容与解析规则。",
+    "引擎来自 agent-seed-brain（Apache-2.0），本仓库只提供内容与解析规则。",
     "  · extends → builtin:base：公共 norms / paths / thresholds 随 SDK 版本走，零复制。",
     "  · 本域探针保持领域适配（12 条视觉任务）；未启用 probes_ref，因为实测抽象形态",
     "    探针在 374 粒视觉库里命中过窄，会把 T6b（单层垄断）拉破——宁可不用。",

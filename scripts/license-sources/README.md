@@ -5,7 +5,7 @@
 
 | 文件 | 内容 | 官方来源 | 抓取日期 |
 |---|---|---|---|
-| `cc-by-nc-sa-4.0-legalcode.txt` | CC BY-NC-SA 4.0 英文法律条款全文（438 行） | <https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.txt> | 2026-10-16 |
+| `cc-by-4.0-legalcode.txt` | CC BY 4.0 英文法律条款全文（396 行） | <https://creativecommons.org/licenses/by/4.0/legalcode.txt> | 2026-10-24 |
 | `ofl-1.1.txt` | SIL Open Font License 1.1 正文 | <https://scripts.sil.org/OFL>（经 Inter 项目 LICENSE.txt 逐字校验） | 2026-10-16 |
 | `mit.txt` | MIT License 正文（含本项目版权行） | 标准文本 | 2026-10-16 |
 

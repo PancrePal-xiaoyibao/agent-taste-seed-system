@@ -14,7 +14,7 @@ This document answers three questions: **where this came from**, **how to cite i
 | First created | 2026-09-24 |
 | Source material | *Encyclopedia of Art Styles* (compiled 2026-06-20; 24 chapters, 250+ artists/styles) |
 | Content form | Plain text (Markdown). **Contains no images, audio, video, or copies of third-party works** |
-| License | Text assets CC BY-NC-SA 4.0 · Code assets MIT (see [`../../LICENSE`](../../LICENSE)) |
+| License | Text assets CC BY 4.0 · Code assets MIT (see [`../../LICENSE`](../../LICENSE)) |
 
 ### How the content reached its current form
 
@@ -74,7 +74,7 @@ APA example:
 
 ```
 hhx465453939. (2026). aesthetic-brain: an aesthetic decision system and style seed
-library for AI agents (Version 2.0.0) [Computer software].
+library for AI agents (Version 3.0.0) [Computer software].
 https://github.com/hhx465453939/agent-taste-seed-system
 ```
 
@@ -84,7 +84,7 @@ https://github.com/hhx465453939/agent-taste-seed-system
 
 ```
 This work uses aesthetic-brain (author: hhx465453939),
-licensed under CC BY-NC-SA 4.0.
+licensed under CC BY 4.0.
 Source: https://github.com/hhx465453939/agent-taste-seed-system
 Changes: <e.g. "used code-genes/02 Cyber Neon unmodified">
 ```
@@ -92,7 +92,7 @@ Changes: <e.g. "used code-genes/02 Cyber Neon unmodified">
 **Minimal form** (where space is tight, e.g. a footer):
 
 ```
-Style decisions: aesthetic-brain · CC BY-NC-SA 4.0
+Style decisions: aesthetic-brain · CC BY 4.0
 ```
 
 ### 3.3 Using only the scripts
@@ -109,7 +109,7 @@ https://github.com/hhx465453939/agent-taste-seed-system
 
 ## 4. Two things attribution must state
 
-The BY condition of CC BY-NC-SA 4.0 requires:
+The BY condition of CC BY 4.0 requires:
 
 1. **State whether you made changes** — "unmodified", "used only gene card no. X", "extended Y on top of X" all work, but you must say it.
 2. **Do not imply endorsement** — do not write "officially supported / certified by aesthetic-brain" unless you actually hold authorisation.
@@ -120,8 +120,8 @@ The BY condition of CC BY-NC-SA 4.0 requires:
 
 | Rule | Basis |
 |---|---|
-| New content you add to the seed library **must be distributed under CC BY-NC-SA 4.0** | SA (ShareAlike) condition |
-| **No commercial use**; for commercial terms, open an Issue to negotiate a separate licence | NC (NonCommercial) condition |
+| New content you add to the seed library **may be distributed under any terms**, including proprietary ones — there is no ShareAlike requirement | CC BY 4.0 has no SA condition |
+| **Commercial use needs no separate licence**, but you must keep the attribution, the licence link, and a note of changes | BY (Attribution); there is no NC condition |
 
 Want to give back to the seed library? See [`../../CONTRIBUTING.md`](../../CONTRIBUTING.md).
 
