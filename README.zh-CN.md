@@ -6,18 +6,18 @@
 # 🎨 美学大脑 / aesthetic-brain — 给任何 AI Agent 装上审美大脑
 
 [![CI](https://github.com/hhx465453939/agent-taste-seed-system/actions/workflows/ci.yml/badge.svg)](https://github.com/hhx465453939/agent-taste-seed-system/actions/workflows/ci.yml)
-[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/Content-CC%20BY--NC--SA%204.0-lightgrey.svg)](LICENSE)
+[![License: CC BY 4.0](https://img.shields.io/badge/license-CC_BY_4.0-lightgrey.svg)](LICENSE)
 [![License: MIT](https://img.shields.io/badge/Code-MIT-blue.svg)](LICENSE)
 [![Cite](https://img.shields.io/badge/Cite-CITATION.cff-green.svg)](CITATION.cff)
 
 > 一套可移植的「审美操作系统 + 风格种子库」，让 Claude Code / Codex / OpenClaw / pi / workbuddy / codebuddy / Trae / Qoder / hermas 等任何智能体，在视觉创作上摆脱"AI 味默认审美"。
 > 来源：《艺术风格百科大全》（24 章 250+ 艺术家/风格）→ 提炼为可执行的审美决策体系。
-> 版本：**v2.0.1** · 2026-10-16（开源合规与专业化改造）· 旧名 `agent-taste-seed-system`
+> 版本：**v3.0.0** · 2026-10-24（再许可为 CC BY 4.0）· 旧名 `agent-taste-seed-system`
 > 本仓库：**https://github.com/hhx465453939/agent-taste-seed-system**
 > 🖼️ **先看结果：[十二风格样本墙](demos/index.html)**（12 个真实渲染页面，每种风格附纪律说明）
 >
-> **许可**：文本资产 **CC BY-NC-SA 4.0** · 代码资产 **MIT**（[许可总览](LICENSE)）
-> **商用**：内容需单独授权，脚本可直接商用——见 [许可总览 §商业使用](LICENSE)
+> **许可**：文本资产 **CC BY 4.0** · 代码资产 **MIT** · 字体 **OFL / Apache-2.0**（[许可总览](LICENSE)）
+> **商用**：内容与代码均可商用 —— CC BY 4.0 没有非商业条款，保留署名即可
 
 <p align="center">
   <a href="demos/index.html"><img src="demos/_assets/shots/01-cyber-neon.webp" width="24%" alt="赛博霓虹"></a>
@@ -259,7 +259,7 @@ mv "$WS" "$WS.moved" && test -r "$WS.moved/skills/taste/references/art-seeds.md"
 
 | 文件 | 作用 |
 |------|------|
-| [`LICENSE`](LICENSE) | ⭐ 单一许可文件：三许可分治说明 + 逐路径对照 + 商业使用 + **MIT / CC BY-NC-SA 4.0 / OFL 1.1 三份官方完整正文** |
+| [`LICENSE`](LICENSE) | ⭐ 单一许可文件：三许可分治说明 + 逐路径对照 + **MIT / CC BY 4.0 / OFL 1.1 三份官方完整正文** |
 | [`CITATION.cff`](CITATION.cff) | 学术引用格式（GitHub 自动生成「Cite this repository」按钮） |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | 贡献指南：回填一行风味日志 / 补录新种子 / 新增代码基因卡的门槛 |
 | [`docs/ATTRIBUTION.md`](docs/ATTRIBUTION.md) | 出处、署名模板与 **AI 使用披露** |
@@ -375,21 +375,28 @@ git clone https://github.com/hhx465453939/agent-taste-seed-system.git \
 
 ### 许可
 
-本项目采用**按资产类型分治的双许可结构**：
+本项目采用**按资产类型分治的三许可结构**：
 
 ```
-内容（种子库 / 文档 / 截图）：  CC BY-NC-SA 4.0   署名 · 非商业 · 相同方式共享
+内容（种子库 / 文档 / 截图）：  CC BY 4.0         署名即可，可商用
 代码（脚本 / CI / 配置）：      MIT               可商用，保留版权声明
 字体（woff2 子集）：            上游 OFL / Apache 随包可分发，已按 OFL 改名
 ```
 
 - **完整许可结构与逐路径对照** → [`LICENSE`](LICENSE)
 - **只想用脚本**（想嵌进商业产品的构建流程）→ MIT 不限制，直接用 [`demos/_src/`](demos/_src/)
-- **想用内容做商业产品** → CC BY-NC-SA 4.0 的 NC 条款不允许，请开 Issue 洽谈单独商业许可
+- **想用内容做商业产品** → CC BY 4.0 允许，保留署名并说明是否修改即可（见 [`docs/ATTRIBUTION.md`](docs/ATTRIBUTION.md)）
 - **引用本项目的方法论** → 按 [`CITATION.cff`](CITATION.cff) 或 [`docs/ATTRIBUTION.md`](docs/ATTRIBUTION.md) 署名
 
-> ⚠️ NC 对「商业性」的界定以许可协议正文为准。公司内部使用等场景的解释存在讨论空间，
-> **进入正式商用前建议咨询执业律师**——这是建议，不是法律意见。
+> ⚠️ 「商业使用」不再受许可限制。义务只有三条：署名、指向许可的链接、说明是否修改。
+> 边界情形的最终判断建议咨询执业律师——这是建议，不是法律意见。
+
+### 版本轨迹：v3.0.0 起再许可
+
+**v2.x 及更早**的内容版本以 **CC BY-NC-SA 4.0**（非商业 + 相同方式共享）发布，
+那些旧版本继续适用其原始许可 —— 已经授予的许可不可撤销。
+**自 v3.0.0 起内容改为 CC BY 4.0**：只保留署名，去掉 NonCommercial 与 ShareAlike，
+因此整个仓库现在是**完全开源**。
 
 ### 质量与合规闸门（三道 CI）
 
@@ -406,7 +413,7 @@ python3 demos/_src/check_font_licenses.py   # 字体子集 OFL 命名合规（§
 
 ## License
 
-- 文本资产：**CC BY-NC-SA 4.0** — 详见 [`LICENSE`](LICENSE) §三
+- 文本资产：**CC BY 4.0** — 详见 [`LICENSE`](LICENSE) §三
 - 代码资产：**MIT** — 详见 [`LICENSE`](LICENSE) §二
 - 内置字体子集：上游 OFL / Apache-2.0 — 详见 [`LICENSE`](LICENSE) §四
 
