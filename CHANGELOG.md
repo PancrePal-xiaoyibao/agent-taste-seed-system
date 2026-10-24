@@ -1,5 +1,40 @@
 # Changelog
 
+## v3.0.0 · 2026-10-24
+
+**内容许可由 CC BY-NC-SA 4.0 改为 CC BY 4.0 —— 全仓库成为完全开源（fully open source）。**
+
+### 去掉了 NC 与 SA
+
+| 项 | v2.x | v3.0.0 |
+|---|---|---|
+| 内容资产 | CC BY-NC-SA 4.0（署名 · 非商业 · 相同方式共享） | **CC BY 4.0**（仅署名） |
+| 代码资产 | MIT | MIT（不变） |
+| 字体子集 | 上游 OFL 1.1 / Apache-2.0 | 上游 OFL 1.1 / Apache-2.0（不变） |
+
+- **商业使用不再需要单独授权**：NC 条款带来的「商用要开 Issue 洽谈」流程整体取消；
+- **不再有 ShareAlike**：补录进种子库的新内容与基于本仓库的演绎作品可以自行选择许可；
+- 义务只剩三条：署名、指向许可的链接、说明是否修改。
+
+### 许可正文与生成链
+
+- `scripts/license-sources/cc-by-nc-sa-4.0-legalcode.txt` → `cc-by-4.0-legalcode.txt`，
+  官方正文重抓（396 行，取自 creativecommons.org/legalcode.txt，逐字未改）；
+- `scripts/build_license.py` 的 §零 / §一 / §三 / 三·附 / 变更史全部改写，重生成 `LICENSE`；
+- `scripts/check_integrity.py`：`LEGAL_FILES` 文件名同步；分章头断言仍为硬断言，
+  仅把被断言字符串由 `CC BY-NC-SA` 换成 `CC BY 4.0`（强度不变，不放宽）；
+- `scripts/check_assets.sh`：许可正文清单同步。
+
+### 全仓声明点
+
+25 份分章免责头、`art-seeds.md`、`ART-SEEDS-LOG.md`、`TASTE.md`、`AGENTS.md`、
+`CONTRIBUTING.md`、`CITATION.cff`、`docs/ATTRIBUTION.md`、`docs/en/ATTRIBUTION.md`、
+双语 README、`profiles/taste.json` 全部改为 CC BY 4.0。
+
+### 迁移说明
+
+v2.x 及更早版本继续按其原始许可（已授予的许可不可撤销），旧内容未做任何修改。
+
 ## v2.0.1 · 2026-10-16
 
 **许可文件收口为单一 `LICENSE`**（含三份官方全文），并修掉 v2.0.0 遗留的三处不一致。
